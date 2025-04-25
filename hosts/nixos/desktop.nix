@@ -11,10 +11,7 @@
     ];
 
   # Bootloader.
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
-
-boot.loader = {
+  boot.loader = {
     efi.canTouchEfiVariables = true;
 
     systemd-boot = {
@@ -28,11 +25,11 @@ boot.loader = {
             # which alias corresponds to which EFI partition.
             boot-drive = "FS1";
           in
-          {
-            title = "Windows";
-            efiDeviceHandle = boot-drive;
-            sortKey = "y_windows";
-          };
+            {
+              title = "Windows";
+              efiDeviceHandle = boot-drive;
+              sortKey = "y_windows";
+            };
       };
 
       edk2-uefi-shell.enable = true;
@@ -88,8 +85,8 @@ boot.loader = {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
     git
     gcc
     emacs
@@ -108,8 +105,8 @@ boot.loader = {
     pcsc-tools
     pcsclite
 
-  # Font
-   (pkgs.stdenv.mkDerivation {
+    # Font
+    (pkgs.stdenv.mkDerivation {
       pname = "hackgen-nf-font";
       version = "2.10.0";
       src = pkgs.fetchzip {
@@ -169,22 +166,21 @@ boot.loader = {
 
   services.xserver.enable = true;
   services.displayManager.sddm.enable = false;
-  # services.xserver.windowManager.hypr.enable = true;
-  
+
   services.greetd.enable = true;
   services.greetd.settings.default_session = {
     command = "Hyprland";
     user = "xorphitus";
   };
 
-     i18n.inputMethod = {
-     type = "fcitx5";
-     enable = true;
-     fcitx5.addons = with pkgs; [
-       fcitx5-gtk
-       fcitx5-mozc
-     ];
-   };
+  i18n.inputMethod = {
+    type = "fcitx5";
+    enable = true;
+    fcitx5.addons = with pkgs; [
+      fcitx5-gtk
+      fcitx5-mozc
+    ];
+  };
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -194,5 +190,5 @@ boot.loader = {
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
-};
+  };
 }
