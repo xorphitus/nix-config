@@ -41,5 +41,12 @@
       source = ../config/emacs/init.el;
       target = ".emacs.d/init.el";
     };
+
+    # SKK
+    ".local/bin/update-skk-jisyo.sh" = {
+      source = ../config/skk/update-skk-jisyo.sh;
+      target = ".local/bin/update-skk-jisyo.sh";
+      executable = true;
+    };
   };
 }

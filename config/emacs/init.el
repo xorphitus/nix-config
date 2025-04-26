@@ -870,7 +870,7 @@ Call this on `flyspell-incorrect-hook'."
   (("C-o" . skk-mode))
   :init
   (defcustom my-skk-jisyo-root
-    (-find 'f-directory? '("/usr/share/skk" "~/skk"))
+    (-find 'f-directory? '("~/skk" "~/.local/share/skk" "/usr/share/skk"))
     "SKK dictionary path. Override it for each platform")
   (setq
    ;; enable AZIK
