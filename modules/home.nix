@@ -7,20 +7,27 @@
   home.stateVersion = "24.11";
 
   home.file = {
-    ".config/environment.d/00-my.conf".text = ''
-    # IME
-    GTK_IM_MODULE=fcitx
-    QT_IM_MODULE=fcitx
-    XMODIFIERS=@im=fcitx
-
     # GPG
-    GPG_TTY=$(tty)
-    SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-    '';
+    ".gnupg/gpg-agent.conf" = {
+      source = ../config/gnupg/gpg-agent.conf;
+      target = ".gnupg/gpg-agent.conf";
+    };
 
+    ".config/environment.d/20-gnupg.conf" = {
+      source = ../config/gnupg/env.conf;
+      target = ".config/environment.d/20-gnupg.conf";
+    };
+
+    # Hyprland
     ".config/hypr/hyprland.conf" = {
       source = ../config/hypr/hyprland.conf;
       target = ".config/hypr/hyprland.conf";
+    };
+
+    # Fcitx
+    ".config/environment.d/20-fcitx.conf" = {
+      source = ../config/fcitx/env.conf;
+      target = ".config/environment.d/20-fcitx.conf";
     };
   };
 }
