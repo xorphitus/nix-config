@@ -85,12 +85,23 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
     git
     gcc
     emacs
     cmigemo # for Emacs
+    # CLI
+    bat
+    fd
+    fzf
+    ghq
+    htop
+    lsd
+    ripgrep
+    toybox # for bascic utilities
+    zoxide
+    # Development
+    mise
+    podman
     # GUI
     hyprland
     waybar
