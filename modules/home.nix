@@ -29,5 +29,11 @@
       source = ../config/fcitx/env.conf;
       target = ".config/environment.d/20-fcitx.conf";
     };
+
+    # Emacs
+    ".emacs/init.el" = {
+      source = ../config/emacs/init.el;
+      target = ".emacs.d/init.el";
+    };
   };
 }
