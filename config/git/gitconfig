@@ -1,0 +1,38 @@
+[user]
+	email = xorphitus@gmail.com
+	name = xorphitus
+	signingkey = D1807C94682FEF328966ACF1522B834DAD3D20B1
+[core]
+	pager = less -r
+	editor = emacsclient
+[format]
+	signoff = true
+[color]
+	ui = auto
+[commit]
+	gpgsign = true
+[push]
+	default = tracking
+[merge]
+	ff = false
+[rebase]
+	autostash = true
+[branch]
+	autosetuprebase = always
+[pull]
+	rebase = true
+[alias]
+	s = status
+	b = branch
+	d = diff
+	sw = switch
+	push-f = push --force-with-lease
+[pager]
+	log = bat
+	show = bat
+	diff = bat
+[ghq]
+	root = ~/go/src
+	root = ~/.ghq
+[github]
+	user = xorphitus

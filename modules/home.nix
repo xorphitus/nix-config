@@ -18,6 +18,12 @@
       target = ".config/environment.d/20-gnupg.conf";
     };
 
+    # Git
+    ".gitconfig" = {
+      source = ../config/git/gitconfig;
+      target = ".gitconfig";
+    };
+
     # Hyprland
     ".config/hypr/hyprland.conf" = {
       source = ../config/hypr/hyprland.conf;
