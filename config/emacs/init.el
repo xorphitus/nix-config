@@ -189,21 +189,20 @@
           (invalid-regexp nil))))
 
     :config
-    ;; (orderless-define-completion-style orderless-migemo-style
-    ;;   (orderless-matching-styles '(; orderless-literal
-    ;;                                ; orderless-regexp
-    ;;                                my-orderless-migemo)))
+    (orderless-define-completion-style orderless-migemo-style
+      (orderless-matching-styles '(; orderless-literal
+                                   ; orderless-regexp
+                                   my-orderless-migemo)))
 
     (setq completion-styles '(orderless)
           completion-category-defaults nil
-          ;; completion-category-overrides
-          ;; '(
-          ;;   (file (styles orderless-migemo-style))
-          ;;   (buffer (styles orderless-migemo-style))
-          ;;   (consult-location (styles orderless-migemo-style))
-          ;;   (consult-multi (styles orderless-migemo-style))
-          ;;   (unicode-name (styles orderless-migemo-style))
-          ;;   )
+          completion-category-overrides
+          '(
+            (file (styles orderless-migemo-style))
+            (buffer (styles orderless-migemo-style))
+            (consult-location (styles orderless-migemo-style))
+            (consult-multi (styles orderless-migemo-style))
+            (unicode-name (styles orderless-migemo-style)))
           ))
 
   (leaf consult
@@ -415,23 +414,24 @@ http://d.hatena.ne.jp/gifnksm/20100131/1264956220"
   :config
   (setq undo-tree-auto-save-history nil))
 
-;; (leaf migemo
-;;   :req "migemo"
-;;   :ensure t
-;;   :commands migemo
-;;   :init
-;;   (setq migemo-command (if (executable-find "cmigemo") "cmigemo" "/usr/local/bin/cmigemo")
-;;         migemo-options '("-q" "--emacs")
-;;         migemo-dictionary (--find
-;;                            (f-exists? it)
-;;                            '("/usr/share/migemo/utf-8/migemo-dict"
-;;                              "/usr/share/cmigemo/utf-8/migemo-dict"
-;;                              "/usr/local/share/migemo/utf-8/migemo-dict"))
-;;         migemo-user-dictionary nil
-;;         migemo-regex-dictionary nil
-;;         migemo-coding-system 'utf-8-unix)
-;;   (load-library "migemo")
-;;   (migemo-init))
+(leaf migemo
+  :req "migemo"
+  :ensure t
+  :commands migemo
+  :init
+  (setq migemo-command (if (executable-find "cmigemo") (executable-find "cmigemo") "/usr/local/bin/cmigemo")
+        migemo-options '("-q" "--emacs")
+        migemo-dictionary (--find
+                           (f-exists? it)
+                           '("~/.local/share/migemo/utf-8/migemo-dict"
+                             "/usr/share/migemo/utf-8/migemo-dict"
+                             "/usr/share/cmigemo/utf-8/migemo-dict"
+                             "/usr/local/share/migemo/utf-8/migemo-dict"))
+        migemo-user-dictionary nil
+        migemo-regex-dictionary nil
+        migemo-coding-system 'utf-8-unix)
+  (load-library "migemo")
+  (migemo-init))
 
 (leaf flycheck
   :diminish (flycheck-mode . "⚠")

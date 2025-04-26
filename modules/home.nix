@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
-{
+let migemoDictVersion = "v2021-05-07";
+
+in {
   home.username = "xorphitus";
   home.homeDirectory = "/home/xorphitus";
 
@@ -47,6 +49,12 @@
       source = ../config/skk/update-skk-jisyo.sh;
       target = ".local/bin/update-skk-jisyo.sh";
       executable = true;
+    };
+
+    # Migemo dictionary
+    ".local/share/migemo" = {
+      source = "${pkgs.cmigemo}/share/migemo";
+      target = ".local/share/migemo";
     };
   };
 }

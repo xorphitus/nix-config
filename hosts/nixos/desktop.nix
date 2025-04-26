@@ -90,6 +90,7 @@
     git
     gcc
     emacs
+    cmigemo # for Emacs
     # GUI
     hyprland
     waybar
