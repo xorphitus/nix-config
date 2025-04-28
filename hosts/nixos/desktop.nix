@@ -106,6 +106,7 @@
     podman
     # GUI
     hyprland
+    hyprlock
     waybar
     wezterm
     vivaldi
