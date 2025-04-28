@@ -71,46 +71,7 @@
   (leaf f
     :tag "library"
     :ensure t
-    :require t)
-  (leaf diminish
-    :doc "This is not a library, but it's required for leaf DSL"
-    :ensure t
     :require t))
-
-;; Constants
-(defconst my-const/lambda-prettify-symbols-alist
-  '(("lambda" . ?λ)))
-
-(defconst my-const/relational-prettify-symbols-alist
-  '(("!=" . ?≠)
-    ("/=" . ?≠)
-    (">=" . ?≥)
-    ("<=" . ?≤)))
-
-(defconst my-const/logical-prettify-symbols-alist
-  '(("and" . ?∧)
-    ("or"  . ?∨)))
-
-(defconst my-const/logical-prettify-symbols-ext-alist
-  (-concat my-const/lambda-prettify-symbols-alist
-           '(("not" . ?¬)
-             ("nil" . ?∅))))
-
-(defconst my-const/arrow-prettify-symbols-alist
-  '(("->" . ?→)
-    ("=>" . ?⇒)))
-
-;; Macros
-
-;; Somehow, this macro causes an issue that Emacs suddenly doesn't accept keyboard inputs.
-;; Stop using this one for now.
-(defmacro skip--my-macro/prettify-symbols (hook symbols-alist)
-  `(add-hook ',hook
-             (lambda ()
-               (-each ,symbols-alist
-                 (lambda (prettify-map)
-                   (push prettify-map prettify-symbols-alist))))))
-(defmacro my-macro/prettify-symbols (hook symbols-alist))
 
 (leaf *base
   :config
@@ -409,7 +370,6 @@ http://d.hatena.ne.jp/gifnksm/20100131/1264956220"
 
 (leaf undo-tree
   :ensure t
-  :diminish (undo-tree-mode . "🅤")
   :global-minor-mode global-undo-tree-mode
   :config
   (setq undo-tree-auto-save-history nil))
@@ -434,7 +394,6 @@ http://d.hatena.ne.jp/gifnksm/20100131/1264956220"
   (migemo-init))
 
 (leaf flycheck
-  :diminish (flycheck-mode . "⚠")
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode)
   (setq spaceline-flycheck-bullet "⚠%s")
@@ -485,65 +444,6 @@ http://d.hatena.ne.jp/gifnksm/20100131/1264956220"
       (olivetti-mode t)
       (olivetti-set-width (string-to-number width)))))
 
-(leaf treemacs
-  :ensure t
-  :bind
-  ;; same as IntelliJ IDEA short cut
-  (("M-1" . treemacs))
-  :config
-  (setq treemacs-collapse-dirs                 (if (executable-find "python") 3 0)
-        treemacs-deferred-git-apply-delay      0.5
-        treemacs-display-in-side-window        t
-        treemacs-file-event-delay              5000
-        treemacs-file-follow-delay             0.2
-        treemacs-follow-after-init             t
-        treemacs-git-command-pipe              ""
-        treemacs-goto-tag-strategy             'refetch-index
-        treemacs-indentation                   2
-        treemacs-indentation-string            " "
-        treemacs-is-never-other-window         nil
-        treemacs-max-git-entries               5000
-        treemacs-no-png-images                 nil
-        treemacs-no-delete-other-windows       t
-        treemacs-project-follow-cleanup        nil
-        treemacs-persist-file                  (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
-        treemacs-recenter-distance             0.1
-        treemacs-recenter-after-file-follow    nil
-        treemacs-recenter-after-tag-follow     nil
-        treemacs-recenter-after-project-jump   'always
-        treemacs-recenter-after-project-expand 'on-distance
-        treemacs-show-cursor                   nil
-        treemacs-show-hidden-files             t
-        treemacs-silent-filewatch              nil
-        treemacs-silent-refresh                nil
-        treemacs-sorting                       'alphabetic-desc
-        treemacs-space-between-root-nodes      t
-        treemacs-tag-follow-cleanup            t
-        treemacs-tag-follow-delay              1.5
-        treemacs-width                         35)
-  ;; FIXME
-  ;; (treemacs-follow-mode t)
-  ;; (treemacs-filewatch-mode t)
-  ;; (treemacs-fringe-indicator-mode t)
-  (pcase (cons (not (null (executable-find "git")))
-               (not (null (executable-find "python3"))))
-    (`(t . t)
-     (treemacs-git-mode 'deferred))
-    (`(t . _)
-     (treemacs-git-mode 'simple)))
-
-  (leaf treemacs-projectile
-    :ensure t
-    :after treemacs projectile)
-
-  (leaf treemacs-icons-dired
-    :ensure t
-    :after treemacs dired
-    :config (treemacs-icons-dired-mode))
-
-  (leaf treemacs-magit
-    :ensure t
-    :after treemacs magit))
 
 (leaf mail-mode
   :mode
@@ -574,7 +474,6 @@ http://d.hatena.ne.jp/gifnksm/20100131/1264956220"
 
 (leaf anzu
   :ensure t
-  :diminish (anzu-mode . "🅐")
   :global-minor-mode global-anzu-mode
   :config
   (setq anzu-cons-mode-line-p nil))
@@ -593,7 +492,6 @@ http://d.hatena.ne.jp/gifnksm/20100131/1264956220"
 
 (leaf ace-isearch
   :ensure t
-  :diminish ace-isearch-mode
   :global-minor-mode global-ace-isearch-mode
   :init
   ;; ace-isearch requires either helm-swoop, helm-occur or swiper.
@@ -641,14 +539,9 @@ See http://d.hatena.ne.jp/rubikitch/20100210/emacs"
   :ensure t
   :global-minor-mode wrap-region-mode)
 
-(leaf direnv
-  :ensure t
-  :config
-  (direnv-mode))
 
 (leaf eldoc
-  :ensure t
-  :diminish (eldoc-mode . "📖"))
+  :ensure t)
 
 (leaf which-key
   :ensure t
@@ -692,12 +585,6 @@ Call this on `flyspell-incorrect-hook'."
     (define-key flyspell-mode-map (kbd "C-,") nil)
     (define-key flyspell-mode-map (kbd "C-.") nil)))
 
-(leaf google-translate
-  :ensure t
-  :after (posframe)
-  :config
-  (setq google-translate-translation-directions-alist
-        '(("ja" . "en") ("en" . "ja"))))
 
 (leaf comment-dwim-2
   :ensure t
@@ -743,7 +630,7 @@ Call this on `flyspell-incorrect-hook'."
   ;;     (format "%s-%s" available size))
   ;;   "Font. It's detected automaticaly by default.")
  (defcustom my-font "HackGen 35 Console NF" "Font. It's detected automaticaly by default.")
-  
+
   :config
   (setq default-frame-alist (list (cons 'font  my-font)))
   (set-frame-font my-font)
@@ -800,7 +687,6 @@ Call this on `flyspell-incorrect-hook'."
   (leaf whitespace
     :doc "Show spaces"
     :ensure t
-    :diminish (global-whitespace-mode . "🅦")
     :commands whitespace
     :init
     (setq whitespace-style '(face
@@ -829,8 +715,7 @@ Call this on `flyspell-incorrect-hook'."
     :ensure t)
 
   (leaf highlight-indentation
-    :ensure t
-    :diminish highlight-indentation-mode)
+    :ensure t)
 
   (leaf doom-modeline
     :ensure t
@@ -839,30 +724,13 @@ Call this on `flyspell-incorrect-hook'."
 
   (leaf volatile-highlights
     :ensure t
-    :diminish volatile-highlights-mode
     :config
     (volatile-highlights-mode t))
 
   (leaf hide-mode-line
     :ensure t
     :hook
-    ((treemacs-mode) . hide-mode-line-mode))
-
-  (leaf beacon
-    :ensure t
-    :config
-    (beacon-mode 1))
-
-  (leaf git-gutter-fringe
-    ;; FIXME it makes display wrong when `global-linum-mode' is enabled
-    :disabled t
-    :doc "Show an icon indicating whether a line has been changed from last commit"
-    :ensure t
-    :diminish git-gutter-mode
-    :init
-    (setq git-gutter-fr:side 'right-fringe)
-    :config
-    (global-git-gutter-mode)))
+    ((treemacs-mode) . hide-mode-line-mode)))
 
 (leaf ddskk
   :ensure t
@@ -895,7 +763,6 @@ Call this on `flyspell-incorrect-hook'."
 
   (leaf ddskk-posframe
     :ensure t
-    :diminish
     :config
     (ddskk-posframe-mode t)))
 
@@ -919,20 +786,8 @@ Call this on `flyspell-incorrect-hook'."
   (add-hook 'scheme-mode-hook #'enable-paredit-mode)
   (add-hook 'lisp-mode-hook #'enable-paredit-mode))
 
-(leaf projectile
-  :ensure t
-  :commands projectile
-  :config
-  (projectile-global-mode)
-  (setq projectile-mode-line
-        '(:eval (format " 📁 %s" (projectile-project-name))))
-
-  (leaf consult-projectile
-    :ensure t))
-
 (leaf yasnippet
   :ensure t
-  :diminish (yas-minor-mode . "🅨")
   :init
   (yas-global-mode 1)
   :config
@@ -1003,102 +858,9 @@ Call this on `flyspell-incorrect-hook'."
   ;; show value of variable when mouse cursor on
   (add-hook 'gdb-mode-hook (lambda () (gud-tooltip-mode t))))
 
-(leaf clojure-mode
-  :ensure t
-  :init
-  ;; A convenient command to run "lein kibit" in the project to which
-  ;; the current emacs buffer belongs to.
-  (defun kibit ()
-    "Run kibit on the current project.
-Display the results in a hyperlinked *compilation* buffer."
-    (interactive)
-    (compile "lein kibit"))
-
-  (defun kibit-current-file ()
-    "Run kibit on the current file.
-Display the results in a hyperlinked *compilation* buffer."
-    (interactive)
-    (compile (concat "lein kibit " buffer-file-name)))
-
-  :config
-  ;; prittify symbols
-  (my-macro/prettify-symbols
-   clojure-mode-hook
-   (-concat '(("fn" . ?λ))
-            my-const/logical-prettify-symbols-alist
-            my-const/relational-prettify-symbols-alist))
-
-  (leaf cider
-    :ensure t
-    :init
-    (add-hook 'clojure-mode-hook 'cider-mode)
-    (add-hook 'cider-mode-hook #'clj-refactor-mode)
-    (add-hook 'cider-mode-hook #'eldoc-mode)
-    (add-hook 'cider-repl-mode-hook #'eldoc-mode)
-    :config
-    (setq
-     ;; Hide the *nrepl-connection* and *nrepl-server* buffers
-    ;; from appearing in some buffer switching commands like 'C-x b'
-     nrepl-hide-special-buffers t
-     ;; The REPL buffer name  will look like cider project-name:port
-     nrepl-buffer-name-show-port t
-     ;; Enable CIDER and figwheel interaction
-     cider-cljs-lein-repl "(do (require 'figwheel-sidecar.repl-api)
-                             (figwheel-sidecar.repl-api/start-figwheel!)
-                             (figwheel-sidecar.repl-api/cljs-repl))"))
-
-  (leaf clj-refactor
-    :ensure t
-    :config
-    (defun my-clojure-mode-hook ()
-      (clj-refactor-mode 1)
-      (yas-minor-mode 1) ; for adding require/use/import statements
-      ;; This choice of keybinding leaves cider-macroexpand-1 unbound
-      (cljr-add-keybindings-with-prefix "C-c C-m"))
-    (add-hook 'clojure-mode-hook #'my-clojure-mode-hook))
-
-  ;; compojure indentation
-  (add-hook 'clojure-mode-hook
-            (lambda()
-              (define-clojure-indent
-                (defroutes 'defun)
-                (GET 2)
-                (POST 2)
-                (PUT 2)
-                (DELETE 2)
-                (HEAD 2)
-                (ANY 2)
-                (context 2))))
-
-  (leaf compile
-    :doc "Get kibit output"
-    :ensure t
-    :commands compile
-    :init
-    (add-to-list 'compilation-error-regexp-alist-alist
-                 '(kibit "At \\([^:]+\\):\\([[:digit:]]+\\):" 1 2 nil 0)))
-
-  ;; rainbow delimiters
-  (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
-  (add-hook 'clojure-mode-hook 'highlight-indentation-mode))
-
-(leaf css
-  :after flycheck
-  :init
-  (add-to-list 'auto-mode-alist '("\\.css" . css-mode))
-  (add-hook 'css-mode-hook 'flycheck-mode)
-  (setq css-indent-offset 2))
-
 (leaf dockerfile-mode
   :ensure t
   :mode (("Dockerfile" . dockerfile-mode)))
-
-(leaf elm-mode
-  :ensure t
-  :doc "Install :req packages with `npm i -g`"
-  :req "elm" "elm-test" "elm-format" "@elm-tooling/elm-language-server"
-  :config
-  (add-hook 'elm-mode-hook 'elm-format-on-save-mode))
 
 (leaf emacs-lisp-mode
   :init
@@ -1106,81 +868,12 @@ Display the results in a hyperlinked *compilation* buffer."
   (add-hook 'emacs-lisp-mode-hook 'highlight-indentation-mode)
   (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
 
-(defconst lisp--prettify-symbols-alist
-  (-concat my-const/lambda-prettify-symbols-alist
-           my-const/logical-prettify-symbols-alist
-           my-const/relational-prettify-symbols-alist))
-
-(leaf nginx-mode
-  :ensure t)
 
 (leaf fish-mode
   :req "fish"
   :ensure t
   :custom
   (fish-indent-offset . 2))
-
-(leaf go-mode
-  :ensure t
-  :commands go-mode
-  :init
-  ;; flycheck
-  (add-hook 'go-mode-hook 'flycheck-mode)
-  ;; indentation
-  (add-hook 'go-mode-hook 'highlight-indentation-mode)
-  (add-hook 'go-mode-hook (lambda ()
-                            (setq tab-width 4)))
-  ;; prittify symbols
-  (my-macro/prettify-symbols
-     go-mode-hook
-     my-const/relational-prettify-symbols-alist))
-
-(leaf js-mode
-  :doc "Only for a JSON file"
-  :config
-  (setq js-indent-level 2))
-
-(leaf js2-mode
-  :ensure t
-  :req "eslint"
-  :after flycheck
-  :commands js2-mode
-  :mode (("\\.js$" . js2-mode))
-  :init
-  ;; flycheck
-  ;;  npm: eslint
-  (add-hook 'js2-mode-hook 'flycheck-mode)
-  ;; disable jshint for eslint
-  (setq-default flycheck-disabled-checkers
-                (append flycheck-disabled-checkers
-                        '(javascript-jshint)))
-  (global-set-key [f5] 'slime-js-reload)
-  (add-hook 'js2-mode-hook
-            (lambda ()
-              (slime-js-minor-mode 1)))
-  ;; prettify symbols
-  (my-macro/prettify-symbols
-   js2-mode-hook
-   (-concat '(("function" . ?ƒ))
-            my-const/arrow-prettify-symbols-alist
-            my-const/relational-prettify-symbols-alist))
-  :config
-  (setq js2-basic-offset 2
-        js-indent-level 2))
-
-(leaf haskell-mode
-  :ensure t
-  :mode ((".xmobarrc" . haskell-mode))
-  :init
-  (add-hook 'haskell-mode-hook 'haskell-indentation-mode))
-
-(leaf kotlin-mode
-  :ensure t)
-
-(leaf lua-mode
-  :ensure t
-  :custom
-  (lua-indent-level . 2))
 
 (leaf markdown-mode
   :ensure t
@@ -1204,18 +897,6 @@ Display the results in a hyperlinked *compilation* buffer."
     :ensure t
     :config
     (flycheck-plantuml-setup)))
-
-(leaf php-mode
-  :ensure t
-  :commands php-mode
-  :mode (("\\.php$" . php-mode))
-  :init
-  (setq php-mode-force-pear t)
-  (add-hook 'php-mode-hook
-            (lambda ()
-              (flycheck-mode t)
-              (setq tab-width 4)
-              (setq c-basic-offset 4))))
 
 (leaf python-mode
   :init
@@ -1245,180 +926,6 @@ Display the results in a hyperlinked *compilation* buffer."
           '(flex))) ; Configure flex for Corfu
   :hook
   (lsp-completion-mode . my/lsp-mode-setup-completion))
-
-(leaf rustic
-  :doc "Rust"
-  :ensure t
-  :commands
-  (rustic-mode)
-  :mode
-  (("\\.rs\\'" . rustic-mode))
-  :config
-  (setq rustic-lsp-server 'rust-analyzer)
-  (push 'rustic-clippy flycheck-checkers)
-  (setq rustic-ansi-faces
-        ["black"
-         "#FF3F43"                ; changed from "red3". it's too dark
-         "green3"
-         "yellow3"
-         "#4068FF"               ; changed from "blue2". it's too dark
-         "magenta3"
-         "cyan3"
-         "white"]))
-
-(leaf ruby-mode
-  :mode (("Gemfile" . ruby-mode)
-         ("Rakefile" . ruby-mode)
-         ("Vagrantfile" . ruby-mode)
-         ("\\.rake" . ruby-mode))
-  :interpreter "ruby"
-  :init
-  ;; highlight indentation
-  (add-hook 'ruby-mode-hook 'highlight-indentation-mode)
-  :config
-  ;; flycheck
-  (add-hook 'ruby-mode-hook 'flycheck-mode)
-  ;; smartparens
-  ;; highlight block
-  (add-hook 'ruby-mode-hook 'show-smartparens-mode)
-  ;; disable magic comment
-  (defun ruby-mode-set-encoding () nil)
-  ;; prittify symbols
-  (my-macro/prettify-symbols
-   ruby-mode-hook
-   (-concat my-const/lambda-prettify-symbols-alist
-            my-const/arrow-prettify-symbols-alist
-            my-const/relational-prettify-symbols-alist))
-
-  ;; ruby-electric
-  (leaf ruby-electric
-    :diminish ruby-electric-mode
-    :config
-    (add-hook 'ruby-mode-hook
-              (lambda()
-                (ruby-electric-mode t)))
-    (defun ruby-insert-end ()
-      "bugfix for ruby-electric-space
-'Symbol's function definition is void: ruby-insert-end'"
-      (interactive)
-      (insert "end")
-      (ruby-indent-line t)
-      (end-of-line)))
-
-  ;; inf-ruby
-  (leaf inf-ruby
-    :commands inf-ruby
-    :init
-    (setq inf-ruby-default-implementation "pry"
-          inf-ruby-eval-binding "Pry.toplevel_binding")
-    (add-hook 'inf-ruby-mode-hook 'ansi-color-for-comint-mode-on)))
-
-(leaf scala-mode
-  :ensure t)
-
-(leaf scheme-mode
-  :commands scheme-mode
-  :init
-  (defun scheme-other-window ()
-    "Run scheme on other window"
-    (interactive)
-    (switch-to-buffer-other-window(get-buffer-create "*scheme*"))
-    (run-scheme scheme-program-name))
- 
-  (setq process-coding-system-alist (cons '("gosh" utf-8 . utf-8) process-coding-system-alist)
-        scheme-program-name "gosh -i")
-
-  :config
-  (add-hook 'scheme-mode-hook 'highlight-indentation-mode)
-  (add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
-  (my-macro/prettify-symbols
-   scheme-mode-hook
-   (-concat my-const/lambda-prettify-symbols-alist
-            my-const/logical-prettify-symbols-alist
-            my-const/relational-prettify-symbols-alist))
-
-  (leaf run-scheme
-    :commands run-scheme))
-
-(leaf shell-script-mode
-  :mode (("PKGBUILD" . shell-script-mode)
-         ("\\.install$" . shell-script-mode))
-  :init
-  (setq sh-basic-offset 2
-        sh-indentation 2))
-
-(leaf terraform-mode
-  :ensure t)
-
-(leaf typescript
-  :init
-  (defun setup-tide-mode ()
-    (interactive)
-    (tide-setup)
-    (flycheck-mode +1)
-    (setq flycheck-check-syntax-automatically '(save mode-enabled))
-    (eldoc-mode +1)
-    (tide-hl-identifier-mode +1))
-
-  (leaf tide
-    :ensure t
-    :mode (("\\.ts" . tide-mode)
-           ("\\.tsx" . tide-mode))
-    :config
-    ;; formats the buffer before saving
-    (add-hook 'before-save-hook 'tide-format-before-save)
-    (add-hook 'typescript-mode-hook #'setup-tide-mode)))
-
-
-(leaf yaml-mode
-  :commands yaml-mode
-  :ensure t
-  :mode (("\\.ya?ml$" . yaml-mode))
-  :init
-  (add-hook 'yaml-mode-hook
-            (lambda ()
-              (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
-  ;; flycheck
-  (add-hook 'yaml-mode-hook 'flycheck-mode))
-
-(leaf web-mode
-  :ensure t
-  :req "eslint"
-  :commands web-mode
-  :after flycheck
-  :init
-  (add-hook 'web-mode-hook 'flycheck-mode)
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
-  ;; disable jshint for eslint
-  (setq-default flycheck-disabled-checkers
-                  (append flycheck-disabled-checkers
-                          '(javascript-jshint)))
-  (defun my-web-mode-hook ()
-    "Hooks for Web mode. Adjust indents"
-    (setq web-mode-markup-indent-offset 2
-          web-mode-css-offset           2
-          web-mode-css-indent-offset    2
-          web-mode-code-indent-offset   2
-          web-mode-html-offset          2
-          web-mode-script-offset        2
-          web-mode-php-offset           4))
-  (add-hook 'web-mode-hook  'my-web-mode-hook)
-  ;; prettify symbols
-  (my-macro/prettify-symbols
-     web-mode-hook
-     (-concat '(("function" . ?ƒ))
-              my-const/arrow-prettify-symbols-alist
-              my-const/relational-prettify-symbols-alist))
-  :config
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.jsx$\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode)))
 
 (leaf nix-ts-mode
   :ensure t
@@ -1631,34 +1138,7 @@ The script is executed with the -r option to remove the original files after pro
     (setopt ellama-instant-display-action-function #'display-buffer-at-bottom)
     :config
     ;; show ellama context in header line in all buffers
-    (ellama-context-header-line-global-mode +1))
-
-  (leaf chatgpt-shell
-    :ensure t
-    :config
-    (setq chatgpt-shell-openai-key
-          (lambda ()
-            (nth 0 (process-lines "pass" "show" "openai-key"))))))
-
-(leaf *information
-  :config
-  (leaf elpher
-    :ensure t)
-
-  (defconst my/elfeed-setting-dir "~/Dropbox/Settings")
-
-  (leaf elfeed
-    :ensure t
-    :init
-    :config
-    (setq elfeed-db-directory (f-join my/elfeed-setting-dir "elfeeddb"))
-    (setq-default elfeed-search-filter "@6-months-ago +unread -sub"))
-
-  (leaf elfeed-org
-    :ensure t
-    :config
-    (elfeed-org)
-    (setq rmh-elfeed-org-files (list (f-join my/elfeed-setting-dir "elfeed.org")))))
+    (ellama-context-header-line-global-mode +1)))
 
 (leaf *char-encoding
   :config
