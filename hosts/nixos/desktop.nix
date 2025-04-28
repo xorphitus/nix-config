@@ -103,6 +103,7 @@
     zoxide
     # Development
     mise
+    ollama-cuda
     podman
     # GUI
     hyprland
@@ -114,6 +115,7 @@
     keepassxc
     pavucontrol
     alsa-utils
+    spotify
     # GnuPG
     gnupg
     pinentry
