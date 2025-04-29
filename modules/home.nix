@@ -32,6 +32,17 @@ in {
       target = ".config/hypr/hyprland.conf";
     };
 
+    # Rofi
+    ".config/rofi/config.rasi" = {
+      source = ../config/rofi/config.rasi;
+      target = ".config/rofi/config.rasi";
+    };
+
+    ".local/bin/rofi_system.sh" = {
+      source = ../config/rofi/rofi_system.sh;
+      target = ".local/bin/rofi_system.sh";
+    };
+
     # Fcitx
     ".config/environment.d/20-fcitx.conf" = {
       source = ../config/fcitx/env.conf;

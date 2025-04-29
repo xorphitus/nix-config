@@ -109,6 +109,7 @@
     hyprland
     hyprlock
     waybar
+    rofi-wayland
     wezterm
     vivaldi
     firefox
