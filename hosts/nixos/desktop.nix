@@ -98,12 +98,12 @@
     ghq
     htop
     lsd
+    nvtopPackages.nvidia
     ripgrep
     toybox # for bascic utilities
     zoxide
     # Development
     mise
-    ollama-cuda
     podman
     # GUI
     hyprland
@@ -208,5 +208,10 @@
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
+  };
+
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
   };
 }
