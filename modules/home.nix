@@ -60,10 +60,10 @@ in {
       target = ".emacs.d/init.el";
     };
 
-    # SKK
-    ".local/bin/update-skk-jisyo.sh" = {
+    # Dictionaries
+    ".local/bin/update-dictionaries.sh" = {
       source = ../config/skk/update-skk-jisyo.sh;
-      target = ".local/bin/update-skk-jisyo.sh";
+      target = ".local/bin/update-dictionaries.sh";
       executable = true;
     };
 

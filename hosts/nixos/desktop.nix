@@ -91,6 +91,7 @@
     gcc
     emacs
     cmigemo # for Emacs
+    hunspell # for Emacs
     # CLI
     bat
     fd
