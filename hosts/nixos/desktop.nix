@@ -123,6 +123,9 @@
     pinentry
     pcsc-tools
     pcsclite
+    # YubiKey
+    yubikey-personalization-gui
+    pam_u2f
 
     # Font
     (pkgs.stdenv.mkDerivation {
@@ -233,6 +236,11 @@
   services.ollama = {
     enable = true;
     acceleration = "cuda";
+  };
+
+  # Hyprlock
+  security.pam.services.hyprlock = {
+    u2fAuth = true;
   };
 
   # /etc/hosts
