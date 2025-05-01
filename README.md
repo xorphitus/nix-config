@@ -7,7 +7,8 @@ Apply the following with ~fcitx5-configtool~
 - Change key bind
 
 ### GPG
-Import GPG keys.
+- Import GPG keys
+- Trust the main one
 
 ### KeePassXC
 Enable browser integrations
