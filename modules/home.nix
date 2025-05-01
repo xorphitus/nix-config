@@ -69,6 +69,7 @@ in {
     };
   };
 
+  # Dropbox
   systemd.user.services = {
     dropbox = {
       Unit = {
@@ -84,6 +85,7 @@ in {
     };
   };
 
+  # Vivaldi
   xdg.desktopEntries.vivaldi = {
     name = "Vivaldi Wayland";
     exec = "vivaldi --ozone-platform=wayland --enable-wayland-ime %U";
@@ -91,5 +93,35 @@ in {
     type = "Application";
     categories = [ "Network" "WebBrowser" ];
     mimeType = [ "application/pdf" "application/rdf+xml" "application/rss+xml" "application/xhtml+xml" "application/xhtml_xml" "application/xml" "image/gif" "image/jpeg" "image/png" "image/webp" "text/html" "text/xml" "x-scheme-handler/ftp" "x-scheme-handler/http" "x-scheme-handler/https" "x-scheme-handler/mailto"];
+  };
+
+  # Home cleaner
+  home.file.".local/bin/home-cleaner.sh" = {
+    source = ../config/home-cleaner/home-cleaner.sh;
+    target = ".local/bin/home-cleaner.sh";
+    executable = true;
+  };
+
+  systemd.user.services.home-cleaner = {
+    Unit = {
+      Description = "Hone cleaner for deleting old files";
+    };
+    Service = {
+      ExecStart = "${config.home.homeDirectory}/.local/bin/home-cleaner.sh";
+      Type = "oneshot";
+    };
+  };
+
+  systemd.user.timers.home_cleaner = {
+    Unit = {
+      Description = "Timer for home cleaner";
+    };
+    Timer = {
+      OnCalendar = "*-*-* *:00:00";
+      Persistent = true;
+    };
+    Install = {
+      WantedBy = [ "timers.target" ];
+    };
   };
 }
