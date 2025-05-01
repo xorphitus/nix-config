@@ -108,6 +108,7 @@
     ripgrep
     toybox # for bascic utilities
     zoxide
+    starship
     # Development
     mise
     # GUI

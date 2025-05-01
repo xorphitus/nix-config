@@ -3,6 +3,13 @@
 set -x EDITOR nano
 set -x ALTERNATE_EDITOR emacs
 
+# disable greeting
+set -U fish_greeting
+
+###########################################################
+# prompto
+starship init fish | source
+
 ###########################################################
 # fzf
 set -x FZF_TMUX 1
@@ -25,7 +32,7 @@ set -x LESS '-iMR --LONG-PROMPT'
 # This environmental variable is required when `ls` is an
 # alias of `lsd`. Otherwise their incompatibility causes
 # an error.
-set -x _ZO_FZF_OPTS '--preview="/usr/bin/ls -p {2..}"'
+set -x _ZO_FZF_OPTS '--preview="ls -F"'
 zoxide init fish | source
 
 ###########################################################
