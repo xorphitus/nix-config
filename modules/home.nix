@@ -15,6 +15,11 @@ in {
       target = ".gnupg/gpg-agent.conf";
     };
 
+    ".gnupg/scdaemon.conf" = {
+      source = ../config/gnupg/scdaemon.conf;
+      target = ".gnupg/scdaemon.conf";
+    };
+
     ".config/environment.d/20-gnupg.conf" = {
       source = ../config/gnupg/env.conf;
       target = ".config/environment.d/20-gnupg.conf";
