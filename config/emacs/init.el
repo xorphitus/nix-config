@@ -636,7 +636,7 @@ Call this on `flyspell-incorrect-hook'."
   ;;          (size "12.5"))
   ;;     (format "%s-%s" available size))
   ;;   "Font. It's detected automaticaly by default.")
- (defcustom my-font "HackGen 35 Console NF" "Font. It's detected automaticaly by default.")
+  (defcustom my-font "HackGen 35 Console NF" "Font. It's detected automaticaly by default.")
 
   :config
   (setq default-frame-alist (list (cons 'font  my-font)))
@@ -944,9 +944,8 @@ Call this on `flyspell-incorrect-hook'."
   :bind ((:org-mode-map
           :package org-mode
           ("C-," . nil)))
-  :init
-  (setq org-agenda-files (list "~/Documents/org"))
   ;; syntax highlight within begin_src block
+  :init
   (setq org-src-fontify-natively t)
 
   (leaf org-babel
