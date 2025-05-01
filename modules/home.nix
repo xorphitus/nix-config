@@ -62,7 +62,7 @@ in {
 
     # Dictionaries
     ".local/bin/update-dictionaries.sh" = {
-      source = ../config/skk/update-skk-jisyo.sh;
+      source = ../config/dictionaries/update-dictionaries.sh;
       target = ".local/bin/update-dictionaries.sh";
       executable = true;
     };
