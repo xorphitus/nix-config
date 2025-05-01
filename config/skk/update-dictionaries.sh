@@ -18,14 +18,4 @@ update_skk() {
     cd -
 }
 
-update_hunspell() {
-    path="${HOME}/.local/share/myspell/dicts/en_US-large.dic"
-    mkdir -p "$path"
-
-    url="https://github.com/elastic/hunspell/raw/refs/heads/master/dicts/en_US/en_US.dic"
-
-    curl -Lo "${path}/en_US.dic" "$url"
-}
-
 update_skk
-update_hunspell

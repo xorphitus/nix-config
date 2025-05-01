@@ -60,10 +60,10 @@ in {
       target = ".emacs.d/init.el";
     };
 
-    # Dictionaries
-    ".local/bin/update-dictionaries.sh" = {
-      source = ../config/dictionaries/update-dictionaries.sh;
-      target = ".local/bin/update-dictionaries.sh";
+    # SKK
+    ".local/bin/update-skk-jisyos.sh" = {
+      source = ../config/skk/update-dictionaries.sh;
+      target = ".local/bin/update-skk-jisyos.sh";
       executable = true;
     };
 

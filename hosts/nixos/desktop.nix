@@ -92,7 +92,7 @@
     emacs
     cmigemo # for Emacs
     hunspell # for Emacs
-    hunspellDicts.en_US
+    hunspellDicts.en_US-large
     # CLI
     bat
     fd

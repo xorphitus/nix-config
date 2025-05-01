@@ -359,17 +359,21 @@ http://d.hatena.ne.jp/gifnksm/20100131/1264956220"
     :ensure t
     :bind
     (("<C-tab>" . completion-at-point))
-    :custom
-    ;; Requires the hunspell-en_us package
-    (cape-dict-file . (--find
-                       (f-exists? it)
-                       '("~/.local/share/myspell/dicts/en_US-large.dic"
-                         "/usr/share/myspell/dicts/en_US-large.dic")))
     :init
     (add-to-list 'completion-at-point-functions #'cape-file)
     (add-to-list 'completion-at-point-functions #'cape-dabbrev)
     (add-to-list 'completion-at-point-functions #'cape-dict)
-    (add-to-list 'completion-at-point-functions #'cape-symbol)))
+    (add-to-list 'completion-at-point-functions #'cape-symbol)
+    ;; Requires the hunspell-en_us package
+    ;; (defcustom my-cape-dict-file (--find
+    ;;                               (f-exists? it)
+    ;;                               '("/usr/share/myspell/dicts/en_US-large.dic"
+    ;;                                 "/usr/share/myspell/dicts/en_US.dic"
+    ;;                                 "/run/current-system/sw/share/hunspell/en_US-large.dic"
+    ;;                                 "/run/current-system/sw/share/hunspell/en_US.dic")))
+    ;;:config
+    ;;(cape-dict-file . my-cape-dict-file)
+  ))
 
 (leaf undo-tree
   :ensure t
