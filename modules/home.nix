@@ -117,7 +117,7 @@ in {
     };
   };
 
-  systemd.user.timers.home_cleaner = {
+  systemd.user.timers.home-cleaner = {
     Unit = {
       Description = "Timer for home cleaner";
     };
