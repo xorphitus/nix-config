@@ -58,6 +58,12 @@ in {
     };
   };
 
+  # Fish
+  home.file.".config/fish/config.fish" = {
+    source = ../config/fish/config.fish;
+    target = ".config/fish/config.fish";
+  };
+
   # GPG
   home.file.".gnupg/gpg-agent.conf" = {
     source = ../config/gnupg/gpg-agent.conf;

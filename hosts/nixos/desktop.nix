@@ -73,12 +73,16 @@
     variant = "";
   };
 
+  # Fish installation
+  programs.fish.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.xorphitus = {
     isNormalUser = true;
     description = "Xorphitus's desktop PC";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
+    shell = pkgs.fish;
   };
 
   # Allow unfree packages
