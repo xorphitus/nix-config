@@ -7,8 +7,7 @@ function main() {
   # e.g. ( )
   local -Ar menu=(
     ['Lock']="hyprlock"
-    ['Standby']='xset dpms force standby'
-    ['Hibernate']="systemctl hibernate"
+    ['Suspend']='hyprlock --immediate > /dev/null 2>&1 & sleep 2 && systemctl suspend'
   )
 
   local -r IFS=$'\n'
