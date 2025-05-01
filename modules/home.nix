@@ -145,4 +145,34 @@ in {
       WantedBy = [ "timers.target" ];
     };
   };
+
+  # Org-roam auto backup
+  home.file.".local/bin/org-roam-backup.sh" = {
+    source = ../config/org-roam-backup/org-roam-backup.sh;
+    target = ".local/bin/org-roam-backup.sh";
+    executable = true;
+  };
+
+  systemd.user.services.org-roam-backup = {
+    Unit = {
+      Description = "Org-roam backup";
+    };
+    Service = {
+      ExecStart = "${config.home.homeDirectory}/.local/bin/org-roam-backup.sh";
+      Type = "oneshot";
+    };
+  };
+
+  systemd.user.timers.org-roam-backup = {
+    Unit = {
+      Description = "Timer for Org-roam backup";
+    };
+    Timer = {
+      OnCalendar = "*-*-* *:00:00";
+      Persistent = true;
+    };
+    Install = {
+      WantedBy = [ "timers.target" ];
+    };
+  };
 }
