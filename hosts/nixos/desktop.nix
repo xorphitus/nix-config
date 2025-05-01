@@ -143,7 +143,7 @@
   ];
 
 
-  fonts.fonts = [
+  fonts.packages = [
     pkgs.hackgen-nf-font
   ];
 

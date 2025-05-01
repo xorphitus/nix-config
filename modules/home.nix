@@ -125,10 +125,10 @@ in {
 
   systemd.user.services.home-cleaner = {
     Unit = {
-      Description = "Hone cleaner for deleting old files";
+      Description = "Home cleaner for deleting old files";
     };
     Service = {
-      ExecStart = "${config.home.homeDirectory}/.local/bin/home-cleaner.sh";
+      ExecStart = "${config.home.homeDirectory}/.local/bin/home-cleaner.sh 30";
       Type = "oneshot";
     };
   };
