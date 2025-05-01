@@ -21,6 +21,12 @@ in {
       target = ".config/hypr/hyprland.conf";
     };
 
+    # Wezterm
+    ".config/wezterm/wezterm.lua" = {
+      source = ../config/wezterm/wezterm.lua;
+      target = ".config/wezterm/wezterm.lua";
+    };
+
     # Rofi
     ".config/rofi/config.rasi" = {
       source = ../config/rofi/config.rasi;
