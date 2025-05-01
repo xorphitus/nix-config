@@ -232,4 +232,11 @@
     enable = true;
     acceleration = "cuda";
   };
+
+  # /etc/hosts
+  networking.extraHosts =
+    ''
+    # Don't access time eaters
+    127.0.0.1 danielben.itch.io
+    '';
 }
