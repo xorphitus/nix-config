@@ -9,22 +9,6 @@ in {
   home.stateVersion = "24.11";
 
   home.file = {
-    # GPG
-    ".gnupg/gpg-agent.conf" = {
-      source = ../config/gnupg/gpg-agent.conf;
-      target = ".gnupg/gpg-agent.conf";
-    };
-
-    ".gnupg/scdaemon.conf" = {
-      source = ../config/gnupg/scdaemon.conf;
-      target = ".gnupg/scdaemon.conf";
-    };
-
-    ".config/environment.d/20-gnupg.conf" = {
-      source = ../config/gnupg/env.conf;
-      target = ".config/environment.d/20-gnupg.conf";
-    };
-
     # Git
     ".gitconfig" = {
       source = ../config/git/gitconfig;
@@ -71,6 +55,38 @@ in {
     ".local/share/migemo" = {
       source = "${pkgs.cmigemo}/share/migemo";
       target = ".local/share/migemo";
+    };
+  };
+
+  # GPG
+  home.file.".gnupg/gpg-agent.conf" = {
+    source = ../config/gnupg/gpg-agent.conf;
+    target = ".gnupg/gpg-agent.conf";
+  };
+
+  home.file.".gnupg/scdaemon.conf" = {
+    source = ../config/gnupg/scdaemon.conf;
+    target = ".gnupg/scdaemon.conf";
+  };
+
+  home.file.".local/bin/set-gnupg-env.sh" = {
+    source = ../config/gnupg/set-gnupg-env.sh;
+    target = ".local/bin/set-gnupg-env.sh";
+    executable = true;
+  };
+
+  systemd.user.services.set-gnupg-env = {
+    Unit = {
+      Description = "Set environment variables for GnuPG";
+      After = [ "default.target" ];
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+    Service = {
+      ExecStart = "${config.home.homeDirectory}/.local/bin/set-gnupg-env.sh";
+      Type = "oneshot";
+      RemainAfterExit = true;
     };
   };
 
