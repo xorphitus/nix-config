@@ -137,25 +137,15 @@
     pam_u2f
     # Etc
     p7zip # for VOICEVOX installation
-
-    # Font
-    (pkgs.stdenv.mkDerivation {
-      pname = "hackgen-nf-font";
-      version = "2.10.0";
-      src = pkgs.fetchzip {
-        url = "https://github.com/yuru7/HackGen/releases/download/v2.10.0/HackGen_NF_v2.10.0.zip";
-        sha256 = "111fjcm0lcb2bfhddpx1503vk12va5j1241dfia9pjs86cirnj4z";
-      };
-      installPhase = ''
-        mkdir -p $out/share/fonts/truetype
-        cp *.ttf $out/share/fonts/truetype/
-      '';
-    })
   ];
 
-
+  # Fonts
   fonts.packages = [
     pkgs.hackgen-nf-font
+    pkgs.noto-fonts-cjk-sans
+    pkgs.noto-fonts-cjk-serif
+    pkgs.noto-fonts-color-emoji
+    pkgs.font-awesome
   ];
 
   # GnuPG and smartcard
