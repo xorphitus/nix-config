@@ -128,6 +128,21 @@ in {
     mimeType = [ "application/pdf" "application/rdf+xml" "application/rss+xml" "application/xhtml+xml" "application/xhtml_xml" "application/xml" "image/gif" "image/jpeg" "image/png" "image/webp" "text/html" "text/xml" "x-scheme-handler/ftp" "x-scheme-handler/http" "x-scheme-handler/https" "x-scheme-handler/mailto"];
   };
 
+  # VOICEVOX
+  systemd.user.services.voicevox = {
+    Unit = {
+      Description = "VOICEVOX";
+      After = [ "network.target" ];
+    };
+    Service = {
+      ExecStart = "/run/current-system/sw/bin/docker run --rm --gpus all -p '127.0.0.1:50021:50021' voicevox/voicevox_engine:nvidia-latest";
+      Restart = "always";
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+  };
+
   # Home cleaner
   home.file.".local/bin/home-cleaner.sh" = {
     source = ../config/home-cleaner/home-cleaner.sh;
