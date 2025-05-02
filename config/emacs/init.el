@@ -379,10 +379,10 @@ http://d.hatena.ne.jp/gifnksm/20100131/1264956220"
   (setq undo-tree-auto-save-history nil))
 
 (leaf migemo
-  :req "migemo"
+  :require t
   :ensure t
   :commands migemo
-  :init
+  :config
   (setq migemo-command (if (executable-find "cmigemo") (executable-find "cmigemo") "/usr/local/bin/cmigemo")
         migemo-options '("-q" "--emacs")
         migemo-dictionary (--find
@@ -394,7 +394,6 @@ http://d.hatena.ne.jp/gifnksm/20100131/1264956220"
         migemo-user-dictionary nil
         migemo-regex-dictionary nil
         migemo-coding-system 'utf-8-unix)
-  (load-library "migemo")
   (migemo-init))
 
 (leaf flycheck
