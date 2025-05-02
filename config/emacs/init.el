@@ -944,6 +944,7 @@ Call this on `flyspell-incorrect-hook'."
   ;; syntax highlight within begin_src block
   :init
   (setq org-src-fontify-natively t)
+  (setq org-list-indent-offset 2)
 
   (leaf org-babel
     :doc "How to use org-babel
@@ -959,9 +960,9 @@ To show the image file inline, use the following.
   org-toggle-inline-images (C-c C-x C-v)"
     :init
     (setq org-plantuml-jar-path
-      (--find
-       (f-exists? it)
-       '("/usr/share/java/plantuml/plantuml.jar")))
+          (--find
+           (f-exists? it)
+           '("/usr/share/java/plantuml/plantuml.jar")))
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((plantuml . t)
