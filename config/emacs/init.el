@@ -387,10 +387,12 @@ http://d.hatena.ne.jp/gifnksm/20100131/1264956220"
         migemo-options '("-q" "--emacs")
         migemo-dictionary (--find
                            (f-exists? it)
-                           '("~/.local/share/migemo/utf-8/migemo-dict"
-                             "/usr/share/migemo/utf-8/migemo-dict"
-                             "/usr/share/cmigemo/utf-8/migemo-dict"
-                             "/usr/local/share/migemo/utf-8/migemo-dict"))
+                           (list
+                            ;; `~' doesn't work with migemo.el! Therefore `expand-file-name' is applied
+                            (expand-file-name "~/.local/share/migemo/utf-8/migemo-dict")
+                            "/usr/share/migemo/utf-8/migemo-dict"
+                            "/usr/share/cmigemo/utf-8/migemo-dict"
+                            "/usr/local/share/migemo/utf-8/migemo-dict"))
         migemo-user-dictionary nil
         migemo-regex-dictionary nil
         migemo-coding-system 'utf-8-unix)
