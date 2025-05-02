@@ -237,9 +237,18 @@
     };
   };
 
-  environment.etc."containers/registries.conf.d/01-dockerhub.conf".text = ''
-    unqualified-search-registries=["docker.io"]
-  '';
+  hardware.nvidia-container-toolkit.enable = true;
+
+  environment.etc = {
+    "containers/registries.conf.d/01-dockerhub.conf".text = ''
+      unqualified-search-registries=["docker.io"]
+    '';
+
+    # Generated with the following
+    # $ nix-shell -p nvidia-container-toolkit
+    # $ nvidia-ctk cdi generate --output ./desktop_nvidia.yaml
+    "cdi/nvidia.yaml".source = ./desktop_nvidia.yaml;
+  };
 
   # Ollama
   services.ollama = {
