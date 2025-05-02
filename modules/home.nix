@@ -15,6 +15,12 @@ in {
       target = ".gitconfig";
     };
 
+    # SSH
+    ".ssh/config" = {
+      source = ../config/ssh/config;
+      target = ".ssh/config";
+    };
+
     # Hyprland
     ".config/hypr/hyprland.conf" = {
       source = ../config/hypr/hyprland.conf;
