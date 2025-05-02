@@ -93,10 +93,9 @@
   environment.systemPackages = with pkgs; [
     git
     gcc
-    emacs
-    cmigemo # for Emacs
-    hunspell # for Emacs
-    hunspellDicts.en_US-large
+    coreutils-full
+    dig
+    usbutils
     # CLI
     bat
     fd
@@ -106,7 +105,6 @@
     lsd
     nvtopPackages.nvidia
     ripgrep
-    toybox # for bascic utilities
     zoxide
     starship
     # Development
@@ -123,6 +121,11 @@
     pavucontrol
     alsa-utils
     spotify
+    # Emacs
+    emacs
+    cmigemo
+    hunspell
+    hunspellDicts.en_US-large
     # GnuPG
     gnupg
     pinentry
