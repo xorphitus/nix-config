@@ -274,5 +274,6 @@
     127.0.0.1 poki.com
     127.0.0.1 mineswifter.com
     127.0.0.1 danielben.itch.io
+    127.0.0.1 www.studiok-i.net
     '';
 }
