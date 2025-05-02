@@ -620,7 +620,7 @@ Call this on `flyspell-incorrect-hook'."
     (let* ((fonts (font-family-list))
            (available (-find
                        (lambda (f) (when (-contains? fonts f) f))
-                       '("HackGen35 Console NF"
+                       '("HackGen Console NF"
                          "ricty discord nerd font"
                          "Ricty Discord Nerd Font"
                          "ricty discord"
