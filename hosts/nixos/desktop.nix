@@ -256,6 +256,14 @@
   networking.extraHosts =
     ''
     # Don't access time eaters
+    127.0.0.1 minesweeper.online
+    127.0.0.1 captown.capcom.com
+    127.0.0.1 www.play-minesweeper.com
+    127.0.0.1 cardgames.io
+    127.0.0.1 minesweeperonline.com
+    127.0.0.1 www.247minesweeper.com
+    127.0.0.1 poki.com
+    127.0.0.1 mineswifter.com
     127.0.0.1 danielben.itch.io
     '';
 }
