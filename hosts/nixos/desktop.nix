@@ -91,12 +91,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    git
-    gcc
     coreutils-full
+    file
     dig
+    gcc
+    git
     usbutils
     # CLI
+    alsa-utils
     bat
     fd
     fzf
@@ -105,8 +107,8 @@
     lsd
     nvtopPackages.nvidia
     ripgrep
-    zoxide
     starship
+    zoxide
     # Development
     mise
     # GUI
@@ -119,7 +121,6 @@
     firefox
     keepassxc
     pavucontrol
-    alsa-utils
     spotify
     # Emacs
     emacs
@@ -134,6 +135,8 @@
     # YubiKey
     yubikey-personalization-gui
     pam_u2f
+    # Etc
+    p7zip # for VOICEVOX installation
 
     # Font
     (pkgs.stdenv.mkDerivation {
@@ -191,11 +194,9 @@
     r8125
   ];
 
-  # For Chromium browsers including Vivaldi
   programs.xwayland.enable = true;
 
   services.xserver.enable = true;
-  services.displayManager.sddm.enable = false;
 
   services.greetd.enable = true;
   services.greetd.settings.default_session = {
