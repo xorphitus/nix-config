@@ -1085,37 +1085,34 @@ The script is executed with the -r option to remove the original files after pro
             (make-llm-ollama
              ;; this model should be pulled to use it
              ;; value should be the same as you print in terminal during pull
-             :chat-model "gemma2:9b"
+             :chat-model "gemma3:14b"
              :embedding-model "nomic-embed-text"
              :default-chat-non-standard-params '(("num_ctx" . 8192))))
     (setopt ellama-summarization-provider
             (make-llm-ollama
-             :chat-model "gemma2:9b"
+             :chat-model "gemma3:14b"
              :embedding-model "nomic-embed-text"
              :default-chat-non-standard-params '(("num_ctx" . 32768))))
     (setopt ellama-coding-provider
             (make-llm-ollama
-             :chat-model "qwen2.5-coder:7b"
+             :chat-model "qwen3:32b"
              :embedding-model "nomic-embed-text"
              :default-chat-non-standard-params '(("num_ctx" . 32768))))
     ;; Predefined llm providers for interactive switching.
     ;; You shouldn't add ollama providers here - it can be selected interactively
     ;; without it. It is just example.
     (setopt ellama-providers
-            '(("gemma2" . (make-llm-ollama
-                           :chat-model "gemma2:9b"
-                           :embedding-model "gemma2:9b"))
-              ("elyza" . (make-llm-ollama
-                          :chat-model "hf.co/elyza/Llama-3-ELYZA-JP-8B-GGUF"
-                          :embedding-model "hf.co/elyza/Llama-3-ELYZA-JP-8B-GGUF"))
-              ("elyza_e" . (make-llm-ollama
-                            :chat-model "hf.co/elyza/Llama-3-ELYZA-JP-8B-GGUF"
-                            :embedding-model "nomic-embed-text"))
-              ("qwen2.5" . (make-llm-ollama
-                            :chat-model "qwen2.5:7b"
-                            :embedding-model "qwen2.5:7b"))
-              ("qwen2.5_e" . (make-llm-ollama
-                              :chat-model "qwen2.5:7b"
+            '(("gemma3" . (make-llm-ollama
+                           :chat-model "gemma3:14b"
+                           :embedding-model "gemma:14b"))
+              ("gemma3_e" . (make-llm-ollama
+                           :chat-model "gemma3:14b"
+                           :embedding-model "nomic-embed-text"))
+              ("qwen3" . (make-llm-ollama
+                            :chat-model "qwen3:32b"
+                            :embedding-model "qwen3:32b"))
+              ("qwen3_e" . (make-llm-ollama
+                              :chat-model "qwen3:32b"
                               :embedding-model "nomic-embed-text"))))
     ;; Naming new sessions with llm
     (setopt ellama-naming-provider
