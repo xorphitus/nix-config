@@ -115,13 +115,16 @@
     hyprland
     hyprlock
     waybar
-    rofi-wayland
-    wezterm
-    vivaldi
     firefox
     keepassxc
+    musescore
     pavucontrol
+    rofi-wayland
+    signal-desktop
     spotify
+    swaynotificationcenter
+    vivaldi
+    wezterm
     # Emacs
     emacs
     cmigemo
@@ -135,8 +138,6 @@
     # YubiKey
     yubikey-personalization-gui
     pam_u2f
-    # Etc
-    p7zip # for VOICEVOX installation
   ];
 
   # Fonts
