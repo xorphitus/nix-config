@@ -124,6 +124,13 @@ in {
     };
   };
 
+  # Syncthing
+  services = {
+    syncthing = {
+      enable = true;
+    };
+  };
+
   # VOICEVOX
   systemd.user.services.voicevox = {
     Unit = {
