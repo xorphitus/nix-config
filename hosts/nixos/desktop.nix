@@ -132,6 +132,7 @@
     keepassxc
     musescore
     pavucontrol
+    rnote
     rofi-wayland
     signal-desktop
     spotify

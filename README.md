@@ -22,3 +22,7 @@ Download dictionaries with the script under `~/.local/bin`
 mkdir -p ~/.config/Yubico
 pamu2fcfg > ~/.config/Yubico/u2f_keys
 ```
+
+### Rnote
+Touchscreen setting:
+https://github.com/flxzt/rnote/issues/1348
