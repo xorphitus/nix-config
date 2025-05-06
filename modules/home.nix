@@ -44,12 +44,6 @@ in {
       target = ".local/bin/rofi_system.sh";
     };
 
-    # Fcitx
-    ".config/environment.d/20-fcitx.conf" = {
-      source = ../config/fcitx/env.conf;
-      target = ".config/environment.d/20-fcitx.conf";
-    };
-
     # Emacs
     ".emacs/init.el" = {
       source = ../config/emacs/init.el;
