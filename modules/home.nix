@@ -8,6 +8,11 @@ in {
 
   home.stateVersion = "24.11";
 
+  # For the following dconf error:
+  # https://github.com/nix-community/home-manager/issues/3113
+  # For example, this issue prevents Rnote to save its configurations.
+  home.packages = [ pkgs.dconf ];
+
   home.file = {
     # Git
     ".gitconfig" = {
