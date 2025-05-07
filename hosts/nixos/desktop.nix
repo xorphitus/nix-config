@@ -111,17 +111,21 @@
     git
     usbutils
     # CLI
-    alsa-utils
     bat
     fd
     fzf
     ghq
     htop
+    jq
     lsd
     nvtopPackages.nvidia
     ripgrep
     starship
     zoxide
+    # Sound
+    alsa-utils
+    playerctl
+    pavucontrol # GUI
     # Development
     mise
     # GUI
@@ -131,7 +135,6 @@
     firefox
     keepassxc
     musescore
-    pavucontrol
     rnote
     rofi-wayland
     signal-desktop
