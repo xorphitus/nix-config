@@ -150,8 +150,9 @@
     pcsc-tools
     pcsclite
     # YubiKey
-    yubikey-personalization-gui
     pam_u2f
+    yubikey-personalization-gui
+    yubioath-flutter
   ];
 
   # Fonts
