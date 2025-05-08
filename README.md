@@ -26,3 +26,9 @@ pamu2fcfg > ~/.config/Yubico/u2f_keys
 ### Rnote
 Touchscreen setting:
 https://github.com/flxzt/rnote/issues/1348
+
+## Dual Boot Windows-Side Configuration
+- For dual boot:
+  - Disable Fast Startup
+  - Disable hibernation
+- Change IME switch keybind
