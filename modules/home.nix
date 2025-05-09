@@ -32,6 +32,12 @@ in {
       target = ".config/hypr/hyprland.conf";
     };
 
+    # Waybar
+    ".config/waybar/config.jsonc" = {
+      source = ../config/waybar/config.jsonc;
+      target = ".config/waybar/config.jsonc";
+    };
+
     # Wezterm
     ".config/wezterm/wezterm.lua" = {
       source = ../config/wezterm/wezterm.lua;
