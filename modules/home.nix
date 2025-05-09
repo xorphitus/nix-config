@@ -96,12 +96,6 @@ in {
       target = ".local/bin/volume.sh";
       executable = true;
     };
-
-    ".local/bin/player.sh" = {
-      source = ../config/sound/player.sh;
-      target = ".local/bin/player.sh";
-      executable = true;
-    };
   };
 
   # Fish
