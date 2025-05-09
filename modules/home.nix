@@ -73,6 +73,19 @@ in {
       source = "${pkgs.cmigemo}/share/migemo";
       target = ".local/share/migemo";
     };
+
+    # Sound control scripts
+    ".local/bin/volume.sh" = {
+      source = ../config/sound/volume.sh;
+      target = ".local/bin/volume.sh";
+      executable = true;
+    };
+
+    ".local/bin/player.sh" = {
+      source = ../config/sound/player.sh;
+      target = ".local/bin/player.sh";
+      executable = true;
+    };
   };
 
   # Fish
