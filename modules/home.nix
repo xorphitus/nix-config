@@ -38,6 +38,22 @@ in {
       target = ".config/waybar/config.jsonc";
     };
 
+    # SwayNotificatioNCenter
+    ".config/swaync/config.json" = {
+      source = ../config/swaync/config.json;
+      target = ".config/swaync/config.json";
+    };
+
+    ".config/swaync/configSchema.json" = {
+      source = ../config/swaync/configSchema.json;
+      target = ".config/swaync/configSchema.json";
+    };
+
+    ".config/swaync/style.css" = {
+      source = ../config/swaync/style.css;
+      target = ".config/swaync/style.css";
+    };
+
     # Wezterm
     ".config/wezterm/wezterm.lua" = {
       source = ../config/wezterm/wezterm.lua;
