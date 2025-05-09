@@ -156,6 +156,8 @@
     pam_u2f
     yubikey-personalization-gui
     yubioath-flutter
+    # Etc
+    libnotify
   ];
 
   # Fonts
