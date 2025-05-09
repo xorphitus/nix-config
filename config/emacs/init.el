@@ -1058,7 +1058,7 @@ The script is executed with the -r option to remove the original files after pro
     (interactive)
     (let* ((script-path (expand-file-name "~/bin/speech_note.sh"))
            (input-dir (expand-file-name "~/Subsync/iPhone/speech_note"))
-           (model "gemma2:9b")
+           (model "qwen3:14b")
            (command (format "%s -r -m %s %s 2>/dev/null"
                             (shell-quote-argument script-path)
                             (shell-quote-argument model)
@@ -1085,12 +1085,12 @@ The script is executed with the -r option to remove the original files after pro
             (make-llm-ollama
              ;; this model should be pulled to use it
              ;; value should be the same as you print in terminal during pull
-             :chat-model "gemma3:14b"
+             :chat-model "qwen3:14b"
              :embedding-model "nomic-embed-text"
              :default-chat-non-standard-params '(("num_ctx" . 8192))))
     (setopt ellama-summarization-provider
             (make-llm-ollama
-             :chat-model "gemma3:14b"
+             :chat-model "qwen3:14b"
              :embedding-model "nomic-embed-text"
              :default-chat-non-standard-params '(("num_ctx" . 32768))))
     (setopt ellama-coding-provider
@@ -1103,10 +1103,10 @@ The script is executed with the -r option to remove the original files after pro
     ;; without it. It is just example.
     (setopt ellama-providers
             '(("gemma3" . (make-llm-ollama
-                           :chat-model "gemma3:14b"
-                           :embedding-model "gemma:14b"))
+                           :chat-model "gemma3:27b"
+                           :embedding-model "gemma:27b"))
               ("gemma3_e" . (make-llm-ollama
-                           :chat-model "gemma3:14b"
+                           :chat-model "gemma3:27b"
                            :embedding-model "nomic-embed-text"))
               ("qwen3" . (make-llm-ollama
                             :chat-model "qwen3:32b"
@@ -1117,19 +1117,19 @@ The script is executed with the -r option to remove the original files after pro
     ;; Naming new sessions with llm
     (setopt ellama-naming-provider
             (make-llm-ollama
-             :chat-model "hf.co/alfredplpl/gemma-2-2b-jpn-it-gguf"
+             :chat-model "qwen3:14b"
              :embedding-model "nomic-embed-text"
              :default-chat-non-standard-params '(("stop" . ("\n")))))
     (setopt ellama-naming-scheme 'ellama-generate-name-by-llm)
     ;; Translation llm provider
     (setopt ellama-translation-provider
             (make-llm-ollama
-             :chat-model "hf.co/alfredplpl/gemma-2-2b-jpn-it-gguf"
+             :chat-model "qwen3:14b"
              :embedding-model "nomic-embed-text"
              :default-chat-non-standard-params
              '(("num_ctx" . 32768))))
     (setopt ellama-extraction-provider (make-llm-ollama
-                                        :chat-model "qwen2.5-coder:7b"
+                                        :chat-model "qwen3:14b"
                                         :embedding-model "nomic-embed-text"
                                         :default-chat-non-standard-params
                                         '(("num_ctx" . 32768))))
