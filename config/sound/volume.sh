@@ -1,36 +1,29 @@
 #!/usr/bin/env bash
 
-# JBL Pebbles cannot make sound when the volume is less than 87%, and somehow
-# 87% seems not be able to let the both left and right speakers work appropriately.
-# Therefore, 88% may be the best as the minimum volume.
-MIN_VOLUME_PERCENT=88
+# JBL Pebbles cannot make sound when the volume is less than 87%
+MIN_VOLUME=0.87
 
-DEGREE=2
+DEGREE=1
 
 toggle() {
   wpctl set-mute @DEFAULT_SINK@ toggle
-  notify-send -u low ' / 🔇'
 }
 
 up() {
   wpctl set-volume @DEFAULT_SINK@ "${DEGREE}%+"
-  notify-send -u low '🔊'
 }
 
 down() {
   wpctl set-volume @DEFAULT_SINK@ "${DEGREE}%-"
   ensure_min
-  notify-send -u low '🔉' # '🔈'
 }
 
 ensure_min() {
-  for sink in $(sinks); do
-    vol=$(get_current_volume_percent "$sink")
-
-    if [[ "$vol" =~ ^[0-9]+$ ]] && [ "$vol" -lt "$MIN_VOLUME_PERCENT" ]; then
-      ctl "${MIN_VOLUME_PERCENT}%"
-    fi
-  done
+  vol=$(wpctl get-volume @DEFAULT_SINK@ | cut -d ' ' -f 2)
+  awk -v v="${vol}" -v t="${MIN_VOLUME}" 'BEGIN { exit !(v < t) }'
+  if [[ $? -eq 0 ]]; then
+    wpctl set-volume @DEFAULT_SINK@ "${MIN_VOLUME}"
+  fi
 }
 
 case $1 in
