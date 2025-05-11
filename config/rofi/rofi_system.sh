@@ -6,8 +6,8 @@ function main() {
   # can not use some special charactors
   # e.g. ( )
   local -Ar menu=(
-    ['Lock']="hyprlock"
-    ['Suspend']='hyprlock --immediate > /dev/null 2>&1 & sleep 2 && systemctl suspend'
+    ['Lock']="hyprlock --quiet --immediate"
+    ['Suspend']='hyprlock --quiet --immediate > /dev/null 2>&1 & sleep 2 && systemctl suspend'
   )
 
   local -r IFS=$'\n'
