@@ -233,4 +233,10 @@ in {
       WantedBy = [ "timers.target" ];
     };
   };
+
+  gtk = {
+    enable = true;
+    theme.package = pkgs.nordic;
+    theme.name = "Nordic";
+  };
 }
