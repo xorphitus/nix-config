@@ -219,7 +219,7 @@
         },
         "escape": true,
         "interval": 1,
-        "exec": "emacsclient --eval '(org-pomodoro-format-seconds)' | sed -e 's/\"//g'",
+        "exec": "emacsclient --eval '(if (fboundp '\\''org-pomodoro-format-seconds) (org-pomodoro-format-seconds) \"\")' | sed -e 's/\"//g'",
         "exec-if": "pgrep emacs"
     }
 }
