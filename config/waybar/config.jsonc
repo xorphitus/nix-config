@@ -187,7 +187,7 @@
         "escape": true,
         "interval": 2,
         "exec": "playerctl -p spotify metadata -f '{{title}} / {{artist}}'",
-        "exec-if": "playerctl -p spotify status | grep -q Playing || exit 1"
+        "exec-if": "pgrep spotify > /dev/null && playerctl -p spotify status | grep -q Playing || exit 1"
     },
     "custom/swaync": {
         "tooltip": true,
