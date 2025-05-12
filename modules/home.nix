@@ -239,4 +239,9 @@ in {
     theme.package = pkgs.nordic;
     theme.name = "Nordic";
   };
+
+  qt = {
+    enable = true;
+    platformTheme = "gtk3";
+  };
 }
