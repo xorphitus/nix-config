@@ -801,16 +801,6 @@ Call this on `flyspell-incorrect-hook'."
   ((:yas-minor-mode-map
     ("M-=" . yas-insert-snippet))))
 
-(leaf restclient
-  :ensure t
-  :init
-  ;; restclient-jq is not provided by MELPA
-  ;; therefore use el-get instead
-  (el-get-bundle restclient-jq
-    :url "https://raw.githubusercontent.com/pashky/restclient.el/master/restclient-jq.el")
-  :config
-  (require 'restclient-jq))
-
 (leaf jq-mode
   :doc "This package is required by restclient-jq"
   :ensure t)
@@ -1014,7 +1004,13 @@ does not support PulseAudio's pacat/paplay"
     (org-mode-hook . (lambda () (org-superstar-mode 1)))
     :config
     ;; Show a "DONE" annotated task with a checkbox
-    (setq org-superstar-special-todo-items t)))
+    (setq org-superstar-special-todo-items t))
+
+  (leaf
+    verb
+    :ensure t
+    :config
+    (define-key org-mode-map (kbd "C-c C-r") verb-command-map)))
 
 (leaf org-roam
   :ensure t
