@@ -289,5 +289,6 @@
     127.0.0.1 syougi.qinoa.com
     127.0.0.1 lishogi.org
     127.0.0.1 www.afsgames.com
+    127.0.0.1 sdin.jp
     '';
 }
