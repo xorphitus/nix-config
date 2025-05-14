@@ -136,6 +136,7 @@
     firefox
     keepassxc
     musescore
+    pcmanfm
     rnote
     rofi-wayland
     signal-desktop
@@ -272,6 +273,9 @@
   security.pam.services.hyprlock = {
     u2fAuth = true;
   };
+
+  # Enable PCManFM USB automounting
+  services.gvfs.enable = true;
 
   # /etc/hosts
   networking.extraHosts =
