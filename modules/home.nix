@@ -234,14 +234,26 @@ in {
     };
   };
 
+  # Document: https://nix-community.github.io/home-manager/options.xhtml#opt-gtk
   gtk = {
     enable = true;
-    theme.package = pkgs.nordic;
-    theme.name = "Nordic";
+    theme = {
+      package = pkgs.nordic;
+      name = "Nordic";
+    };
+    iconTheme = {
+      package = pkgs.tela-icon-theme;
+      name = "Tela-nord-dark";
+    };
+    cursorTheme = {
+      package = pkgs.volantes-cursors;
+      name = "volantes_cursors";
+      size = 32;
+    };
   };
 
   qt = {
     enable = true;
-    platformTheme = "gtk3";
+    platformTheme.name = "gtk3";
   };
 }
