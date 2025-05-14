@@ -128,6 +128,7 @@
     pavucontrol # GUI
     # Development
     mise
+    podman-compose
     # GUI
     hyprland
     hyprlock
