@@ -654,7 +654,7 @@ Call this on `flyspell-incorrect-hook'."
 
   ;; set color, window size
   (when window-system
-    (set-frame-parameter nil 'alpha 95))
+    (set-frame-parameter nil 'alpha 98))
 
   (leaf all-the-icons
     :doc "It requires to invoke the following command to install fonts

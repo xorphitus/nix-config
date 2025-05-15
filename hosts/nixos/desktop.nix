@@ -145,7 +145,7 @@
     vivaldi
     wezterm
     # Emacs
-    emacs
+    emacs-pgtk # -pgtk is required for Wayland
     cmigemo
     hunspell
     hunspellDicts.en_US-large
