@@ -117,7 +117,6 @@
     mise
     podman-compose
     # GUI
-    hyprland
     hyprlock
     waybar
     firefox
@@ -194,11 +193,20 @@
     r8125
   ];
 
-  programs.xwayland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+    xwayland.enable = true;
+  };
 
   services.greetd.enable = true;
   services.greetd.settings.default_session = {
-    command = "Hyprland";
+    # CAUTION: It may be required to execute `uwsm select` and choose hyprland to
+    # generate hyprland-uwsm.desktop for enabling this command execution.
+    command = "uwsm check may-start && uwsm start hyprland-uwsm.desktop";
+    # Don't Run Hyprland directly as follows because UWSM is required to run Hyprland via Systemd.
+    # Systemd reads ~/.config/environment.d and sets environment variable to GUI applications.
+    # command = "Hyprland";
     user = "xorphitus";
   };
 
