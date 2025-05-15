@@ -199,6 +199,9 @@
     xwayland.enable = true;
   };
 
+  # Greetd is used to bypassing window manager selection and user login.
+  # It's because this machine is used by a only single human user and the
+  # login process is protected by the LUKS passphrase input process.
   services.greetd.enable = true;
   services.greetd.settings.default_session = {
     # CAUTION: It may be required to execute `uwsm select` and choose hyprland to
