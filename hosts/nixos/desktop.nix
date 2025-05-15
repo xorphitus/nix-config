@@ -39,19 +39,6 @@
     };
   };
 
-  boot.plymouth = {
-    enable = true;
-    theme = "rings";
-    themePackages = with pkgs; [
-      # By default we would install all themes
-      (adi1090x-plymouth-themes.override {
-        selected_themes = [ "rings" ];
-      })
-    ];
-  };
-  # Required by Plymouth
-  boot.initrd.systemd.enable = true;
-
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
