@@ -1,5 +1,8 @@
 # Nix(OS) Configurations
 ## Manual Settings
+### (Unsure) Hyprland
+It may be required to execute `uwsm select` manually for enabling `/nix/store/****/share/wayland-sessions/hyprland-uwsm.desktop`.
+
 ### Fcitx
 Apply the following with ~fcitx5-configtool~
 
