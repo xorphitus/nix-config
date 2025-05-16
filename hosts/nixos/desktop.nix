@@ -136,6 +136,7 @@
     cmigemo
     hunspell
     hunspellDicts.en_US-large
+    wl-clipboard # Required to fix broken clipboard
     # GnuPG
     gnupg
     pinentry
