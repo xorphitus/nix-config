@@ -119,6 +119,7 @@
     # GUI
     hyprlock
     waybar
+    code-cursor
     firefox
     keepassxc
     musescore
