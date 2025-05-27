@@ -204,14 +204,18 @@
   # Greetd is used to bypassing window manager selection and user login.
   # It's because this machine is used by a only single human user and the
   # login process is protected by the LUKS passphrase input process.
-  services.greetd.enable = true;
-  services.greetd.settings.default_session = {
-    # command = "uwsm check may-start && exec uwsm start hyprland-uwsm.desktop";
+  # services.greetd.enable = true;
+  # services.greetd.settings.default_session = {
+    # command = "uwsm check may-start -i -v > /tmp/uwsm_check.log && uwsm start hyprland-uwsm.desktop >> /tmp/uwsm_check.log";
     # Don't Run Hyprland directly as follows because UWSM is required to run Hyprland via Systemd.
     # Systemd reads ~/.config/environment.d and sets environment variable to GUI applications.
-    command = "Hyprland";
-    user = "xorphitus";
-  };
+    # command = "Hyprland";
+    # command = "bash";
+    # user = "xorphitus";
+  # };
+
+  services.getty.autologinOnce = true;
+  services.getty.autologinUser = "xorphitus";
 
   i18n.inputMethod = {
     type = "fcitx5";
@@ -295,4 +299,12 @@
     127.0.0.1 www.afsgames.com
     127.0.0.1 sdin.jp
     '';
+
+  # Enable printers
+  services.printing.enable = true;
+  services.printing.drivers = [
+    # The following page may become a hint:
+    # https://wiki.archlinux.org/title/CUPS/Printer-specific_problems
+    pkgs.canon-cups-ufr2
+  ];
 }
