@@ -201,19 +201,12 @@
     xwayland.enable = true;
   };
 
-  # Greetd is used to bypassing window manager selection and user login.
+  # getty is used for bypassing user login window compositor selection.
   # It's because this machine is used by a only single human user and the
   # login process is protected by the LUKS passphrase input process.
-  # services.greetd.enable = true;
-  # services.greetd.settings.default_session = {
-    # command = "uwsm check may-start -i -v > /tmp/uwsm_check.log && uwsm start hyprland-uwsm.desktop >> /tmp/uwsm_check.log";
-    # Don't Run Hyprland directly as follows because UWSM is required to run Hyprland via Systemd.
-    # Systemd reads ~/.config/environment.d and sets environment variable to GUI applications.
-    # command = "Hyprland";
-    # command = "bash";
-    # user = "xorphitus";
-  # };
-
+  # Login shell profile is expected to execute compositor after auto login.
+  # Greeetd can directly execute compositor, e.g., Hyprland, without login shell,
+  # but it couldn't work  with uwsm, which can provide environmental variables.
   services.getty.autologinOnce = true;
   services.getty.autologinUser = "xorphitus";
 
