@@ -115,27 +115,6 @@ in {
     target = ".gnupg/scdaemon.conf";
   };
 
-  home.file.".local/bin/set-gnupg-env.sh" = {
-    source = ../config/gnupg/set-gnupg-env.sh;
-    target = ".local/bin/set-gnupg-env.sh";
-    executable = true;
-  };
-
-  systemd.user.services.set-gnupg-env = {
-    Unit = {
-      Description = "Set environment variables for GnuPG";
-      After = [ "default.target" ];
-    };
-    Install = {
-      WantedBy = [ "default.target" ];
-    };
-    Service = {
-      ExecStart = "${config.home.homeDirectory}/.local/bin/set-gnupg-env.sh";
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-  };
-
   # Dropbox
   systemd.user.services = {
     dropbox = {

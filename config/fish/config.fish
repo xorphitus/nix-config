@@ -1,3 +1,5 @@
+###########################################################
+# Login process
 if status is-login
   if not set -q __sourced_profile
     set -x __sourced_profile 1
@@ -12,7 +14,8 @@ if status is-login
         set path "$dir/env"
         echo "" > "$path"
         echo "export NIXOS_OZONE_WL=1" >> "$path"
-        echo "export SSH_AUTH_SOCK=\"$(gpgconf --list-dirs agent-ssh-socket)\"" >> "$path"
+        echo "export QT_QPA_PLATFORM=wayland" >> "$path"
+        echo "export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)" >> "$path"
         exec uwsm start hyprland-uwsm.desktop
       else
         echo "uwsm check failed. Falling back to direct Hyprland launch."
