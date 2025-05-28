@@ -1,5 +1,24 @@
 ###########################################################
-# Login process
+# login process
+function _start_compositor
+  # Available only in TTY1
+  test (tty) = "/dev/tty1"; or return
+
+  type uwsm > /dev/null; or begin
+    echo "uwsm is not available. Falling back to direct Hyprland launch."
+    Hyprland
+  end
+
+  if uwsm check may-start
+    exec uwsm start hyprland-uwsm.desktop
+  else
+    echo "uwsm check failed. Falling back to direct Hyprland launch."
+    uwsm check may-start -v
+    Hyprland
+  end
+end
+
+# Execute only once in login
 if status is-login
   if not set -q __sourced_profile
     set -x __sourced_profile 1
@@ -11,25 +30,11 @@ if status is-login
   end
 end
 
-function _start_compositor
-  if test (tty) = "/dev/tty1"
-    if type uwsm > /dev/null
-      and uwsm check may-start
-      exec uwsm start hyprland-uwsm.desktop
-    else
-      echo "uwsm check failed. Falling back to direct Hyprland launch."
-      if type uwsm > /dev/null
-        uwsm check may-start -v
-      end
-      Hyprland
-    end
-  end
-end
-
 ###########################################################
 # general
 set -x EDITOR nano
 set -x ALTERNATE_EDITOR emacs
+set -x GPG_TTY (tty)
 
 # disable greeting
 set -U fish_greeting
