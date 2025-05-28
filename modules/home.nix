@@ -14,6 +14,12 @@ in {
   home.packages = [ pkgs.dconf ];
 
   home.file = {
+    # UWSM - set environmental variables
+    ".config/uwsm/env" = {
+      source = ../config/uwsm/env;
+      target = ".config/uwsm/env";
+    };
+
     # Git
     ".gitconfig" = {
       source = ../config/git/gitconfig;

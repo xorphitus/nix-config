@@ -4,29 +4,25 @@ if status is-login
   if not set -q __sourced_profile
     set -x __sourced_profile 1
     if test (uname) = Linux
-      and test (tty) = "/dev/tty1"
-      # Start Hyprland
-      if type uwsm > /dev/null
-        and uwsm check may-start
-        # Set env vars
-        set dir "$HOME/.config/uwsm"
-        mkdir -p "$dir"
-        set path "$dir/env"
-        echo "" > "$path"
-        echo "export NIXOS_OZONE_WL=1" >> "$path"
-        echo "export QT_QPA_PLATFORM=wayland" >> "$path"
-        echo "export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)" >> "$path"
-        exec uwsm start hyprland-uwsm.desktop
-      else
-        echo "uwsm check failed. Falling back to direct Hyprland launch."
-        if type uwsm > /dev/null
-          uwsm check may-start -v
-        end
-        Hyprland
-      end
+      _start_compositor
     end
   else
     set -e __sourced_profile
+  end
+end
+
+function _start_compositor
+  if test (tty) = "/dev/tty1"
+    if type uwsm > /dev/null
+      and uwsm check may-start
+      exec uwsm start hyprland-uwsm.desktop
+    else
+      echo "uwsm check failed. Falling back to direct Hyprland launch."
+      if type uwsm > /dev/null
+        uwsm check may-start -v
+      end
+      Hyprland
+    end
   end
 end
 
