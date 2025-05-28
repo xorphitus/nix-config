@@ -8,10 +8,15 @@ in {
 
   home.stateVersion = "24.11";
 
-  # For the following dconf error:
-  # https://github.com/nix-community/home-manager/issues/3113
-  # For example, this issue prevents Rnote to save its configurations.
-  home.packages = [ pkgs.dconf ];
+  home.packages = [
+    # For the following dconf error:
+    # https://github.com/nix-community/home-manager/issues/3113
+    # For example, this issue prevents Rnote to save its configurations.
+    pkgs.dconf
+    # For GNOME Keyring
+    # https://wiki.nixos.org/wiki/Secret_Service
+    pkgs.gcr
+  ];
 
   home.file = {
     # UWSM - set environmental variables
@@ -120,6 +125,9 @@ in {
     source = ../config/gnupg/scdaemon.conf;
     target = ".gnupg/scdaemon.conf";
   };
+
+  # GNOME Keyring
+  services.gnome-keyring.enable = true;
 
   # Dropbox
   systemd.user.services = {

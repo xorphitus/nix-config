@@ -30,6 +30,20 @@ pamu2fcfg > ~/.config/Yubico/u2f_keys
 Touchscreen setting:
 https://github.com/flxzt/rnote/issues/1348
 
+### Visual Studio Code or alternatives Cursor
+Append the following to the top level of the JSON in `~/${config_dir}/argv.json`. `config_dir` should be `.cursor` in the Cursor case.
+
+```
+, // Don't forget inserting a comma
+"password-store": "gnome-keyring"
+```
+
+Although it's possible to set the configuration file with Nix, the configuration file may contain `crash-reporter-id` that should be unique. Therefore, it's not configured automatically so as not to expose the ID to  the internet, just in case.
+
+NOTE: Vault may be applied for this purpose in the future.
+
+https://code.visualstudio.com/docs/configure/settings-sync#_recommended-configure-the-keyring-to-use-with-vs-code
+
 ## Dual Boot Windows-Side Configuration
 - For dual boot:
   - Disable Fast Startup
