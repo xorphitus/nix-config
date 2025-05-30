@@ -299,8 +299,6 @@
   # Enable printers
   services.printing.enable = true;
   services.printing.drivers = [
-    # The following page may become a hint:
-    # https://wiki.archlinux.org/title/CUPS/Printer-specific_problems
-    pkgs.canon-cups-ufr2
+    (pkgs.callPackage ../../modules/cndrvcups-lt.nix {})
   ];
 }

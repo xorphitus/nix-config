@@ -64,6 +64,35 @@ If `waydroid show-full-ui` shows a black-outed screen, GPU adjustments may be re
 Install Aurora Store with the following URL:
 https://f-droid.org/ja/packages/com.aurora.store/
 
+### Printer
+Identify the URI:
+
+```bash
+lpinfo -v | grep usb
+direct usb://Canon/LBP6030/6040/6018L?serial=0000A1K63M59
+```
+
+Identify the model name:
+
+```bash
+lpinfo -m | grep -i can | grep 6030
+CNRCUPSLBP6030ZNK.ppd Canon LBP6030/6040/6018L
+```
+
+Enable the printer:
+
+```bash
+sudo lpadmin -p LBP6030 -E -v "usb://Canon/LBP6030/6040/6018L?serial=0000A1K63M59" -m CNRCUPSLBP6030ZNK.ppd
+```
+
+Unfortunately, the above command may say the following:
+
+```
+lpadmin: Printer drivers are deprecated and will stop working in a future version of CUPS.
+```
+
+When it stops working, it's better to buy a new one because it's not expected that the driver will be updated.
+
 ## Dual Boot Windows-Side Configuration
 - For dual boot:
   - Disable Fast Startup
