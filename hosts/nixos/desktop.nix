@@ -273,6 +273,9 @@
   # Enable PCManFM USB automounting
   services.gvfs.enable = true;
 
+  # Waydroid
+  virtualisation.waydroid.enable = true;
+
   # /etc/hosts
   networking.extraHosts =
     ''

@@ -44,6 +44,26 @@ NOTE: Vault may be applied for this purpose in the future.
 
 https://code.visualstudio.com/docs/configure/settings-sync#_recommended-configure-the-keyring-to-use-with-vs-code
 
+### Waydroid
+
+```
+sudo waydroid init
+```
+
+After initialization, manually install [waydroid_script](https://github.com/casualsnek/waydroid_script) and install an ARM translator with it. Otherwise, ARM specific apps, e.g., Kindle, are not available.
+
+If `waydroid show-full-ui` shows a black-outed screen, GPU adjustments may be required. Try the following change to `/var/lib/waydroid/waydroid_base.prop` manually.
+
+```diff
+-ro.hardware.gralloc=gbm
+-ro.hardware.egl=mesa
++ro.hardware.gralloc=default
++ro.hardware.egl=swiftshader
+```
+
+Install Aurora Store with the following URL:
+https://f-droid.org/ja/packages/com.aurora.store/
+
 ## Dual Boot Windows-Side Configuration
 - For dual boot:
   - Disable Fast Startup
