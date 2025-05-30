@@ -35,6 +35,9 @@ end
 set -x EDITOR nano
 set -x ALTERNATE_EDITOR emacs
 set -x GPG_TTY (tty)
+# Propabably can delete this when Wezterm release builds supports default_ssh_auth_sock
+# because uwsm/env should have this instead. See Wezterm's configuration about the details.
+set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
 
 # disable greeting
 set -U fish_greeting
