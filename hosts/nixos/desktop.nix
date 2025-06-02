@@ -114,6 +114,7 @@
     playerctl
     pavucontrol # GUI
     # Development
+    gnumake
     mise
     podman-compose
     # GUI
