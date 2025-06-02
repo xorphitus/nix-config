@@ -64,7 +64,24 @@ If `waydroid show-full-ui` shows a black-outed screen, GPU adjustments may be re
 Install Aurora Store with the following URL:
 https://f-droid.org/ja/packages/com.aurora.store/
 
-### Printer
+### VOICEVOX
+
+```bash
+docker pull voicevox/voicevox_engine:nvidia-latest
+```
+
+#### Editor
+Install Node.js 22. This may take long time.
+
+```bash
+mise node@22
+```
+
+Then, follow the official instruction: https://github.com/VOICEVOX/voicevox
+
+Notably, `"executionEnabled": false` must be set in `.env`.
+
+### WIP: Printer
 Identify the URI:
 
 ```bash
@@ -92,6 +109,9 @@ lpadmin: Printer drivers are deprecated and will stop working in a future versio
 ```
 
 When it stops working, it's better to buy a new one because it's not expected that the driver will be updated.
+
+NOTE: The above doesn't work. The following may be a hint.
+https://community.usa.canon.com/t5/Office-Printers/Installing-imageCLASS-LBP6030w-on-Debian-12/td-p/492639
 
 ## Dual Boot Windows-Side Configuration
 - For dual boot:

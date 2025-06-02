@@ -1,18 +1,7 @@
-# FIXME: This is an incomplete package because printing fails. The following may be causes:
-# - binaries uses DLLs, which NixOS doesn't support with a straight forward way
+# FIXME: This is an incomplete package because printing fails.
+# There are also following issues:
 # - /var/cache/Canon/ is not created
-# - Some dependencies are not defined, which the binaries requires
 # - Just for improvement, it may be better to ensure `ar` command existence
-#
-# Investigation:
-#
-# $ journalctl -u cups
-#
-# May 30 17:56:27 nixos cupsd[104139]: [Job 2] Could not start dynamically linked executable: LBP6030
-# May 30 17:56:27 nixos cupsd[104139]: [Job 2] NixOS cannot run dynamically linked executables intended for generic
-# May 30 17:56:27 nixos cupsd[104139]: [Job 2] linux environments out of the box. For more information, see:
-# May 30 17:56:27 nixos cupsd[104139]: [Job 2] https://nix.dev/permalink/stub-ld
-# May 30 17:56:27 nixos cupsd[104139]: [Job 2] PID 104345 (/nix/store/ra4bn2rlgy1x558xlvd8dj9nxhgjliij-cups-progs/lib/cups/filter/rastertosfp) stopped with status 127 (File too large)
 { fetchurl, lib, pkgs, stdenv }:
 
 # Reference: https://aur.archlinux.org/packages/cndrvcups-lt

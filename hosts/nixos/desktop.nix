@@ -302,4 +302,32 @@
   services.printing.drivers = [
     (pkgs.callPackage ../../modules/cndrvcups-lt.nix {})
   ];
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      # VOICEVOX Editor (Electron)
+      glib
+      nss
+      nspr
+      dbus
+      atk
+      gtk3
+      pango
+      cairo
+      xorg.libX11
+      xorg.libXcomposite
+      xorg.libXdamage
+      xorg.libXext
+      xorg.libXfixes
+      xorg.libXrandr
+      libgbm
+      expat
+      xorg.libxcb
+      libxkbcommon
+      alsa-lib
+      # Printer
+      cups
+    ];
+  };
 }
