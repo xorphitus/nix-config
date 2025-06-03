@@ -21,7 +21,7 @@
             home-manager.useUserPackages = true;
             home-manager.useGlobalPkgs = true;
 
-            home-manager.users.xorphitus = import ./modules/home.nix;
+            home-manager.users.xorphitus = import ./modules/nixos/home-manager.nix;
           }
         ];
         specialArgs = { inherit inputs; };

@@ -300,7 +300,7 @@
   # Enable printers
   services.printing.enable = true;
   services.printing.drivers = [
-    (pkgs.callPackage ../../modules/cndrvcups-lt.nix {})
+    (pkgs.callPackage ../../modules/nixos/cndrvcups-lt.nix {})
   ];
 
   programs.nix-ld = {

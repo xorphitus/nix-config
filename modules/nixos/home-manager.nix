@@ -21,76 +21,76 @@ in {
   home.file = {
     # UWSM - set environmental variables
     ".config/uwsm/env" = {
-      source = ../config/uwsm/env;
+      source = ./config/uwsm/env;
       target = ".config/uwsm/env";
     };
 
     # Git
     ".gitconfig" = {
-      source = ../config/git/gitconfig;
+      source = ./config/git/gitconfig;
       target = ".gitconfig";
     };
 
     # SSH
     ".ssh/config" = {
-      source = ../config/ssh/config;
+      source = ./config/ssh/config;
       target = ".ssh/config";
     };
 
     # Hyprland
     ".config/hypr/hyprland.conf" = {
-      source = ../config/hypr/hyprland.conf;
+      source = ./config/hypr/hyprland.conf;
       target = ".config/hypr/hyprland.conf";
     };
 
     # Waybar
     ".config/waybar/config.jsonc" = {
-      source = ../config/waybar/config.jsonc;
+      source = ./config/waybar/config.jsonc;
       target = ".config/waybar/config.jsonc";
     };
 
     # SwayNotificatioNCenter
     ".config/swaync/config.json" = {
-      source = ../config/swaync/config.json;
+      source = ./config/swaync/config.json;
       target = ".config/swaync/config.json";
     };
 
     ".config/swaync/configSchema.json" = {
-      source = ../config/swaync/configSchema.json;
+      source = ./config/swaync/configSchema.json;
       target = ".config/swaync/configSchema.json";
     };
 
     ".config/swaync/style.css" = {
-      source = ../config/swaync/style.css;
+      source = ./config/swaync/style.css;
       target = ".config/swaync/style.css";
     };
 
     # Wezterm
     ".config/wezterm/wezterm.lua" = {
-      source = ../config/wezterm/wezterm.lua;
+      source = ./config/wezterm/wezterm.lua;
       target = ".config/wezterm/wezterm.lua";
     };
 
     # Rofi
     ".config/rofi/config.rasi" = {
-      source = ../config/rofi/config.rasi;
+      source = ./config/rofi/config.rasi;
       target = ".config/rofi/config.rasi";
     };
 
     ".local/bin/rofi_system.sh" = {
-      source = ../config/rofi/rofi_system.sh;
+      source = ./config/rofi/rofi_system.sh;
       target = ".local/bin/rofi_system.sh";
     };
 
     # Emacs
     ".emacs/init.el" = {
-      source = ../config/emacs/init.el;
+      source = ./config/emacs/init.el;
       target = ".emacs.d/init.el";
     };
 
     # SKK
     ".local/bin/update-skk-jisyos.sh" = {
-      source = ../config/skk/update-dictionaries.sh;
+      source = ./config/skk/update-dictionaries.sh;
       target = ".local/bin/update-skk-jisyos.sh";
       executable = true;
     };
@@ -103,7 +103,7 @@ in {
 
     # Sound control scripts
     ".local/bin/volume.sh" = {
-      source = ../config/sound/volume.sh;
+      source = ./config/sound/volume.sh;
       target = ".local/bin/volume.sh";
       executable = true;
     };
@@ -111,18 +111,18 @@ in {
 
   # Fish
   home.file.".config/fish/config.fish" = {
-    source = ../config/fish/config.fish;
+    source = ./config/fish/config.fish;
     target = ".config/fish/config.fish";
   };
 
   # GPG
   home.file.".gnupg/gpg-agent.conf" = {
-    source = ../config/gnupg/gpg-agent.conf;
+    source = ./config/gnupg/gpg-agent.conf;
     target = ".gnupg/gpg-agent.conf";
   };
 
   home.file.".gnupg/scdaemon.conf" = {
-    source = ../config/gnupg/scdaemon.conf;
+    source = ./config/gnupg/scdaemon.conf;
     target = ".gnupg/scdaemon.conf";
   };
 
@@ -169,7 +169,7 @@ in {
 
   # Home cleaner
   home.file.".local/bin/home-cleaner.sh" = {
-    source = ../config/home-cleaner/home-cleaner.sh;
+    source = ./config/home-cleaner/home-cleaner.sh;
     target = ".local/bin/home-cleaner.sh";
     executable = true;
   };
@@ -199,7 +199,7 @@ in {
 
   # Org-roam auto backup
   home.file.".local/bin/org-roam-backup.sh" = {
-    source = ../config/org-roam-backup/org-roam-backup.sh;
+    source = ./config/org-roam-backup/org-roam-backup.sh;
     target = ".local/bin/org-roam-backup.sh";
     executable = true;
   };
