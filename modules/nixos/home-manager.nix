@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
-let migemoDictVersion = "v2021-05-07";
-
-in {
+{
   home.username = "xorphitus";
   home.homeDirectory = "/home/xorphitus";
 
@@ -27,58 +25,48 @@ in {
     # UWSM - set environmental variables
     ".config/uwsm/env" = {
       source = ./config/uwsm/env;
-      target = ".config/uwsm/env";
     };
 
     # Hyprland
     ".config/hypr/hyprland.conf" = {
       source = ./config/hypr/hyprland.conf;
-      target = ".config/hypr/hyprland.conf";
     };
 
     # Waybar
     ".config/waybar/config.jsonc" = {
       source = ./config/waybar/config.jsonc;
-      target = ".config/waybar/config.jsonc";
     };
 
     # SwayNotificatioNCenter
     ".config/swaync/config.json" = {
       source = ./config/swaync/config.json;
-      target = ".config/swaync/config.json";
     };
 
     ".config/swaync/configSchema.json" = {
       source = ./config/swaync/configSchema.json;
-      target = ".config/swaync/configSchema.json";
     };
 
     ".config/swaync/style.css" = {
       source = ./config/swaync/style.css;
-      target = ".config/swaync/style.css";
     };
 
     # Rofi
     ".config/rofi/config.rasi" = {
       source = ./config/rofi/config.rasi;
-      target = ".config/rofi/config.rasi";
     };
 
     ".local/bin/rofi_system.sh" = {
       source = ./config/rofi/rofi_system.sh;
-      target = ".local/bin/rofi_system.sh";
     };
 
     # Migemo dictionary
     ".local/share/migemo" = {
       source = "${pkgs.cmigemo}/share/migemo";
-      target = ".local/share/migemo";
     };
 
     # Sound control scripts
     ".local/bin/volume.sh" = {
       source = ./config/sound/volume.sh;
-      target = ".local/bin/volume.sh";
       executable = true;
     };
   };
@@ -127,7 +115,6 @@ in {
   # Home cleaner
   home.file.".local/bin/home-cleaner.sh" = {
     source = ./config/home-cleaner/home-cleaner.sh;
-    target = ".local/bin/home-cleaner.sh";
     executable = true;
   };
 
