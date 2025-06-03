@@ -8,6 +8,11 @@ in {
 
   home.stateVersion = "24.11";
 
+  imports =
+    [
+      ../shared/home-manager.nix
+    ];
+
   home.packages = [
     # For the following dconf error:
     # https://github.com/nix-community/home-manager/issues/3113
@@ -23,18 +28,6 @@ in {
     ".config/uwsm/env" = {
       source = ./config/uwsm/env;
       target = ".config/uwsm/env";
-    };
-
-    # Git
-    ".gitconfig" = {
-      source = ./config/git/gitconfig;
-      target = ".gitconfig";
-    };
-
-    # SSH
-    ".ssh/config" = {
-      source = ./config/ssh/config;
-      target = ".ssh/config";
     };
 
     # Hyprland
@@ -65,12 +58,6 @@ in {
       target = ".config/swaync/style.css";
     };
 
-    # Wezterm
-    ".config/wezterm/wezterm.lua" = {
-      source = ./config/wezterm/wezterm.lua;
-      target = ".config/wezterm/wezterm.lua";
-    };
-
     # Rofi
     ".config/rofi/config.rasi" = {
       source = ./config/rofi/config.rasi;
@@ -80,19 +67,6 @@ in {
     ".local/bin/rofi_system.sh" = {
       source = ./config/rofi/rofi_system.sh;
       target = ".local/bin/rofi_system.sh";
-    };
-
-    # Emacs
-    ".emacs/init.el" = {
-      source = ./config/emacs/init.el;
-      target = ".emacs.d/init.el";
-    };
-
-    # SKK
-    ".local/bin/update-skk-jisyos.sh" = {
-      source = ./config/skk/update-dictionaries.sh;
-      target = ".local/bin/update-skk-jisyos.sh";
-      executable = true;
     };
 
     # Migemo dictionary
@@ -107,23 +81,6 @@ in {
       target = ".local/bin/volume.sh";
       executable = true;
     };
-  };
-
-  # Fish
-  home.file.".config/fish/config.fish" = {
-    source = ./config/fish/config.fish;
-    target = ".config/fish/config.fish";
-  };
-
-  # GPG
-  home.file.".gnupg/gpg-agent.conf" = {
-    source = ./config/gnupg/gpg-agent.conf;
-    target = ".gnupg/gpg-agent.conf";
-  };
-
-  home.file.".gnupg/scdaemon.conf" = {
-    source = ./config/gnupg/scdaemon.conf;
-    target = ".gnupg/scdaemon.conf";
   };
 
   # GNOME Keyring
