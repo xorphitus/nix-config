@@ -4,7 +4,7 @@
 	signingkey = D1807C94682FEF328966ACF1522B834DAD3D20B1
 [core]
 	pager = less -r
-	editor = emacsclient
+	editor = nano
 [format]
 	signoff = true
 [color]
