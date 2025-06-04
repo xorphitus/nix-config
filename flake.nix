@@ -8,9 +8,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager }@inputs: {
+  outputs = { self, nix-darwin, nixpkgs, home-manager }@inputs: {
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -32,6 +35,12 @@
           ./hosts/nixos/vm.nix
         ];
       };
+    };
+
+    darwinConfigurations.macbook-air-m2 = nix-darwin.lib.darwinSystem {
+      modules = [
+        ./hosts/darwin/macbook-air-m2.nix
+      ];
     };
   };
 }
