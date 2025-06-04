@@ -17,7 +17,7 @@
   };
 
   # Emacs
-  home.file.".emacs/init.el" = {
+  home.file.".emacs.d/init.el" = {
     source = ./config/emacs/init.el;
   };
 
