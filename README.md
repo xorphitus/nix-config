@@ -118,3 +118,26 @@ https://community.usa.canon.com/t5/Office-Printers/Installing-imageCLASS-LBP6030
   - Disable Fast Startup
   - Disable hibernation
 - Change IME switch keybind
+
+## macOS
+Proceed with [the official instruction](https://github.com/nix-darwin/nix-darwin) using flakes.
+
+1 .Prerequisites
+  - Apply "The Nix installer from Determinate Systems" without the `--determinate` flag
+1. Step 1. Creating `flake.nix`
+  - Apply "Getting started from scratch"
+1. Step 2. Installing `nix-darwin`
+2. Step 3. Using nix-darwin
+  - Apply `Using flake inputs`
+
+During the procedure, if an experimental feature error occurs, execute the following to prevent it.
+
+Then, gradually apply this repository.
+
+1. `git clone` with HTTPS under the home directory
+  - It's because SSH is still not fully configured and it's unavailable in this step
+1. Move `/etc/nix-darwin/hardware.nix` to this repository
+1. `sudo nix run nix-darwin/nix-darwin-24.11#darwin-rebuild -- switch#darwin`
+  - This may cause an experimental feature error, and the following resolves it:
+  - `sudo nix --extra-experimental-features "nix-comand flakes" run nix-darwin/nix-darwin-24.11#darwin-rebuild -- switch#darwin`
+1. Change the repository's remote host protocol to SSH from HTTP and check if it works
