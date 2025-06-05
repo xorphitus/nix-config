@@ -124,7 +124,7 @@ https://community.usa.canon.com/t5/Office-Printers/Installing-imageCLASS-LBP6030
 1. `git clone` with HTTPS under the home directory
   - It's because SSH is still not fully configured and it's unavailable in this step
 1. `cd` to the top of the cloned repository
-1. `sudo nix --extra-experimental-features "nix-comand flakes" run nix-darwin/master#darwin-rebuild -- switch --flake ~/nix-config#macbook-air-m2`
+1. `sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/master#darwin-rebuild -- switch --flake ~/nix-config#macbook-air-m2`
 1. Restart the shell
 1. `sudo darwin-rebuild switch`
 1. Change the repository's remote host protocol to SSH from HTTP and check if it works
