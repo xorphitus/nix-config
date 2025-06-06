@@ -13,7 +13,11 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nix-darwin, nixpkgs, home-manager }@inputs: {
+  outputs = { self, nix-darwin, nixpkgs, home-manager }@inputs:
+let
+  username = "xorphitus";
+in
+  {
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -24,11 +28,15 @@
             home-manager.useUserPackages = true;
             home-manager.useGlobalPkgs = true;
 
-            home-manager.users.xorphitus = import ./modules/nixos/home-manager.nix;
+            home-manager.users.${username} = { config, pkgs, lib, ... }:
+              import ./modules/nixos/home-manager.nix { inherit config pkgs username; };
           }
         ];
-        specialArgs = { inherit inputs; };
+        specialArgs = {
+          inherit inputs username;
+        };
       };
+
       vm = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -45,7 +53,7 @@
           home-manager.useUserPackages = true;
           home-manager.useGlobalPkgs = true;
 
-          home-manager.users.xorphitus = import ./modules/darwin/home-manager.nix;
+          home-manager.users.${username} = import ./modules/darwin/home-manager.nix;
         }
       ];
     };
