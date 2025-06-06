@@ -40,7 +40,7 @@
     darwinConfigurations.macbook-air-m2 = nix-darwin.lib.darwinSystem {
       modules = [
         ./hosts/darwin/macbook-air-m2.nix
-        home-manager.nixosModules.home-manager
+        home-manager.darwinModules.home-manager
         {
           home-manager.useUserPackages = true;
           home-manager.useGlobalPkgs = true;
