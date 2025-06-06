@@ -54,8 +54,13 @@ in
           home-manager.useGlobalPkgs = true;
 
           home-manager.users.${username} = import ./modules/darwin/home-manager.nix;
+          home-manager.users.${username} = { config, pkgs, lib, ... }:
+              import ./modules/darwin/home-manager.nix { inherit pkgs username; };
         }
       ];
+      specialArgs = {
+        inherit username;
+      };
     };
   };
 }

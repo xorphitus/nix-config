@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 
 {
   nixpkgs.hostPlatform = "aarch64-darwin";
   system.stateVersion = 6;
   # Required for enabling Homebrew
-  system.primaryUser = "xorphitus";
+  system.primaryUser = "${username}";
 
   environment.systemPackages = with pkgs; [
     # Only basic CLI tools
