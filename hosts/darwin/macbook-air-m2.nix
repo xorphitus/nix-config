@@ -21,6 +21,7 @@
     zoxide
     gnupg
     cmigemo
+    coreutils
   ];
 
   # https://nix-darwin.github.io/nix-darwin/manual/
