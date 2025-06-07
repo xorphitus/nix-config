@@ -20,6 +20,7 @@
     starship
     zoxide
     gnupg
+    cmigemo
   ];
 
   # https://nix-darwin.github.io/nix-darwin/manual/

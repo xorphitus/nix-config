@@ -40,4 +40,9 @@
   home.file.".gnupg/scdaemon.conf" = {
     source = ./config/gnupg/scdaemon.conf;
   };
+
+  # Migemo dictionary
+  ".local/share/migemo" = {
+    source = "${pkgs.cmigemo}/share/migemo";
+  };
 }

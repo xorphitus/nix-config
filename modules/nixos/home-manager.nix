@@ -59,11 +59,6 @@
       source = ./config/rofi/rofi_system.sh;
     };
 
-    # Migemo dictionary
-    ".local/share/migemo" = {
-      source = "${pkgs.cmigemo}/share/migemo";
-    };
-
     # Sound control scripts
     ".local/bin/volume.sh" = {
       source = ./config/sound/volume.sh;
