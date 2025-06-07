@@ -19,6 +19,7 @@
     ripgrep
     starship
     zoxide
+    gnupg
   ];
 
   # https://nix-darwin.github.io/nix-darwin/manual/
