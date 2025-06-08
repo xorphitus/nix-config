@@ -1,4 +1,4 @@
-{ pkgs, lib, username, ... }:
+{ inputs, pkgs, lib, username, ... }:
 
 {
   home.username = "${username}";
@@ -11,4 +11,28 @@
     [
       ../shared/home-manager.nix
     ];
+
+  nixpkgs = {
+    overlays = [
+      inputs.brew-nix.overlays.default
+    ];
+  };
+
+  home.packages = with pkgs; [
+    coreutils
+    git
+    bat
+    fd
+    fzf
+    ghq
+    htop
+    jq
+    lsd
+    ripgrep
+    starship
+    zoxide
+    gnupg
+    cmigemo
+    brewCasks.musescore
+  ];
 }

@@ -9,11 +9,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    # For Darwin
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    brew-nix = {
+      url = "github:BatteredBunny/brew-nix";
+      inputs.brew-api.follows = "brew-api";
+    };
+    brew-api = {
+      url = "github:BatteredBunny/brew-api";
+      flake = false;
+    };
   };
 
-  outputs = { self, nix-darwin, nixpkgs, home-manager }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-darwin, brew-nix, brew-api }@inputs:
 let
   username = "xorphitus";
 in
@@ -47,6 +58,13 @@ in
 
     darwinConfigurations.macbook-air-m2 = nix-darwin.lib.darwinSystem {
       modules = [
+        brew-nix.darwinModules.default
+        (
+          { pkgs, ... }:
+          {
+            brew-nix.enable = true;
+          }
+        )
         ./hosts/darwin/macbook-air-m2.nix
         home-manager.darwinModules.home-manager
         {
@@ -54,7 +72,7 @@ in
           home-manager.useGlobalPkgs = true;
 
           home-manager.users.${username} = { config, pkgs, lib, ... }:
-              import ./modules/darwin/home-manager.nix { inherit pkgs lib username; };
+              import ./modules/darwin/home-manager.nix { inherit inputs pkgs lib username; };
         }
       ];
       specialArgs = {
