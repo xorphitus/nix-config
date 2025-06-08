@@ -7,6 +7,8 @@
 
   # https://nix-darwin.github.io/nix-darwin/manual/
 
+  system.keyboard.enableKeyMapping = true;
+
   system.keyboard.remapCapsLockToControl = true;
 
   # Use F1, F2, etc. keys as standard function keys.
