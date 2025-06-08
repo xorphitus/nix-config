@@ -5,6 +5,11 @@
   system.stateVersion = 6;
   system.primaryUser = "${username}";
 
+  # Fonts
+  fonts.packages = [
+    pkgs.hackgen-nf-font
+  ];
+
   # https://nix-darwin.github.io/nix-darwin/manual/
 
   system.keyboard.enableKeyMapping = true;
