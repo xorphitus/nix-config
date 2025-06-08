@@ -383,7 +383,7 @@ http://d.hatena.ne.jp/gifnksm/20100131/1264956220"
   :ensure t
   :commands migemo
   :config
-  (setq migemo-command (if (executable-find "cmigemo") (executable-find "cmigemo") "/usr/local/bin/cmigemo")
+  (setq migemo-command (if (executable-find "cmigemo") (executable-find "cmigemo") "/run/current-system/sw/bin/cmigemo")
         migemo-options '("-q" "--emacs")
         migemo-dictionary (--find
                            (f-exists? it)

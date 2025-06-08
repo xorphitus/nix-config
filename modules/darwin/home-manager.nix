@@ -32,7 +32,6 @@
     starship
     zoxide
     gnupg
-    cmigemo
     brewCasks.musescore
   ];
 

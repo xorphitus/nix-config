@@ -42,7 +42,7 @@
   };
 
   # Migemo dictionary
-  ".local/share/migemo" = {
+  home.file.".local/share/migemo" = {
     source = "${pkgs.cmigemo}/share/migemo";
   };
 }

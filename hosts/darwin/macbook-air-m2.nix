@@ -5,6 +5,10 @@
   system.stateVersion = 6;
   system.primaryUser = "${username}";
 
+  environment.systemPackages = with pkgs; [
+    cmigemo
+  ];
+
   # Fonts
   fonts.packages = [
     pkgs.hackgen-nf-font
