@@ -19,25 +19,14 @@
   };
 
   home.packages = with pkgs; [
-    coreutils
-    git
-    bat
-    fd
-    fzf
-    ghq
-    htop
-    jq
-    lsd
-    ripgrep
-    starship
-    zoxide
-    gnupg
     brewCasks.musescore
+    brewCasks.wezterm
   ];
 
   programs.emacs = {
     enable = true;
     package = pkgs.emacs.overrideAttrs (old: {
+      # Apply emacs-plus's patches
       patches =
         (old.patches or [])
         ++ [

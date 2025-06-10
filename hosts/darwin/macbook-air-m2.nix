@@ -6,7 +6,24 @@
   system.primaryUser = "${username}";
 
   environment.systemPackages = with pkgs; [
+    # Basic tools
+    coreutils
+    git
+    gnupg
+    # Convenient CLI tools
+    bat
+    fd
+    fzf
+    ghq
+    htop
+    jq
+    lsd
+    ripgrep
+    starship
+    zoxide
+    # For Emacs
     cmigemo
+    enchant
   ];
 
   # Fonts
