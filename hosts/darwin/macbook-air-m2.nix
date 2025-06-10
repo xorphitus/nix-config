@@ -26,7 +26,5 @@
   # Whether to enable trackpad tap to click. The default is false.
   system.defaults.trackpad.Clicking = true;
 
-  homebrew.enable = true;
-
   programs.fish.enable = true;
 }
