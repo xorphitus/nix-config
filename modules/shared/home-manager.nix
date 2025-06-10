@@ -47,7 +47,7 @@
   };
 
   # Enchant
-  home.file."~/.config/enchant/enchant.ordering" = {
+  home.file.".config/enchant/enchant.ordering" = {
     source = ./config/enchant/enchant.ordering;
   };
 }
