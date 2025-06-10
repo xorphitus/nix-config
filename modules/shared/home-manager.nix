@@ -45,4 +45,9 @@
   home.file.".local/share/migemo" = {
     source = "${pkgs.cmigemo}/share/migemo";
   };
+
+  # Enchant
+  home.file."~/.config/enchant/enchant.ordering" = {
+    source = ./config/enchant/enchant.ordering;
+  };
 }

@@ -135,7 +135,8 @@
     # Emacs
     emacs-pgtk # -pgtk is required for Wayland
     cmigemo
-    hunspell
+    enchant
+    nuspell
     hunspellDicts.en_US-large
     wl-clipboard # Required to fix broken clipboard
     # GnuPG

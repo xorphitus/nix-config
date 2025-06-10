@@ -566,16 +566,6 @@ Call this on `flyspell-incorrect-hook'."
     (string-match "[^!-~]" (buffer-substring beg end)))
 
   :config
-  ;; (leaf ispell
-  ;;   :req "hunspell" "hunspell-en_US"
-  ;;   :ensure t
-  ;;   :config
-  ;;   (setq ispell-program-name (executable-find "hunspell")
-  ;;         ispell-dictionary "en_US-large"
-  ;;         ispell-really-hunspell t
-  ;;         ;; for completion
-  ;;         ispell-complete-word-dict "/usr/share/hunspell/en_US.dic"))
-
   (leaf flyspell
     :ensure t
     :hook
