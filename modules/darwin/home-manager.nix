@@ -19,8 +19,17 @@
   };
 
   home.packages = with pkgs; [
-    brewCasks.musescore
+    brewCasks.keepassxc
+    brewCasks.signal
     brewCasks.wezterm
+    # Music
+    brewCasks.musescore
+    (brewCasks.spotify.overrideAttrs (oldAttrs: {
+      src = pkgs.fetchurl {
+        url = builtins.head oldAttrs.src.urls;
+        hash = "sha256-msI8jSw/uKMJxQE9IaK48XkVVpJmq1aVJoaqyr7CB80=";
+      };
+    }))
   ];
 
   programs.emacs = {
