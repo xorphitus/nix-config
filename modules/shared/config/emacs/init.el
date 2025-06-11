@@ -334,7 +334,9 @@ http://d.hatena.ne.jp/gifnksm/20100131/1264956220"
 (leaf alert
   :ensure t
   :config
-  (setq alert-default-style 'libnotify))
+  (setq alert-default-style (if (eq system-type 'darwin)
+                                'osx-notifier
+                              'libnotify)))
 
 (leaf wgrep
   :doc "Edit grep result directry"
@@ -622,7 +624,7 @@ Call this on `flyspell-incorrect-hook'."
                          "cica"
                          "CICA")))
            (size "12.5"))
-      (format "%s-%s" available size))
+      (format "%s-%s" "HackGen Console NF" size))
     "Font. It's detected automaticaly by default.")
 
   :config
