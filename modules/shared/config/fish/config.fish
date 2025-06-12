@@ -64,6 +64,10 @@ set -x PAGER 'less'
 set -x LESS '-iMR --LONG-PROMPT'
 
 ###########################################################
+# Mise
+type mise > /dev/null; and mise activate fish | source
+
+###########################################################
 # other utilities
 # This environmental variable is required when `ls` is an
 # alias of `lsd`. Otherwise their incompatibility causes
