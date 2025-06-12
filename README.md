@@ -3,6 +3,24 @@
 ### (Unsure) Hyprland
 It may be required to execute `uwsm select` manually for enabling `/nix/store/****/share/wayland-sessions/hyprland-uwsm.desktop`.
 
+### Install Fish Plugins
+
+```sh
+setup-fish-env
+```
+
+### Emacs
+
+```sh
+~/.local/bin/update-skk-jisyos.sh
+```
+
+On Emacs:
+
+```
+M-x all-the-icons-install-fonts
+```
+
 ### Fcitx
 Apply the following with ~fcitx5-configtool~
 
@@ -128,3 +146,9 @@ https://community.usa.canon.com/t5/Office-Printers/Installing-imageCLASS-LBP6030
 1. Restart the shell
 1. `sudo darwin-rebuild switch`
 1. Change the repository's remote host protocol to SSH from HTTP and check if it works
+
+### Manual Settings
+
+```sh
+mise use -g python@3.12
+```
