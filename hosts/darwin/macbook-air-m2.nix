@@ -10,6 +10,7 @@
     coreutils
     git
     gnupg
+    iproute2mac
     # Convenient CLI tools
     bat
     fd
