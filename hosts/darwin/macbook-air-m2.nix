@@ -21,6 +21,10 @@
     ripgrep
     starship
     zoxide
+    # Development
+    gcc
+    gnumake
+    mise
     # For Emacs
     cmigemo
     enchant
