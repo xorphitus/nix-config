@@ -947,9 +947,17 @@ To show the image file inline, use the following.
            '("/usr/share/java/plantuml/plantuml.jar")))
     (org-babel-do-load-languages
      'org-babel-load-languages
-     '((plantuml . t)
-       (shell . t)
-       (python . t))))
+     '((mermaid . t)
+       (plantuml . t)
+       (python . t)
+       (shell . t))))
+
+  (leaf ob-mermaid
+    :ensure t
+    :config
+    (setq ob-mermaid-cli-path (if (executable-find "mmdc")
+                                  (executable-find "mmdc")
+                                "/run/current-system/sw/bin/mmdc")))
 
   (leaf org-pomodoro
     :ensure t

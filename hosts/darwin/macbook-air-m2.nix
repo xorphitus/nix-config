@@ -26,6 +26,7 @@
     gcc
     gnumake
     mise
+    mermaid-cli
     # For Emacs
     cmigemo
     enchant

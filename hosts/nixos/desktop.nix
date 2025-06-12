@@ -116,6 +116,7 @@
     # Development
     gnumake
     mise
+    mermaid-cli
     podman-compose
     # GUI
     hyprlock
