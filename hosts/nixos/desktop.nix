@@ -297,6 +297,7 @@
     127.0.0.1 lishogi.org
     127.0.0.1 www.afsgames.com
     127.0.0.1 sdin.jp
+    127.0.0.1 tetr.io
     '';
 
   # Enable printers
