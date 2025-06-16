@@ -1004,7 +1004,11 @@ does not support PulseAudio's pacat/paplay"
     (org-mode-hook . (lambda () (org-superstar-mode 1)))
     :config
     ;; Show a "DONE" annotated task with a checkbox
-    (setq org-superstar-special-todo-items t))
+    (setq org-superstar-special-todo-items t)
+    ;; Override code backgrounds
+    (set-face-attribute 'org-code nil :background "#121212")
+    (set-face-attribute 'org-verbatim nil :background "#121212")
+    (set-face-attribute 'org-block nil :background "#121212"))
 
   (leaf
     verb
