@@ -802,13 +802,21 @@ Call this on `flyspell-incorrect-hook'."
   :require tree-sitter-langs
   :config
   (global-tree-sitter-mode)
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
-  ;; (leaf treesit-auto
-  ;;   :ensure t
-  ;;   :config
-  ;;   (global-treesit-auto-mode))
-  )
+(leaf treesit-auto
+    :ensure t
+    ;; Doesn't work without ~:require t~ as expected with Leaf.el
+    :require t
+    ;; :commands is required to make global-treesit-auto-mode available
+    ;; - https://github.com/renzmann/treesit-auto/issues/44
+    ;; - https://github.com/renzmann/treesit-auto/issues/132
+    :commands '(global-treesit-auto-mode)
+    :custom
+    (treesit-auto-install . 'prompt)
+    :config
+    (treesit-auto-add-to-auto-mode-alist 'all)
+    (global-treesit-auto-mode))
 
 (leaf slime
   :req "sbcl"
