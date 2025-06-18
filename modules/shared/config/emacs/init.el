@@ -385,7 +385,7 @@ http://d.hatena.ne.jp/gifnksm/20100131/1264956220"
   :ensure t
   :commands migemo
   :config
-  (setq migemo-command (if (executable-find "cmigemo") (executable-find "cmigemo") "/run/current-system/sw/bin/cmigemo")
+  (setq migemo-command (or (executable-find "cmigemo") "/run/current-system/sw/bin/cmigemo")
         migemo-options '("-q" "--emacs")
         migemo-dictionary (--find
                            (f-exists? it)
@@ -963,8 +963,7 @@ To show the image file inline, use the following.
   (leaf ob-mermaid
     :ensure t
     :config
-    (setq ob-mermaid-cli-path (if (executable-find "mmdc")
-                                  (executable-find "mmdc")
+    (setq ob-mermaid-cli-path (or (executable-find "mmdc")
                                 "/run/current-system/sw/bin/mmdc")))
 
   (leaf org-pomodoro
