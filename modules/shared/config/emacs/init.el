@@ -369,10 +369,13 @@ http://d.hatena.ne.jp/gifnksm/20100131/1264956220"
     :config
     (setq cape-dict-file (--find
                           (f-exists? it)
-                          '("/usr/share/myspell/dicts/en_US-large.dic"
-                            "/usr/share/myspell/dicts/en_US.dic"
-                            "/run/current-system/sw/share/hunspell/en_US-large.dic"
-                            "/run/current-system/sw/share/hunspell/en_US.dic")))))
+                          (list
+                           "/usr/share/myspell/dicts/en_US-large.dic"
+                           "/usr/share/myspell/dicts/en_US.dic"
+                           "/run/current-system/sw/share/hunspell/en_US-large.dic"
+                           "/run/current-system/sw/share/hunspell/en_US.dic"
+                           ;; Fallback to the original
+                           cape-dict-file)))))
 
 (leaf undo-tree
   :ensure t
