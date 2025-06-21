@@ -27,9 +27,10 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/36388d4d-af77-45ed-b6cb-4593118b48da"; }
-    ];
+  swapDevices = [
+    { device = "/dev/disk/by-uuid/36388d4d-af77-45ed-b6cb-4593118b48da"; }
+  ];
+  boot.resumeDevice = "/dev/disk/by-uuid/36388d4d-af77-45ed-b6cb-4593118b48da";
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -53,11 +54,14 @@
     # Modesetting is required.
     modesetting.enable = true;
 
+    # This should be true to enable suspend although the following comment was found previously.
+    # See: https://discourse.nixos.org/t/suspend-and-unsuspend-issues/50239/9
+    #
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
-    powerManagement.enable = false;
+    powerManagement.enable = true;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
