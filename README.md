@@ -34,9 +34,6 @@ Apply the following with ~fcitx5-configtool~
 ### KeePassXC
 Enable browser integrations
 
-### SKK
-Download dictionaries with the script under `~/.local/bin`
-
 ### YubiKey
 
 ```
