@@ -24,6 +24,12 @@
     brewCasks.signal
     brewCasks.wezterm
     # Music
+    (brewCasks.loopback.overrideAttrs (oldAttrs: {
+      src = pkgs.fetchurl {
+        url = builtins.head oldAttrs.src.urls;
+        hash = "sha256-ctxUq5wLeELdV/Q3SZVOwIjYFXCFL0Cf6jEVf5rrQPk=";
+      };
+    }))
     brewCasks.musescore
     (brewCasks.spotify.overrideAttrs (oldAttrs: {
       src = pkgs.fetchurl {
