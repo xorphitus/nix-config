@@ -180,16 +180,19 @@ https://community.usa.canon.com/t5/Office-Printers/Installing-imageCLASS-LBP6030
   - Set time zone automatically using your current location
 
 #### Application Installation
-- brew-nix doesn't work
-  - Syncroom
-- Using App store
-  - iReal Pro
-    - Although brew cask is also available, I assumed App Store should remember my payment
-      - I don't know how does it behave when I use brea cask, but used App Store, just in case
-  - METRONOME Connect
 
 #### Music
-After installing Loopback, iReal PRO, and METRONOME Connect, configure Loopback to output them and a USB audio interface into a single virtual audio device.
+Application installations:
+
+- Syncroom
+  - brew-nix doesn't work - I hope I can solve this issue
+- Using App store
+  - iReal Pro
+    - Although brew-nix works, I still cannot find a way to reuse my App store purchase information
+    - Honestly, I don't mind further donation by considering their great contribution, though
+  - METRONOME Connect
+
+After application installations, configure Loopback to output them and a USB audio interface into a single virtual audio device.
 
 #### Development Environment
 
