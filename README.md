@@ -148,6 +148,54 @@ https://community.usa.canon.com/t5/Office-Printers/Installing-imageCLASS-LBP6030
 1. Change the repository's remote host protocol to SSH from HTTP and check if it works
 
 ### Manual Settings
+#### Trackpad
+- Secondary click: Click or Tap with Two Fingers
+- 🤔 They should be configured automatically, but it's skeptical if they are working
+  - Tap to click
+  - Track speed: bit faster
+
+#### Keyboard
+- Modifier keys
+  - Command to Option
+  - Ctrl to Command
+  - Option to Command
+- Spotlight
+  - Show Spotlight search: Option + Space
+- IME
+  - ~Ctrl + \~ and ~Ctrl + Shift + \~
+  - Disable Live conversion
+    - Otherwise, I redundantly have to press the enter key to decides conversion candidates
+- 🤔 They should be configured automatically, but it's skeptical if they are working
+  - Modifier keys
+    - CapsLock to Ctrl
+  - Function keys
+    - System Settings -> Keyboard Shortcuts -> Function Keys -> "Use F1, F2, etc. keys as standard function keys"
+       - Then, the ~F\d+~ keys works without ~fn~
+
+#### Security
+- Enable firewall
+
+#### Timezone
+- Date & time -> Set time zone
+  - Set time zone automatically using your current location
+
+#### Application Installation
+- brew-nix doesn't work
+  - Vivaldi
+  - Zoom
+    - App Store is also available
+  - Loopback
+  - Syncroom
+- Using App store
+  - iReal Pro
+    - Although brew cask is also available, I assumed App Store should remember my payment
+      - I don't know how does it behave when I use brea cask, but used App Store, just in case
+  - METRONOME Connect
+
+#### Music
+After installing Loopback, iReal PRO, and METRONOME Connect, configure Loopback to output them and a USB audio interface into a single virtual audio device.
+
+#### Development Environment
 
 ```sh
 mise use -g python@3.12
