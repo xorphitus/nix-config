@@ -190,7 +190,6 @@ https://community.usa.canon.com/t5/Office-Printers/Installing-imageCLASS-LBP6030
     - Although brew cask is also available, I assumed App Store should remember my payment
       - I don't know how does it behave when I use brea cask, but used App Store, just in case
   - METRONOME Connect
-  - Kindle
 
 #### Music
 After installing Loopback, iReal PRO, and METRONOME Connect, configure Loopback to output them and a USB audio interface into a single virtual audio device.
