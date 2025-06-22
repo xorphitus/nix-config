@@ -181,9 +181,6 @@ https://community.usa.canon.com/t5/Office-Printers/Installing-imageCLASS-LBP6030
 
 #### Application Installation
 - brew-nix doesn't work
-  - Vivaldi
-  - Zoom
-    - App Store is also available
   - Syncroom
 - Using App store
   - iReal Pro

@@ -23,7 +23,12 @@
     brewCasks.kindle
     brewCasks.keepassxc
     brewCasks.signal
+    (brewCasks.vivaldi.overrideAttrs (oldAttrs: {
+      # brew-nix doesn't support tar.xz when the package is classified s isApp
+      unpackPhase = "tar -xf $src";
+    }))
     brewCasks.wezterm
+    brewCasks.zoom
     # Music
     (brewCasks.loopback.overrideAttrs (oldAttrs: {
       src = pkgs.fetchurl {
