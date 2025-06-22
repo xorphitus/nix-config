@@ -19,6 +19,7 @@
   };
 
   home.packages = with pkgs; [
+    brewCasks.dropbox
     brewCasks.keepassxc
     brewCasks.signal
     brewCasks.wezterm
