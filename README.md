@@ -194,3 +194,9 @@ After application installations, configure Loopback to output them and a USB aud
 ```sh
 mise use -g python@3.12
 ```
+
+#### Enable Spotlight Search
+
+```sh
+./darwinAliases.sh
+```

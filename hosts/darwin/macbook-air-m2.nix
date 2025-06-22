@@ -11,6 +11,7 @@
     git
     gnupg
     iproute2mac
+    mkalias
     # Convenient CLI tools
     bat
     fd
