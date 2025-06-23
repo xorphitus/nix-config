@@ -19,24 +19,24 @@
   };
 
   home.packages = with pkgs; [
+    wezterm
     brewCasks.dropbox
     brewCasks.kindle
-    brewCasks.keepassxc
-    brewCasks.signal
+    brewCasks.keepassxc # -> keepassxc
+    brewCasks.signal # -> signal-desktop
     (brewCasks.vivaldi.overrideAttrs (oldAttrs: {
       # brew-nix doesn't support tar.xz when the package is classified as isApp
       unpackPhase = "tar -xf $src";
     }))
-    brewCasks.wezterm
-    brewCasks.zoom
+    brewCasks.zoom # -> zoom-us
     # Music
+    musescore
     (brewCasks.loopback.overrideAttrs (oldAttrs: {
       src = pkgs.fetchurl {
         url = builtins.head oldAttrs.src.urls;
         hash = "sha256-ctxUq5wLeELdV/Q3SZVOwIjYFXCFL0Cf6jEVf5rrQPk=";
       };
     }))
-    brewCasks.musescore
     (brewCasks.spotify.overrideAttrs (oldAttrs: {
       src = pkgs.fetchurl {
         url = builtins.head oldAttrs.src.urls;

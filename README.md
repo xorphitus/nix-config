@@ -176,6 +176,9 @@ https://community.usa.canon.com/t5/Office-Printers/Installing-imageCLASS-LBP6030
 - Date & time -> Set time zone
   - Set time zone automatically using your current location
 
+#### Spotlight
+- Remove ~Seri Suggestions~ from search results
+
 #### Music
 Application installations:
 
