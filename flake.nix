@@ -69,7 +69,6 @@ in
         home-manager.darwinModules.home-manager
         {
           home-manager.useUserPackages = true;
-          home-manager.useGlobalPkgs = true;
 
           home-manager.users.${username} = { config, pkgs, lib, ... }:
               import ./modules/darwin/home-manager.nix { inherit inputs pkgs lib username; };
