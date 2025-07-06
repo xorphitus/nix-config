@@ -79,6 +79,13 @@ If `waydroid show-full-ui` shows a black-outed screen, GPU adjustments may be re
 Install Aurora Store with the following URL:
 https://f-droid.org/ja/packages/com.aurora.store/
 
+### Mise
+Execute the following to install the required tools including. It takes very long time because the tools include Node.js, which causes compiling.
+
+```bah
+mise install
+```
+
 ### VOICEVOX
 
 ```bash

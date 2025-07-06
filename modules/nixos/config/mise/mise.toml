@@ -1,0 +1,11 @@
+[tools]
+node = "24"
+"npm:@anthropic-ai/claude-code" = "latest"
+"npm:@google/gemini-cli" = "latest"
+
+[env]
+_.file = '.env'
+
+# Seems not to be working...
+[settings.node]
+compile = false

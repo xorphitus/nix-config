@@ -64,6 +64,11 @@
       source = ./config/sound/volume.sh;
       executable = true;
     };
+
+    # Mise
+    ".config/mise.toml" = {
+      source = ./config/mise/mise.toml;
+    };
   };
 
   # GNOME Keyring
