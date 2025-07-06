@@ -96,6 +96,7 @@
     dig
     gcc
     git
+    unzip
     usbutils
     # CLI
     bat
@@ -114,6 +115,7 @@
     playerctl
     pavucontrol # GUI
     # Development
+    jujutsu
     gnumake
     mise
     mermaid-cli
