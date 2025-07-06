@@ -120,6 +120,7 @@
     mise
     mermaid-cli
     podman-compose
+    (pkgs.callPackage ../../modules/nixos/devtoys-cli.nix {})
     # GUI
     hyprlock
     waybar
