@@ -17,7 +17,6 @@ pkgs.stdenv.mkDerivation rec {
   ];
 
   buildInputs = with pkgs; [
-    dotnet-runtime_8
     icu
   ];
 
@@ -33,8 +32,6 @@ pkgs.stdenv.mkDerivation rec {
     chmod +x $out/lib/devtoys-cli/DevToys.CLI
 
     makeWrapper $out/lib/devtoys-cli/DevToys.CLI $out/bin/devtoys \
-      --prefix PATH : "${lib.makeBinPath [pkgs.dotnet-runtime_8]}" \
-      --set DOTNET_ROOT "${pkgs.dotnet-runtime_8}" \
       --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath buildInputs}"
 
     runHook postInstall
