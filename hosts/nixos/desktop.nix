@@ -109,6 +109,7 @@
     nvtopPackages.nvidia
     ripgrep
     starship
+    tmux # required for fzf-tmux
     zoxide
     # Sound
     alsa-utils

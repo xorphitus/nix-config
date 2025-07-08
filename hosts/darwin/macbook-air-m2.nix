@@ -22,6 +22,7 @@
     lsd
     ripgrep
     starship
+    tmux # required for fzf-tmux
     zoxide
     # Development
     gcc
