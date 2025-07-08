@@ -6,6 +6,11 @@
     source = ./config/git/gitconfig;
   };
 
+  # Git
+  home.file.".config/jj/config.toml" = {
+    source = ./config/jujutsu/config.toml;
+  };
+
   # SSH
   home.file.".ssh/config" = {
     source = ./config/ssh/config;
