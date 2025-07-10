@@ -20,6 +20,7 @@
 
   home.packages = with pkgs; [
     wezterm
+    brewCasks.azookey
     brewCasks.dropbox
     brewCasks.kindle
     brewCasks.keepassxc # -> keepassxc
