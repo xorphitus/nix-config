@@ -1149,7 +1149,30 @@ The script is executed with the -r option to remove the original files after pro
     (setopt ellama-instant-display-action-function #'display-buffer-at-bottom)
     :config
     ;; show ellama context in header line in all buffers
-    (ellama-context-header-line-global-mode +1)))
+    (ellama-context-header-line-global-mode +1)
+
+    ;; Override the function to apply a lightweight model
+    (defun ellama-generate-commit-message ()
+      "Generate commit message based on diff with a lightweight model."
+      (interactive)
+      (save-window-excursion
+        (when-let* ((default-directory
+                     (if (string= ".git"
+                                  (car (reverse
+                                        (cl-remove
+                                         ""
+                                         (file-name-split default-directory)
+                                         :test #'string=))))
+                         (file-name-parent-directory default-directory)
+                       default-directory))
+                    (diff (or (ellama--diff-cached)
+                              (ellama--diff))))
+          (ellama-stream
+           (format ellama-generate-commit-message-template diff)
+           :provider (make-llm-ollama
+                      :chat-model "qwen3:14b"
+                      :embedding-model "nomic-embed-text"
+                      :default-chat-non-standard-params '(("num_ctx" . 32768)))))))))
 
 (leaf *char-encoding
   :config
