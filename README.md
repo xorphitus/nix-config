@@ -167,8 +167,6 @@ https://community.usa.canon.com/t5/Office-Printers/Installing-imageCLASS-LBP6030
   - Show Spotlight search: Option + Space
 - IME
   - ~Ctrl + \~ and ~Ctrl + Shift + \~
-  - Disable Live conversion
-    - Otherwise, I redundantly have to press the enter key to decides conversion candidates
 - 🤔 They should be configured automatically, but it's skeptical if they are working
   - Modifier keys
     - CapsLock to Ctrl
@@ -210,3 +208,6 @@ mise use -g python@3.12
 ```sh
 ./darwinAliases.sh
 ```
+
+### Enable azooKey
+The aliasing script in the previous section also installs azookey. Follow [the official instruction](https://github.com/azooKey/azooKey-Desktop) and enable azooKey.

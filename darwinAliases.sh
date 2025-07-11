@@ -15,6 +15,7 @@ find -L ~/Applications/Home\ Manager\ Apps -name '*.app' -type d | grep -v '.app
     app_name=$(basename "$app")
 
     if [ "$app_name" = "azooKeyMac.app" ]; then
+        echo "azooKey installation: root permission is required"
         dest="/Library/Input Methods/$app_name"
         sudo rm -rf "$dest"
         sudo cp -r "$src" "$dest"
