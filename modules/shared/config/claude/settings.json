@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "defaultMode": "default",
+    "allow": [
+      "Bash(rg:*)",
+      "Bash(fd:*)",
+      "Bash(jq:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(diff:*)",
+      "Bash(mkdir:*)",
+      "Bash(cat:*)",
+      "Bash(jj:*)"
+    ],
+    "deny": [
+      "Bash(sudo:*)",
+      "Bash(rm -rf:*)",
+      "Bash(git push:*)",
+      "Bash(git reset:*)",
+      "Bash(git rebase:*)",
+      "Bash(jj git push:*)",
+      "Read(.env*)",
+      "Read(*.pem)",
+      "Read(id_ed25519)",
+      "Read(id_rsa)",
+      "Read(**/*token*)",
+      "Write(.env*)",
+      "Write(**/secrets/**)"
+    ]
+  }
+}

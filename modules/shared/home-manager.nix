@@ -55,4 +55,9 @@
   home.file.".config/enchant/enchant.ordering" = {
     source = ./config/enchant/enchant.ordering;
   };
+
+  # Claude Code
+  home.file.".claude/settings.json" = {
+    source = ./config/claude/settings.json;
+  };
 }
