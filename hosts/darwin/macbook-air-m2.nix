@@ -27,6 +27,7 @@
     # Development
     gcc
     gnumake
+    jujutsu
     mise
     mermaid-cli
     # For Emacs
