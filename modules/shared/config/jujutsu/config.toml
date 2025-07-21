@@ -3,3 +3,6 @@
 [user]
 name = "xorphitus"
 email = "xorphitus@gmail.com"
+
+[ui]
+editor = "emacsclient -c -a nano"

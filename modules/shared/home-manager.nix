@@ -6,7 +6,7 @@
     source = ./config/git/gitconfig;
   };
 
-  # Git
+  # Jujutsu
   home.file.".config/jj/config.toml" = {
     source = ./config/jujutsu/config.toml;
   };

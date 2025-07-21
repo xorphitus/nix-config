@@ -1269,49 +1269,23 @@ Interactively gets a query, runs brain search, and presents results with Consult
         (when selected
           (find-file selected))))))
 
-(defun my-ellama-jj-describe ()
-  "Generate a jj describe message by referencing the changes."
-  (interactive)
-  (let* ((default-directory (or (vc-root-dir) default-directory))
-         (changes (shell-command-to-string "jj diff"))
-         (describe-buffer-name "*JJ Describe*"))
-    (with-current-buffer (get-buffer-create describe-buffer-name)
-      (erase-buffer)
-      (insert "# JJ Describe\n# Generated commit message:\n\n")
-      (let ((prompt (format "Based on the following git/jj changes, write a concise commit message that describes what was changed and why:\n\n%s" changes)))
-        (ellama-stream prompt
-                       :provider (make-llm-ollama
-                                  :chat-model "qwen3:14b"
-                                  :embedding-model "nomic-embed-text"
-                                  :default-chat-non-standard-params '(("num_ctx" . 8192)))
-                       :buffer describe-buffer-name
-                       :on-done (lambda ()
-                                  (with-current-buffer describe-buffer-name
-                                    (goto-char (point-min))
-                                    (forward-line 3)
-                                    (local-set-key (kbd "C-c C-c") 'my-ellama-jj-describe-commit)
-                                    (local-set-key (kbd "C-c C-k") 'my-ellama-jj-describe-abort)
-                                    (message "C-c C-c to commit, C-c C-k to abort")))))
-      (pop-to-buffer describe-buffer-name))))
-
-(defun my-ellama-jj-describe-commit ()
-  "Apply jj describe with the message in the current buffer."
-  (interactive)
-  (let* ((content (buffer-string))
-         (lines (split-string content "\n"))
-         (message-lines (seq-filter (lambda (line) (not (string-prefix-p "#" line))) lines))
-         (message (string-trim (string-join message-lines "\n"))))
-    (if (string-empty-p message)
-        (message "No commit message provided")
-      (let ((result (shell-command-to-string (format "jj describe -m %s" (shell-quote-argument message)))))
-        (message "jj describe completed: %s" (string-trim result))
-        (kill-buffer)))))
-
-(defun my-ellama-jj-describe-abort ()
-  "Abort the jj describe operation."
-  (interactive)
-  (when (y-or-n-p "Abort jj describe? ")
-    (kill-buffer)
-    (message "jj describe aborted")))
+(leaf jjdescription
+  :ensure t
+  :commands jjdescription-mode
+  :config
+  (defun my-ellama-generate-jj-describe-message ()
+    "Generate a jj describe message with Ellama for working copy changes."
+    (interactive)
+    (when-let* ((default-directory (getenv "PWD"))
+                (diff (shell-command-to-string "jj diff 2>/dev/null")))
+      (if (string-empty-p (string-trim diff))
+          (message (format "No changes found to describe at %s" default-directory))
+        (let ((ellama-provider (make-llm-ollama
+                               :chat-model "qwen3:14b"
+                               :embedding-model "nomic-embed-text"
+                               :default-chat-non-standard-params '(("num_ctx" . 32768)))))
+          (ellama-stream
+           (format ellama-generate-commit-message-template diff)
+           :provider ellama-provider))))))
 
 ;;; init.el ends here
