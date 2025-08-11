@@ -60,4 +60,9 @@
   home.file.".claude/settings.json" = {
     source = ./config/claude/settings.json;
   };
+
+  home.file.".claude/statusline.js" = {
+    source = ./config/claude/statusline.js;
+    executable = true;
+  };
 }
