@@ -135,6 +135,7 @@
     signal-desktop
     spotify
     swaynotificationcenter
+    tlaplusToolbox
     vivaldi
     wezterm
     # Emacs
