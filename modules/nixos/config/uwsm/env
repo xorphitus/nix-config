@@ -2,4 +2,5 @@
 # export NIXOS_OZONE_WL=1
 
 export QT_QPA_PLATFORM=wayland
+export QT_IM_MODULE=fcitx
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
