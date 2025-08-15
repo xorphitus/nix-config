@@ -19,11 +19,11 @@
   };
 
   home.packages = with pkgs; [
+    keepassxc
     wezterm
     brewCasks.azookey
     brewCasks.dropbox
     brewCasks.kindle
-    brewCasks.keepassxc # -> keepassxc
     brewCasks.signal # -> signal-desktop
     brewCasks.syncthing-app
     (brewCasks.vivaldi.overrideAttrs (oldAttrs: {
