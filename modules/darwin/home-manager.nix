@@ -19,10 +19,13 @@
   };
 
   home.packages = with pkgs; [
-    keepassxc
     wezterm
     brewCasks.azookey
     brewCasks.dropbox
+    # Workaround: Although keepassxc in the Nix repository is available for Darwin,
+    # Brew Cask should be used instead. It's because a hardware key is unavailable
+    # with the Nix repository version, and the reason is not identified yet.
+    brewCasks.keepassxc
     brewCasks.kindle
     brewCasks.signal # -> signal-desktop
     brewCasks.syncthing-app
