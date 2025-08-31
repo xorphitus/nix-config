@@ -29,6 +29,7 @@
     brewCasks.kindle
     brewCasks.signal # -> signal-desktop
     brewCasks.syncthing-app
+    brewCasks."tla+-toolbox"
     (brewCasks.vivaldi.overrideAttrs (oldAttrs: {
       # brew-nix doesn't support tar.xz when the package is classified as isApp
       unpackPhase = "tar -xf $src";
