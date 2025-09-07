@@ -116,6 +116,7 @@
     playerctl
     pavucontrol # GUI
     # Development
+    claude-code
     jujutsu
     gnumake
     mise
@@ -128,6 +129,7 @@
     code-cursor
     firefox
     keepassxc
+    immersed
     musescore
     pcmanfm
     rnote
