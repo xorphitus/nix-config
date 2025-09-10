@@ -1,3 +1,5 @@
+# https://github.com/jj-vcs/jj/blob/main/docs/config.md
+
 "$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
 
 [user]
@@ -6,3 +8,8 @@ email = "xorphitus@gmail.com"
 
 [ui]
 editor = "emacsclient -c -a nano"
+diff-editor = "meld"
+
+[merge-tools.meld]
+program = "meld"
+edit-args = ["--newtab", "$left", "$right"]

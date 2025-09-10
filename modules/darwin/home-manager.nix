@@ -19,6 +19,7 @@
   };
 
   home.packages = with pkgs; [
+    meld
     wezterm
     brewCasks.azookey
     brewCasks.dropbox

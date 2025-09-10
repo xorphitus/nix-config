@@ -130,6 +130,7 @@
     firefox
     keepassxc
     immersed
+    meld
     musescore
     pcmanfm
     rnote
