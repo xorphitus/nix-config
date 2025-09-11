@@ -129,7 +129,6 @@
     code-cursor
     firefox
     keepassxc
-    immersed
     meld
     musescore
     pcmanfm
@@ -148,6 +147,10 @@
     nuspell
     hunspellDicts.en_US-large
     wl-clipboard # Required to fix broken clipboard
+    # Immersed
+    immersed
+    egl-wayland
+    xdg-desktop-portal-hyprland
     # GnuPG
     gnupg
     pinentry
@@ -201,9 +204,15 @@
   system.stateVersion = "24.11"; # Did you read the comment?
 
   nixpkgs.config.allowBroken = true;
-  boot.kernelModules = [ "r8125" ];
+  boot.kernelModules = [
+    "r8125"
+    # Virtual camera for Immersed
+    "v4l2loopback"
+  ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     r8125
+    # Virtual camera for Immersed
+    v4l2loopback
   ];
 
   programs.hyprland = {
