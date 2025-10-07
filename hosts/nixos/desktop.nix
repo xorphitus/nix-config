@@ -100,13 +100,19 @@
     usbutils
     # CLI
     bat
+    bottom
+    delta
+    dust
+    hexyl
+    hyperfine
+    lnav
     fd
     fzf
     ghq
-    htop
     jq
     lsd
     nvtopPackages.nvidia
+    procs
     ripgrep
     starship
     tmux # required for fzf-tmux
