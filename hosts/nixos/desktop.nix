@@ -146,6 +146,7 @@
     tlaplusToolbox
     vivaldi
     wezterm
+    (pkgs.callPackage ../../modules/nixos/immersed.nix {})
     # Emacs
     emacs-pgtk # -pgtk is required for Wayland
     cmigemo
@@ -153,10 +154,6 @@
     nuspell
     hunspellDicts.en_US-large
     wl-clipboard # Required to fix broken clipboard
-    # Immersed
-    immersed
-    egl-wayland
-    xdg-desktop-portal-hyprland
     # GnuPG
     gnupg
     pinentry
