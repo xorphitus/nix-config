@@ -141,6 +141,15 @@ https://community.usa.canon.com/t5/Office-Printers/Installing-imageCLASS-LBP6030
   - Disable hibernation
 - Change IME switch keybind
 
+### NixOS on WSL
+Follow [NixOS-WSL](https://github.com/nix-community/NixOS-WSL)'s instruction and install NixOS on WSL.
+
+Then, apply the configuration in this repository with the following:
+
+```
+sudo nixos-rebuild switch --flake ~/nix-config#wsl
+```
+
 ## macOS
 1. Install Nix from [the official](https://nixos.org)
 1. `git clone` with HTTPS under the home directory

@@ -48,6 +48,24 @@ in
         };
       };
 
+      wsl = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/nixos/wsl.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useUserPackages = true;
+            home-manager.useGlobalPkgs = true;
+
+            home-manager.users.${username} = { config, pkgs, lib, ... }:
+              import ./modules/shared/home-manager.nix { inherit config pkgs username; };
+          }
+        ];
+        specialArgs = {
+          inherit inputs username;
+        };
+      };
+
       vm = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
