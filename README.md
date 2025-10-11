@@ -59,6 +59,16 @@ NOTE: Vault may be applied for this purpose in the future.
 
 https://code.visualstudio.com/docs/configure/settings-sync#_recommended-configure-the-keyring-to-use-with-vs-code
 
+### Spotify
+Although it's installed as a NixOS package, it may not work perfectly because the search feature may show "Something went wrong."
+
+The Flatpak version is fallback to avoid this. Try the following when the above issue occurs.
+
+```
+flatpak install com.spotify.Client
+flatpak run com.spotify.Client
+```
+
 ### Waydroid
 
 ```
