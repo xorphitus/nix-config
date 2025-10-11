@@ -147,7 +147,7 @@ Follow [NixOS-WSL](https://github.com/nix-community/NixOS-WSL)'s instruction and
 Then, apply the configuration in this repository with the following:
 
 ```
-sudo nixos-rebuild switch --flake ~/nix-config#wsl
+sudo nixos-rebuild switch --flake /path/to/nix-config#wsl
 ```
 
 ## macOS

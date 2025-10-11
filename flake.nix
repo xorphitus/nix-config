@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # For Darwin
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
@@ -24,7 +29,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-darwin, brew-nix, brew-api }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-wsl, nix-darwin, brew-nix, brew-api }@inputs:
 let
   username = "xorphitus";
 in
@@ -52,13 +57,14 @@ in
         system = "x86_64-linux";
         modules = [
           ./hosts/nixos/wsl.nix
+          nixos-wsl.nixosModules.wsl
           home-manager.nixosModules.home-manager
           {
             home-manager.useUserPackages = true;
             home-manager.useGlobalPkgs = true;
 
             home-manager.users.${username} = { config, pkgs, lib, ... }:
-              import ./modules/shared/home-manager.nix { inherit config pkgs username; };
+              import ./modules/nixos/home-manager-wsl.nix { inherit config pkgs username; };
           }
         ];
         specialArgs = {
