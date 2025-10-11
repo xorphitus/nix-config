@@ -3,6 +3,11 @@
 ### (Unsure) Hyprland
 It may be required to execute `uwsm select` manually for enabling `/nix/store/****/share/wayland-sessions/hyprland-uwsm.desktop`.
 
+### Bluetooth
+If it doesn't work, see the troubleshooting section in [Arch Wiki's Bluetooth page](https://wiki.archlinux.org/title/Bluetooth).
+
+Once the `No default controller available` error occurred, and it was solved with unplugging the power cable for a while. This solution is also written in that page.
+
 ### Install Fish Plugins
 
 ```sh
