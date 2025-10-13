@@ -36,6 +36,19 @@ Apply the following with ~fcitx5-configtool~
 - Import GPG keys
 - Trust the main one
 
+### Immersed
+It's possible to add a virtual monitor with the following. It must be done by before launching Immersed.
+
+```
+hyprctl output create headless <name>
+```
+
+Here is the removal command:
+
+```
+hyprctl output remove <name>
+```
+
 ### KeePassXC
 Enable browser integrations
 

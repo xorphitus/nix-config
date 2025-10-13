@@ -32,6 +32,11 @@
       source = ./config/hypr/hyprland.conf;
     };
 
+    ".local/bin/pin-workspaces.sh" = {
+      source = ./config/hypr/pin-workspaces.sh;
+      executable = true;
+    };
+
     # Waybar
     ".config/waybar/config.jsonc" = {
       source = ./config/waybar/config.jsonc;
