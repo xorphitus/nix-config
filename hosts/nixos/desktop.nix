@@ -141,7 +141,6 @@
     rnote
     rofi-wayland
     signal-desktop
-    spotify
     swaynotificationcenter
     tlaplusToolbox
     vivaldi
