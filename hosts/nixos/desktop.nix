@@ -139,7 +139,7 @@
     musescore
     pcmanfm
     rnote
-    rofi-wayland
+    rofi
     signal-desktop
     swaynotificationcenter
     tlaplusToolbox
@@ -155,12 +155,11 @@
     wl-clipboard # Required to fix broken clipboard
     # GnuPG
     gnupg
-    pinentry
+    pinentry-gtk2
     pcsc-tools
     pcsclite
     # YubiKey
     pam_u2f
-    yubikey-personalization-gui
     yubioath-flutter
     # Etc
     libnotify
