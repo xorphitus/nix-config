@@ -40,13 +40,13 @@
     (brewCasks.loopback.overrideAttrs (oldAttrs: {
       src = pkgs.fetchurl {
         url = builtins.head oldAttrs.src.urls;
-        hash = "sha256-ctxUq5wLeELdV/Q3SZVOwIjYFXCFL0Cf6jEVf5rrQPk=";
+        hash = "sha256-Y+13fvcTpHgrfsvDa5nz8eOa7KXQ1ej81STETV4FxrQ=";
       };
     }))
     (brewCasks.spotify.overrideAttrs (oldAttrs: {
       src = pkgs.fetchurl {
         url = builtins.head oldAttrs.src.urls;
-        hash = "sha256-msI8jSw/uKMJxQE9IaK48XkVVpJmq1aVJoaqyr7CB80=";
+        hash = "sha256-Jx7pmRn1x1qV38Ku6KE6m4gABnM6FlfYis20O+zU1Y8=";
       };
     }))
   ];
