@@ -186,14 +186,12 @@ sudo nixos-rebuild switch --flake /path/to/nix-config#wsl
 1. `sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/master#darwin-rebuild -- switch --flake ~/nix-config#macbook-air-m2`
 1. Restart the shell
 1. `sudo darwin-rebuild switch`
+1. Re-login macOS
 1. Change the repository's remote host protocol to SSH from HTTP and check if it works
 
 ### Manual Settings
 #### Trackpad
 - Secondary click: Click or Tap with Two Fingers
-- 🤔 They should be configured automatically, but it's skeptical if they are working
-  - Tap to click
-  - Track speed: bit faster
 
 #### Keyboard
 - Modifier keys
@@ -204,12 +202,6 @@ sudo nixos-rebuild switch --flake /path/to/nix-config#wsl
   - Show Spotlight search: Option + Space
 - IME
   - ~Ctrl + \~ and ~Ctrl + Shift + \~
-- 🤔 They should be configured automatically, but it's skeptical if they are working
-  - Modifier keys
-    - CapsLock to Ctrl
-  - Function keys
-    - System Settings -> Keyboard Shortcuts -> Function Keys -> "Use F1, F2, etc. keys as standard function keys"
-       - Then, the ~F\d+~ keys works without ~fn~
 
 #### Security
 - Enable firewall
