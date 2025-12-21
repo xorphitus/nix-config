@@ -113,4 +113,9 @@
 
   ## Dark mode
   system.defaults.NSGlobalDomain.AppleInterfaceStyle = "Dark";
+
+  # Hot corner
+
+  ## Assign bottom left to Lock Screen
+  system.defaults.dock.wvous-bl-corner = 13;
 }
