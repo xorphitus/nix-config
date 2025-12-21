@@ -54,6 +54,9 @@
 
   # Trackpad
 
+  ## Whether to enable trackpad right click (two-finger tap/click).
+  system.defaults.trackpad.TrackpadRightClick = true;
+
   ## Whether to enable trackpad tap to click. The default is false.
   system.defaults.trackpad.Clicking = true;
 
@@ -105,4 +108,9 @@
     # Disable application launch visual effect
     launchanim = false;
   };
+
+  # Look and feel
+
+  ## Dark mode
+  system.defaults.NSGlobalDomain.AppleInterfaceStyle = "Dark";
 }

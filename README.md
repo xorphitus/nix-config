@@ -190,9 +190,6 @@ sudo nixos-rebuild switch --flake /path/to/nix-config#wsl
 1. Change the repository's remote host protocol to SSH from HTTP and check if it works
 
 ### Manual Settings
-#### Trackpad
-- Secondary click: Click or Tap with Two Fingers
-
 #### Keyboard
 - Modifier keys
   - Command to Option
@@ -213,8 +210,7 @@ sudo nixos-rebuild switch --flake /path/to/nix-config#wsl
 #### Spotlight
 - Remove ~Seri Suggestions~ from search results
 
-#### Music
-Application installations:
+#### Manual Application Installation
 
 - Syncroom
   - brew-nix doesn't work - I hope I can solve this issue
@@ -223,6 +219,7 @@ Application installations:
     - Although brew-nix works, I still cannot find a way to reuse my App store purchase information
     - Honestly, I don't mind further donation by considering their great contribution, though
   - METRONOME Connect
+  - Kindle
 
 After application installations, configure Loopback to output them and a USB audio interface into a single virtual audio device.
 

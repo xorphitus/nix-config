@@ -27,7 +27,6 @@
     # Brew Cask should be used instead. It's because a hardware key is unavailable
     # with the Nix repository version, and the reason is not identified yet.
     brewCasks.keepassxc
-    brewCasks.kindle
     brewCasks.signal # -> signal-desktop
     brewCasks.syncthing-app
     brewCasks."tla+-toolbox"
