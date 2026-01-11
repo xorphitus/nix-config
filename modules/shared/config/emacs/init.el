@@ -1200,7 +1200,20 @@ The script is executed with the -r option to remove the original files after pro
   ;; beautify powerline
   ;; https://github.com/milkypostman/powerline/issues/54
   (setq ns-use-srgb-colorspace nil
-        alert-default-style 'osx-notifier))
+        alert-default-style 'osx-notifier)
+
+  ;; Org-roam compatibility
+  (defun org-roam-node-marker (node)
+    "Get the marker for NODE. This is a monkey patch to support multiple environments
+sharing the same org-roam.db."
+    (let* ((original-home "/home/xorphitus")
+           (current-home (getenv "HOME"))
+           (file-old (org-roam-node-file node))
+           (file (s-replace original-home current-home file-old))
+           (buffer (or (find-buffer-visiting file)
+                       (find-file-noselect file))))
+      (with-current-buffer buffer
+        (move-marker (make-marker) (org-roam-node-point node) buffer)))))
 
 
 ;; Fix for a Wayland clipboard issue

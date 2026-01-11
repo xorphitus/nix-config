@@ -33,6 +33,8 @@
     # For Emacs
     cmigemo
     enchant
+    # Tiling window manager
+    aerospace
   ];
 
   # Fonts

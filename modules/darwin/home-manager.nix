@@ -22,6 +22,7 @@
     meld
     wezterm
     brewCasks.azookey
+    brewCasks.aqua-voice
     brewCasks.dropbox
     # Workaround: Although keepassxc in the Nix repository is available for Darwin,
     # Brew Cask should be used instead. It's because a hardware key is unavailable
