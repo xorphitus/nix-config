@@ -9,7 +9,7 @@
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "usb_storage" ]; # for unattended boot via USB
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
@@ -19,7 +19,17 @@
       options = [ "subvol=@" ];
     };
 
-  boot.initrd.luks.devices."luks-5e554b78-3359-4de1-9fde-68f46b90d7e3".device = "/dev/disk/by-uuid/5e554b78-3359-4de1-9fde-68f46b90d7e3";
+  boot.initrd.luks.devices = {
+    # Unattended boot via USB
+    # https://wiki.nixos.org/wiki/Full_Disk_Encryption
+    luksroot = {
+      device = "/dev/disk/by-uuid/5e554b78-3359-4de1-9fde-68f46b90d7e3";
+      allowDiscards = true;
+      keyFileSize = 4096;
+      keyFile = "/dev/sdc";
+      fallbackToPassword = true;
+    };
+  };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/E243-EFF7";
