@@ -1,9 +1,10 @@
 [tools]
 node = "24"
 
-[env]
-_.file = '.env'
+[settings]
+env_file = '.env'
 
-# Seems not to be working...
 [settings.node]
+# Seems not to be working...
+# Though it's natural for NixOS to build a binary from source code
 compile = false
