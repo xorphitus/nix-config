@@ -8,3 +8,7 @@ env_file = '.env'
 # Seems not to be working...
 # Though it's natural for NixOS to build a binary from source code
 compile = false
+
+[tasks.add-serena-claude]
+description = "Add Serena MPC server to Claude Code"
+run = "claude mcp add serena -s project -- uvx --from git+https://github.com/oraios/serena serena start-mcp-server --context ide-assistant --project $(pwd)"

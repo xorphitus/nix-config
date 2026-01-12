@@ -127,7 +127,9 @@
     gnumake
     mise
     mermaid-cli
+    nixd
     podman-compose
+    uv
     (pkgs.callPackage ../../modules/nixos/devtoys-cli.nix {})
     # GUI
     hyprlock
