@@ -15,7 +15,10 @@
       "Bash(diff:*)",
       "Bash(mkdir:*)",
       "Bash(cat:*)",
-      "Bash(jj:*)"
+      "Bash(jj:*)",
+      "mcp__*",
+      "ListMcpResourcesTool",
+      "ReadMcpResourceTool"
     ],
     "deny": [
       "Bash(sudo:*)",
@@ -26,11 +29,15 @@
       "Bash(jj git push:*)",
       "Read(.env*)",
       "Read(*.pem)",
+      "Read(*.key)",
       "Read(id_ed25519)",
       "Read(id_rsa)",
       "Read(**/*token*)",
+      "Read(**/*secret*)",
+      "Read(**/secrets/**)",
       "Write(.env*)",
-      "Write(**/secrets/**)"
+      "Write(**/secrets/**)",
+      "Write(**/*token*)"
     ]
   }
 }
