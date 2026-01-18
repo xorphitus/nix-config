@@ -65,4 +65,8 @@
     source = ./config/claude/statusline.js;
     executable = true;
   };
+
+  home.file.".claude/rules/cli.md" = {
+    source = ./config/claude/rules/cli.md;
+  };
 }
