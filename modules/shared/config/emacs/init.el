@@ -928,6 +928,19 @@ Call this on `flyspell-incorrect-hook'."
   :ensure t
   :mode "\\.nix\\'")
 
+(leaf json-ts-mode
+  ;; no ensure
+  :mode "\\.json\\'")
+
+(leaf toml-ts-mode
+  :ensure t
+  :mode "\\.toml\\'")
+
+(leaf yaml-ts-mode
+  :ensure t
+  :mode "\\.yaml\\'"
+  :mode "\\.yml\\'")
+
 (leaf org-mode
   :mode (("\\.org$" . org-mode))
   ;; FIXME it doesn't work
