@@ -108,7 +108,6 @@
     lnav
     fd
     fzf
-    ghq
     jq
     lsd
     nvtopPackages.nvidia
@@ -124,6 +123,8 @@
     # Development
     claude-code
     jujutsu
+    gh
+    ghq
     gnumake
     mise
     mermaid-cli

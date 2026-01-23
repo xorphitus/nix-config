@@ -27,6 +27,7 @@
     # Development
     gcc
     gnumake
+    gh
     jujutsu
     mise
     mermaid-cli
