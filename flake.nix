@@ -29,7 +29,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-wsl, nix-darwin, brew-nix, brew-api }@inputs:
+  outputs = { nixpkgs, home-manager, nixos-wsl, nix-darwin, brew-nix, ... }@inputs:
 let
   username = "xorphitus";
 in
@@ -44,7 +44,7 @@ in
             home-manager.useUserPackages = true;
             home-manager.useGlobalPkgs = true;
 
-            home-manager.users.${username} = { config, pkgs, lib, ... }:
+            home-manager.users.${username} = { config, pkgs, ... }:
               import ./modules/nixos/home-manager.nix { inherit config pkgs username; };
           }
         ];
@@ -63,7 +63,7 @@ in
             home-manager.useUserPackages = true;
             home-manager.useGlobalPkgs = true;
 
-            home-manager.users.${username} = { config, pkgs, lib, ... }:
+            home-manager.users.${username} = { config, pkgs, ... }:
               import ./modules/nixos/home-manager-wsl.nix { inherit config pkgs username; };
           }
         ];
@@ -84,7 +84,7 @@ in
       modules = [
         brew-nix.darwinModules.default
         (
-          { pkgs, ... }:
+          _:
           {
             brew-nix.enable = true;
           }
@@ -94,7 +94,7 @@ in
         {
           home-manager.useUserPackages = true;
 
-          home-manager.users.${username} = { config, pkgs, lib, ... }:
+          home-manager.users.${username} = { pkgs, lib, ... }:
               import ./modules/darwin/home-manager.nix { inherit inputs pkgs lib username; };
         }
       ];

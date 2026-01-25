@@ -2,7 +2,7 @@
 # There are also following issues:
 # - /var/cache/Canon/ is not created
 # - Just for improvement, it may be better to ensure `ar` command existence
-{ fetchurl, lib, pkgs, stdenv }:
+{ fetchurl, lib, stdenv }:
 
 # Reference: https://aur.archlinux.org/packages/cndrvcups-lt
 stdenv.mkDerivation rec {

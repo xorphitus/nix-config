@@ -128,10 +128,13 @@
     gnumake
     mise
     mermaid-cli
-    nixd
     podman-compose
     uv
     (pkgs.callPackage ../../modules/nixos/devtoys-cli.nix {})
+    # Nix development
+    deadnix
+    nixd
+    statix
     # GUI
     hyprlock
     waybar

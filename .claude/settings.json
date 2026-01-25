@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "statix fix"
+          },
+          {
+            "type": "command",
+            "command": "statix check"
+          },
+          {
+            "type": "command",
+            "command": "deadnix"
+          },
+          {
+            "type": "command",
+            "command": "nix flake check --no-build"
+          }
+        ]
+      }
+    ]
+  }
+}
