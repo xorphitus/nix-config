@@ -1,5 +1,11 @@
 # Nix(OS) Configurations
 ## Manual Settings
+Regardless of platform, manually execute the following after applying `nix switch`:
+
+```bash
+./setup.sh
+```
+
 ### (Unsure) Hyprland
 It may be required to execute `uwsm select` manually for enabling `/nix/store/****/share/wayland-sessions/hyprland-uwsm.desktop`.
 
@@ -7,18 +13,6 @@ It may be required to execute `uwsm select` manually for enabling `/nix/store/**
 If it doesn't work, see the troubleshooting section in [Arch Wiki's Bluetooth page](https://wiki.archlinux.org/title/Bluetooth).
 
 Once the `No default controller available` error occurred, and it was solved with unplugging the power cable for a while. This solution is also written in that page.
-
-### Install Fish Plugins
-
-```sh
-setup-fish-env
-```
-
-### Emacs
-
-```
-M-x my-install
-```
 
 ### Fcitx
 Apply the following with `fcitx5-configtool`:
@@ -71,16 +65,6 @@ NOTE: Vault may be applied for this purpose in the future.
 
 https://code.visualstudio.com/docs/configure/settings-sync#_recommended-configure-the-keyring-to-use-with-vs-code
 
-### Spotify
-Although it's installed as a NixOS package, it may not work perfectly because the search feature may show "Something went wrong."
-
-The Flatpak version is fallback to avoid this. Try the following when the above issue occurs.
-
-```bash
-flatpak install com.spotify.Client
-flatpak run com.spotify.Client
-```
-
 ### Waydroid
 
 ```bash
@@ -101,21 +85,8 @@ If `waydroid show-full-ui` shows a black-outed screen, GPU adjustments may be re
 Install Aurora Store with the following URL:
 https://f-droid.org/ja/packages/com.aurora.store/
 
-### Mise
-Execute the following to install the required tools including. It takes very long time because the tools include Node.js, which causes compiling.
-
-```bash
-mise install
-```
-
 ### VOICEVOX
-
-```bash
-docker pull voicevox/voicevox_engine:nvidia-latest
-```
-
-#### Editor
-Install Node.js 22. This may take long time.
+To use Editor, install Node.js 22. This may take long time.
 
 ```bash
 mise node@22
@@ -192,7 +163,7 @@ sudo nixos-rebuild switch --flake /path/to/nix-config#wsl
 - Spotlight
   - Show Spotlight search: Option + Space
 - IME
-  - ~Ctrl + \~ and ~Ctrl + Shift + \~
+  - `Ctrl + \` and `Ctrl + Shift + \`
 
 #### Security
 - Enable firewall
@@ -202,7 +173,7 @@ sudo nixos-rebuild switch --flake /path/to/nix-config#wsl
   - Set time zone automatically using your current location
 
 #### Spotlight
-- Remove ~Seri Suggestions~ from search results
+- Remove `Seri Suggestions` from search results
 
 #### Manual Application Installation
 
@@ -223,11 +194,5 @@ After application installations, configure Loopback to output them and a USB aud
 mise use -g python@3.12
 ```
 
-#### Enable Spotlight Search
-
-```sh
-./darwinAliases.sh
-```
-
 ### Enable azooKey
-The aliasing script in the previous section also installs azookey. Follow [the official instruction](https://github.com/azooKey/azooKey-Desktop) and enable azooKey.
+`setup.sh` also creates an azookey alias. Follow [the official instruction](https://github.com/azooKey/azooKey-Desktop) and enable azooKey.
