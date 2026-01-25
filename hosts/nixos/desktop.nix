@@ -362,6 +362,7 @@
     127.0.0.1 tetr.io
     127.0.0.1 play.tetris.com
     127.0.0.1 unityroom.com
+    127.0.0.1 www.crazygames.com
     '';
 
   # Enable printers
