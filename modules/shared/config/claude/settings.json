@@ -39,5 +39,27 @@
       "Write(**/secrets/**)",
       "Write(**/*token*)"
     ]
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/notification.sh ask"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/notification.sh done"
+          }
+        ]
+      }
+    ]
   }
 }

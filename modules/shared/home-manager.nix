@@ -60,6 +60,11 @@
     executable = true;
   };
 
+  home.file.".claude/notification.sh" = {
+    source = ./config/claude/notification.sh;
+    executable = true;
+  };
+
   home.file.".claude/rules/cli.md" = {
     source = ./config/claude/rules/cli.md;
   };

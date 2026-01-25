@@ -118,8 +118,10 @@
     zoxide
     # Sound
     alsa-utils
+    libcanberra-gtk3 # For playing *.oga files
     playerctl
     pavucontrol # GUI
+    sound-theme-freedesktop
     # Development
     claude-code
     jujutsu
