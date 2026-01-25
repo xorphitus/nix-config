@@ -16,14 +16,8 @@ setup-fish-env
 
 ### Emacs
 
-```sh
-~/.local/bin/update-skk-jisyos.sh
 ```
-
-On Emacs:
-
-```
-M-x all-the-icons-install-fonts
+M-x my-install
 ```
 
 ### Fcitx

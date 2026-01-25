@@ -739,6 +739,28 @@ Call this on `flyspell-incorrect-hook'."
   (defcustom my-skk-jisyo-root
     (-find 'f-directory? '("~/skk" "~/.local/share/skk" "/usr/share/skk"))
     "SKK dictionary path. Override it for each platform")
+
+  (defun my-skk-jisyos-install ()
+    "Download and install SKK dictionary files."
+    (interactive)
+    (let* ((skk-path (expand-file-name "~/.local/share/skk"))
+           (base-url "https://skk-dev.github.io/dict")
+           (jisyos '("SKK-JISYO.L.gz" "SKK-JISYO.geo.gz" "SKK-JISYO.jinmei.gz"
+                     "SKK-JISYO.propernoun.gz" "SKK-JISYO.station.gz")))
+      (unless (file-directory-p skk-path)
+        (make-directory skk-path t))
+      (dolist (jisyo jisyos)
+        (let ((url (concat base-url "/" jisyo))
+              (dest (expand-file-name jisyo skk-path)))
+          (message "Downloading %s..." jisyo)
+          (url-copy-file url dest t)))
+      (message "Uncompressing dictionaries...")
+      (dolist (jisyo jisyos)
+        (let ((gz-file (expand-file-name jisyo skk-path)))
+          (when (file-exists-p gz-file)
+            (call-process "gunzip" nil nil nil "-f" gz-file))))
+      (message "SKK dictionaries updated successfully!")))
+
   (setq
    ;; enable AZIK
    skk-use-azik t
@@ -1313,5 +1335,12 @@ Interactively gets a query, runs brain search, and presents results with Consult
           (ellama-stream
            (format ellama-generate-commit-message-template diff)
            :provider ellama-provider))))))
+
+(defun my-install ()
+  "Install all required Emacs resources."
+  (interactive)
+  (my-skk-jisyos-install)
+  (all-the-icons-install-fonts)
+  (treesit-auto-install-all))
 
 ;;; init.el ends here

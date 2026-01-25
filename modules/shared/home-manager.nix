@@ -26,12 +26,6 @@
     source = ./config/emacs/init.el;
   };
 
-  # SKK
-  home.file.".local/bin/update-skk-jisyos.sh" = {
-    source = ./config/skk/update-dictionaries.sh;
-    executable = true;
-  };
-
   # Fish
   home.file.".config/fish/config.fish" = {
     source = ./config/fish/config.fish;
