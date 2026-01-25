@@ -5,6 +5,7 @@
 [core]
 	pager = less -r
 	editor = nano
+	excludesFile = ~/.config/git/ignore
 [format]
 	signoff = true
 [color]

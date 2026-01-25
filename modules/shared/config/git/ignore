@@ -1,0 +1,4 @@
+**/.claude/settings.local.json
+
+# For jj workspace / git worktree
+.wt

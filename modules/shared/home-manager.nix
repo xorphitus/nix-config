@@ -6,6 +6,10 @@
     source = ./config/git/gitconfig;
   };
 
+  home.file.".config/git/ignore" = {
+    source = ./config/git/ignore;
+  };
+
   # Jujutsu
   home.file.".config/jj/config.toml" = {
     source = ./config/jujutsu/config.toml;
