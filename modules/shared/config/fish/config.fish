@@ -91,14 +91,18 @@ function psg
 end
 
 function setup-fish-env
-  curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-  fisher install jethrokuan/fzf masa0x80/ghq_cd_keybind.fish
-end
+  if not type -q fisher
+    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+  end
 
-function update-home-bin
-  # update fisher
+  set -l required_plugins jethrokuan/fzf masa0x80/ghq_cd_keybind.fish
+  for plugin in $required_plugins
+    if not fisher list | grep -q $plugin
+      fisher install $plugin
+    end
+  end
+
   fisher update
-  rustup update
 end
 
 # Fish version ssh-agent

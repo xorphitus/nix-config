@@ -21,7 +21,7 @@ M-x my-install
 ```
 
 ### Fcitx
-Apply the following with ~fcitx5-configtool~
+Apply the following with `fcitx5-configtool`:
 
 - Add Mozc
 - Change key bind
@@ -33,13 +33,13 @@ Apply the following with ~fcitx5-configtool~
 ### Immersed
 It's possible to add a virtual monitor with the following. It must be done by before launching Immersed.
 
-```
+```bash
 hyprctl output create headless <name>
 ```
 
 Here is the removal command:
 
-```
+```bash
 hyprctl output remove <name>
 ```
 
@@ -48,7 +48,7 @@ Enable browser integrations
 
 ### YubiKey
 
-```
+```bash
 mkdir -p ~/.config/Yubico
 pamu2fcfg > ~/.config/Yubico/u2f_keys
 ```
@@ -60,7 +60,7 @@ https://github.com/flxzt/rnote/issues/1348
 ### Visual Studio Code or alternatives Cursor
 Append the following to the top level of the JSON in `~/${config_dir}/argv.json`. `config_dir` should be `.cursor` in the Cursor case.
 
-```
+```json5
 , // Don't forget inserting a comma
 "password-store": "gnome-keyring"
 ```
@@ -76,14 +76,14 @@ Although it's installed as a NixOS package, it may not work perfectly because th
 
 The Flatpak version is fallback to avoid this. Try the following when the above issue occurs.
 
-```
+```bash
 flatpak install com.spotify.Client
 flatpak run com.spotify.Client
 ```
 
 ### Waydroid
 
-```
+```bash
 sudo waydroid init
 ```
 
@@ -104,7 +104,7 @@ https://f-droid.org/ja/packages/com.aurora.store/
 ### Mise
 Execute the following to install the required tools including. It takes very long time because the tools include Node.js, which causes compiling.
 
-```bah
+```bash
 mise install
 ```
 
@@ -168,7 +168,7 @@ Follow [NixOS-WSL](https://github.com/nix-community/NixOS-WSL)'s instruction and
 
 Then, apply the configuration in this repository with the following:
 
-```
+```bash
 sudo nixos-rebuild switch --flake /path/to/nix-config#wsl
 ```
 
