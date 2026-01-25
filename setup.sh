@@ -6,7 +6,7 @@ setupLinux() {
     echo "Setting up VOICEVOX container..."
     docker pull voicevox/voicevox_engine:nvidia-latest
 
-    # Although it's installed as a NixOS package, it may not work perfectly because the search feature may show "Something went wrong."
+    # Although a NixOS package is available, it may not work perfectly because the search feature may show "Something went wrong."
     echo "Setting up Spotify because the NixOS repository package may not work..."
     flatpak install com.spotify.Client
 

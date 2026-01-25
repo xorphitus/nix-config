@@ -17,3 +17,4 @@ This is a personal NixOS/nix-darwin configuration repository using Nix Flakes. I
   - `nixos/` - NixOS-specific modules and home-manager
   - `darwin/` - Darwin-specific modules and home-manager
   - `shared/` - Cross-platform configurations (emacs, fish, git, etc.)
+- `setup.sh` - A post-installation setup script that handles configuration tasks that can't easily be done purely through Nix
