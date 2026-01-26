@@ -5,6 +5,7 @@
 [core]
 	pager = less -r
 	editor = nano
+	# This line should be redundant, but somehow jj didn't completely follow the config without this.
 	excludesFile = ~/.config/git/ignore
 [format]
 	signoff = true
