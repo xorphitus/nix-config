@@ -36,9 +36,6 @@
     enchant
     # Tiling window manager
     aerospace
-    # Sound (for cross platform scripts)
-    libcanberra-gtk3
-    sound-theme-freedesktop
   ];
 
   # Fonts
