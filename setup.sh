@@ -34,8 +34,7 @@ setupDarwin() {
         if [ "$app_name" = "azooKeyMac.app" ]; then
             echo "azooKey installation: root permission is required"
             dest="/Library/Input Methods/$app_name"
-            sudo rm -rf "$dest"
-            sudo cp -r "$src" "$dest"
+            sudo ditto "$src" "$dest"
         else
             mkalias "$src" "$destination/$app_name"
         fi

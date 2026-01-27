@@ -193,6 +193,3 @@ After application installations, configure Loopback to output them and a USB aud
 ```sh
 mise use -g python@3.12
 ```
-
-### Enable azooKey
-`setup.sh` also creates an azookey alias. Follow [the official instruction](https://github.com/azooKey/azooKey-Desktop) and enable azooKey.
