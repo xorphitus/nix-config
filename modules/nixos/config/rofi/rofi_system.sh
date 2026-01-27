@@ -1,4 +1,4 @@
- #!/usr/bin/env bash
+#!/usr/bin/env bash
 
 set -euCo pipefail
 
@@ -16,4 +16,4 @@ function main() {
   [[ $# -ne 0 ]] && eval "${menu[$1]}" || echo "${!menu[*]}"
 }
 
-main $@
+main "$@"

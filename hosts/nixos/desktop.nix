@@ -131,6 +131,7 @@
     mise
     mermaid-cli
     podman-compose
+    shellcheck
     uv
     (pkgs.callPackage ../../modules/nixos/devtoys-cli.nix {})
     # Nix development

@@ -20,8 +20,7 @@ down() {
 
 ensure_min() {
   vol=$(wpctl get-volume @DEFAULT_SINK@ | cut -d ' ' -f 2)
-  awk -v v="${vol}" -v t="${MIN_VOLUME}" 'BEGIN { exit !(v < t) }'
-  if [[ $? -eq 0 ]]; then
+  if awk -v v="${vol}" -v t="${MIN_VOLUME}" 'BEGIN { exit !(v < t) }'; then
     wpctl set-volume @DEFAULT_SINK@ "${MIN_VOLUME}"
   fi
 }
