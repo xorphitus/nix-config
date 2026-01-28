@@ -26,7 +26,7 @@
       device = "/dev/disk/by-uuid/5e554b78-3359-4de1-9fde-68f46b90d7e3";
       allowDiscards = true;
       keyFileSize = 4096;
-      keyFile = "/dev/sdc";
+      keyFile = "/dev/disk/by-id/usb-ELECOM_MF-SU2B_071858C924F92610-0:0";
       fallbackToPassword = true;
     };
   };
@@ -41,6 +41,17 @@
     { device = "/dev/disk/by-uuid/36388d4d-af77-45ed-b6cb-4593118b48da"; }
   ];
   boot.resumeDevice = "/dev/disk/by-uuid/36388d4d-af77-45ed-b6cb-4593118b48da";
+
+  # Storage disks
+  fileSystems."/srv/data" = {
+    device = "/dev/disk/by-uuid/976efbd9-dae2-4ee1-9157-f746773ca194";
+    fsType = "btrfs";
+  };
+
+  fileSystems."/srv/backup" = {
+    device = "/dev/disk/by-uuid/7a9cd5fa-674b-45b2-9f3d-3df0e80b5499";
+    fsType = "btrfs";
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

@@ -76,11 +76,14 @@
   # Fish installation
   programs.fish.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Storage group for /srv disks
+  users.groups.storage = {};
+
+  # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.${username} = {
     isNormalUser = true;
     description = "${username}'s desktop PC";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "storage" ];
     packages = with pkgs; [];
     shell = pkgs.fish;
   };

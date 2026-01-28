@@ -6,6 +6,13 @@ Regardless of platform, manually execute the following after applying `nix switc
 ./setup.sh
 ```
 
+### Disk Ownership
+
+```bash
+sudo chown root:storage /srv/data /srv/backup
+sudo chmod 775 /srv/data /srv/backup
+```
+
 ### (Unsure) Hyprland
 It may be required to execute `uwsm select` manually for enabling `/nix/store/****/share/wayland-sessions/hyprland-uwsm.desktop`.
 
