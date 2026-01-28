@@ -123,7 +123,6 @@
     pavucontrol # GUI
     sound-theme-freedesktop
     # Development
-    claude-code
     jujutsu
     gh
     ghq

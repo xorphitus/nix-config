@@ -1,5 +1,7 @@
 [tools]
-node = "24"
+node = '24'
+# The Nix package version is too old
+claude-code = 'latest'
 
 [settings]
 env_file = '.env'
@@ -10,5 +12,5 @@ env_file = '.env'
 compile = false
 
 [tasks.add-serena-claude]
-description = "Add Serena MPC server to Claude Code"
+description = "Add Serena MCP server to Claude Code"
 run = "claude mcp add serena -s project -- uvx --from git+https://github.com/oraios/serena serena start-mcp-server --context ide-assistant --project $(pwd)"
