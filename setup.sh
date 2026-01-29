@@ -52,6 +52,10 @@ emacs --batch -l ~/.emacs.d/init.el --eval "(my-install)"
 echo "Installing mise tools..."
 mise install
 
+# The Nix package version is too old
+echo "Installing Claude Code"
+curl -fsSL https://claude.ai/install.sh | bash
+
 case "$(uname -s)" in
     Linux*)
         setupLinux

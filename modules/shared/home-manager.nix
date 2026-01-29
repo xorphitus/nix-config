@@ -55,6 +55,10 @@
   };
 
   # Claude Code
+  home.file.".claude/CLAUDE.md" = {
+    source = ./config/claude/CLAUDE.md;
+  };
+
   home.file.".claude/settings.json" = {
     source = ./config/claude/settings.json;
   };
@@ -69,7 +73,11 @@
     executable = true;
   };
 
-  home.file.".claude/rules/cli.md" = {
-    source = ./config/claude/rules/cli.md;
+  home.file.".claude/skills/jj/SKILL.md" = {
+    source = ./config/claude/skills/jj/SKILL.md;
+  };
+
+  home.file.".claude/skills/jj-workspace/SKILL.md" = {
+    source = ./config/claude/skills/jj-workspace/SKILL.md;
   };
 }

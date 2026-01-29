@@ -1,7 +1,5 @@
 [tools]
 node = '24'
-# The Nix package version is too old
-claude-code = 'latest'
 
 [settings]
 env_file = '.env'
