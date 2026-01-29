@@ -379,6 +379,15 @@
     (pkgs.callPackage ../../modules/nixos/cndrvcups-lt.nix {})
   ];
 
+  # Canon printer driver udev rules and cache directory
+  services.udev.packages = [
+    (pkgs.callPackage ../../modules/nixos/cndrvcups-lt.nix {})
+  ];
+  systemd.tmpfiles.rules = [
+    "d /var/cache/Canon 0755 root root -"
+    "d /var/cache/Canon/CUPS_SFPR 0755 root root -"
+  ];
+
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
