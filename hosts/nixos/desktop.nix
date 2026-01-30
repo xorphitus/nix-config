@@ -118,6 +118,7 @@
     ripgrep
     starship
     tmux # required for fzf-tmux
+    yazi
     zoxide
     # Sound
     alsa-utils
@@ -127,6 +128,7 @@
     sound-theme-freedesktop
     # Development
     jujutsu
+    jjui
     gh
     ghq
     gnumake

@@ -52,7 +52,9 @@ set -x FZF_TMUX 1
 set -x FZF_TMUX_HEIGHT 50%
 
 ###########################################################
-# Git
+# path
+set -x PATH  ~/.local/bin/ $PATH
+
 switch (uname)
   case Darwin
     set -x PATH /usr/local/share/git-core/contrib/diff-highlight $PATH

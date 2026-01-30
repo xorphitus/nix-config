@@ -23,12 +23,14 @@
     ripgrep
     starship
     tmux # required for fzf-tmux
+    yazi
     zoxide
     # Development
     gcc
     gnumake
     gh
     jujutsu
+    jjui
     mise
     mermaid-cli
     # For Emacs
