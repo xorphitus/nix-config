@@ -2,7 +2,7 @@
 
 ## CLI Tools Preference
 ### VCS
-Must use `jj` instead of `git` whenever `.jj` exists at a repository root. Otherwise, use `git`.
+Always try `jj` first for version control operations. If `jj` fails, ask the user how to proceed.
 
 `/path/to/repository-root/.wt/` is available as a prefix for jj workspaces or git worktrees.
 

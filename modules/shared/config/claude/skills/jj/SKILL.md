@@ -8,12 +8,9 @@ user-invocable: true
 
 ## Prerequisites
 
-Before using jj commands, verify `.jj` directory exists at repository root:
-```bash
-test -d .jj && echo "jj repo" || echo "not jj repo"
-```
+Always try `jj` commands directly without any prerequisite checks.
 
-If no `.jj` directory exists, fall back to git commands instead.
+If a `jj` command fails (e.g., "There is no jj repo in..."), ask the user how they would like to proceed (e.g., use git instead, initialize jj, or something else).
 
 ## Common Operations
 
