@@ -321,7 +321,17 @@
   # Ollama
   services.ollama = {
     enable = true;
-    acceleration = "cuda";
+    package = (pkgs.ollama-cuda.override { }).overrideAttrs (finalAttrs: oldAttrs: {
+      # Use a newer version than the stable channel's one to enable Claude Code integration.
+      version = "0.14.3";
+      vendorHash = "sha256-WdHAjCD20eLj0d9v1K6VYP8vJ+IZ8BEZ3CciYLLMtxc=";
+      src = pkgs.fetchFromGitHub {
+        owner = "ollama";
+        repo = "ollama";
+        tag = "v${finalAttrs.version}";
+        hash = "sha256-SVzJDuy5qXaqxE4HqiqVhoyGLTOt57370q8r3YV18Og=";
+      };
+    });
   };
 
   # Hyprlock

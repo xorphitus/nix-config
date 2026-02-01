@@ -80,4 +80,9 @@
   home.file.".claude/skills/jj-workspace/SKILL.md" = {
     source = ./config/claude/skills/jj-workspace/SKILL.md;
   };
+
+  home.file.".local/bin/claude-ollama.sh" = {
+    source = ./config/claude/claude-ollama.sh;
+    executable = true;
+  };
 }
