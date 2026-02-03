@@ -51,6 +51,18 @@ starship init fish | source
 set -x FZF_TMUX 1
 set -x FZF_TMUX_HEIGHT 50%
 
+function jw
+  set prefix '.wt'
+  set repo_root (jj workspace root | sed -s "s/\/$prefix\/.*//")
+  set target (jj workspace list | fzf | cut -d ':' -f 1)
+
+  if test $target = "default"
+    cd $repo_root
+  else
+    cd "$repo_root/$prefix/$target"
+  end
+end
+
 ###########################################################
 # path
 set -x PATH  ~/.local/bin/ $PATH
