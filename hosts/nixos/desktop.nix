@@ -127,13 +127,16 @@
     pavucontrol # GUI
     sound-theme-freedesktop
     # Development
+    codex
     jujutsu
     jjui
+    gemini-cli
     gh
     ghq
     gnumake
     mise
     mermaid-cli
+    opencode
     podman-compose
     shellcheck
     uv
