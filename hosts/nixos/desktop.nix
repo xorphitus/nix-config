@@ -386,6 +386,7 @@
     127.0.0.1 play.tetris.com
     127.0.0.1 unityroom.com
     127.0.0.1 www.crazygames.com
+    127.0.0.1 www.web-jong.com
     '';
 
   # Enable printers
