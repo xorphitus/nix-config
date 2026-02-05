@@ -23,10 +23,9 @@
     "deny": [
       "Bash(sudo:*)",
       "Bash(rm -rf:*)",
-      "Bash(git push:*)",
       "Bash(git reset:*)",
       "Bash(git rebase:*)",
-      "Bash(jj git push:*)",
+      "Bash(jj rebase:*)",
       "Read(.env*)",
       "Read(*.pem)",
       "Read(*.key)",
