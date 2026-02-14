@@ -127,7 +127,6 @@
     pavucontrol # GUI
     sound-theme-freedesktop
     # Development
-    codex
     jujutsu
     jjui
     gemini-cli

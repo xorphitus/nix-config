@@ -1,5 +1,6 @@
 [tools]
 node = '24'
+codex = 'latest'
 
 [settings]
 env_file = '.env'
