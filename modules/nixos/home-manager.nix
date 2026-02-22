@@ -102,6 +102,26 @@
     };
   };
 
+  # Open WebUI
+  systemd.user.services.open-webui = {
+    Unit = {
+      Description = "Open WebUI";
+      After = [ "network.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.open-webui}/bin/open-webui serve";
+      Environment = [
+        "DATA_DIR=%h/.local/share/open-webui"
+        "OLLAMA_BASE_URL=http://localhost:11434"
+        "PORT=8080"
+      ];
+      Restart = "on-failure";
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+  };
+
   # VOICEVOX
   systemd.user.services.voicevox = {
     Unit = {
