@@ -387,6 +387,7 @@
     127.0.0.1 www.crazygames.com
     127.0.0.1 www.web-jong.com
     127.0.0.1 qpon.fun
+    127.0.0.1 xn--fhqz97e6j2aqxg.com
     '';
 
   # Enable printers
