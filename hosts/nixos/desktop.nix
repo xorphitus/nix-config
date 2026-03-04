@@ -326,7 +326,7 @@
     enable = true;
     package = (pkgs.ollama-cuda.override { }).overrideAttrs (finalAttrs: oldAttrs: {
       # Use a newer version than the stable channel's one to enable Claude Code integration.
-      version = "0.14.3";
+      version = "0.17.6";
       vendorHash = "sha256-WdHAjCD20eLj0d9v1K6VYP8vJ+IZ8BEZ3CciYLLMtxc=";
       src = pkgs.fetchFromGitHub {
         owner = "ollama";

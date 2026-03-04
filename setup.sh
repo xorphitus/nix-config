@@ -51,6 +51,7 @@ emacs --batch -l ~/.emacs.d/init.el --eval "(my-install)"
 
 echo "Installing mise tools..."
 mise install
+mise upgrade
 
 # The Nix package version is too old
 echo "Installing Claude Code"
