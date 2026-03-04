@@ -153,6 +153,7 @@
     meld
     musescore
     pcmanfm
+    remmina
     rnote
     rofi
     signal-desktop
