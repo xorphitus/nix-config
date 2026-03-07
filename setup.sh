@@ -8,10 +8,10 @@ setupLinux() {
 
     # Although a NixOS package is available, it may not work perfectly because the search feature may show "Something went wrong."
     echo "Setting up Spotify because the NixOS repository package may not work..."
-    flatpak install com.spotify.Client
+    flatpak install -y com.spotify.Client
 
     echo "Updating flatpak packages..."
-    flatpak update
+    flatpak update -y
 
     echo "Linux setup complete!"
 }
@@ -47,7 +47,11 @@ echo "Setting up Fish environment..."
 fish -c "setup-fish-env"
 
 echo "Installing Emacs resources..."
-emacs --batch -l ~/.emacs.d/init.el --eval "(my-install)"
+emacs --batch \
+    --eval "(fset 'yes-or-no-p #'always)" \
+    --eval "(fset 'y-or-n-p #'always)" \
+    -l ~/.emacs.d/init.el \
+    --eval "(my-install)"
 
 echo "Installing mise tools..."
 mise install
