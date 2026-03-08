@@ -15,11 +15,6 @@
     source = ./config/jujutsu/config.toml;
   };
 
-  home.file.".local/bin/jj-description.sh" = {
-    source = ./config/jujutsu/jj-description.sh;
-    executable = true;
-  };
-
   # SSH
   home.file.".ssh/config" = {
     source = ./config/ssh/config;
