@@ -10,6 +10,32 @@ email = "xorphitus@gmail.com"
 editor = "emacsclient -c -a nano"
 diff-editor = "meld"
 
+[aliases]
+aicommit = ["util", "exec", "--", "bash", "-c", """
+set -euo pipefail
+OLLAMA_MODEL=gemma3:12b
+CLAUDE_MODEL=haiku
+
+DIFF=$(jj diff --git)
+PROMPT="Generate ONLY a one-line jj commit message in English using imperative mood. The message should summarize what was changed and why, based strictly on the given change. DO NOT add an explanation or a body. Output ONLY the commit summary line. Here are the changes: ${DIFF}"
+
+MSG=""
+if [ -x "$(command -v ollama)" ]; then
+  MSG=$(ollama run "$OLLAMA_MODEL" "$PROMPT")
+else
+  MSG=$(claude --no-session-persistence --model "$CLAUDE_MODEL" --print "$PROMPT")
+fi
+
+jj commit -m "$MSG"
+""", ""]
+
+bpush = ["util", "exec", "--", "bash", "-c", """
+set -euo pipefail
+branch="$1"
+jj bookmark set "$branch" -r @-
+jj git push -b "$branch"
+""", ""]
+
 [merge-tools.meld]
 program = "meld"
 edit-args = ["--newtab", "$left", "$right"]
