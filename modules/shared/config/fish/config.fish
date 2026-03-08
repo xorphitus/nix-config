@@ -91,7 +91,10 @@ zoxide init fish | source
 
 ###########################################################
 # aliases
-abbr -a ls lsd
+alias ls='lsd'
+abbr -a sed --set-cursor "sed 's/%//g'"
+abbr -a awk --set-cursor "awk -F, '{print \$1%}'"
+abbr mutt mutt -e "set imap_pass=(pass email/imap)"
 
 ###########################################################
 # functions
@@ -152,9 +155,6 @@ end
 function es
   tmux capture-pane -S -10000\; show-buffer | e
 end
-
-# Secret handling with Pass
-alias mutt="mutt -e 'set imap_pass='(pass email/imap)"
 
 # Emacs Tramp
 # It requires very simple prompt for parse
