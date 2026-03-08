@@ -84,17 +84,14 @@ type mise > /dev/null; and mise activate fish | source
 ###########################################################
 # other utilities
 # This environmental variable is required when `ls` is an
-# alias of `lsd`. Otherwise their incompatibility causes
+# abbr -a of `lsd`. Otherwise their incompatibility causes
 # an error.
 set -x _ZO_FZF_OPTS '--preview="ls -F"'
 zoxide init fish | source
 
 ###########################################################
 # aliases
-alias ls='lsd'
-alias ack='rg'
-alias l='ls'
-alias lt='ls --tree'
+abbr -a ls lsd
 
 ###########################################################
 # functions
@@ -135,12 +132,7 @@ end
 # http://d.hatena.ne.jp/kitokitoki/20111225/p4
 function e
   if test (uname) = Linux
-    # Auto focus to Emacs window
-    # see: http://syohex.hatenablog.com/entry/20110127/1296141148
-    set emacs_wid (wmctrl -l | grep 'Emacs at '(hostname) | awk '{print $1}')
-    if test -n $emacs_wid
-      wmctrl -i -a $emacs_wid
-    end
+    hyprctl dispatch focuswindow 'class:^(emacs)$'
   end
 
   switch (count $argv)
@@ -176,19 +168,3 @@ if test "$TERM" = "dumb"
   function fish_greeting; end
   function fish_title; end
 end
-
-#####################################
-# Terminal Emulator Specific Settings
-
-# Kitty
-if test "$TERM" = "xterm-kitty"
-  kitty + complete setup fish | source
-  alias icat="kitty +kitten icat --align=left"
-  alias d="kitty +kitten diff"
-  # Prevent SSH issues on Kitty
-  alias ssh="kitty +kitten ssh"
-  set -x TERM 'xterm-256color'
-end
-
-# Mac iTerm2
-test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
