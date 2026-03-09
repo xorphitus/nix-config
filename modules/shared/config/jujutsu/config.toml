@@ -33,7 +33,7 @@ bpush = ["util", "exec", "--", "bash", "-c", """
 set -euo pipefail
 branch="$1"
 jj bookmark set "$branch" -r @-
-jj git push -b "$branch"
+jj git push -b "$branch" --allow-new
 """, ""]
 
 [merge-tools.meld]
