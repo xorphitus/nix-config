@@ -32,6 +32,10 @@
       source = ./config/hypr/hyprland.conf;
     };
 
+    ".config/hypr/hypridle.conf" = {
+      source = ./config/hypr/hypridle.conf;
+    };
+
     ".local/bin/pin-workspaces.sh" = {
       source = ./config/hypr/pin-workspaces.sh;
       executable = true;

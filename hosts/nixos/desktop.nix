@@ -145,6 +145,7 @@
     nixd
     statix
     # GUI
+    hypridle
     hyprlock
     waybar
     code-cursor
