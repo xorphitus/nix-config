@@ -17,13 +17,13 @@ OLLAMA_MODEL=gemma3:12b
 CLAUDE_MODEL=haiku
 
 DIFF=$(jj diff --git)
-PROMPT="Generate ONLY a one-line jj commit message in English using imperative mood. The message should summarize what was changed and why, based strictly on the given change. DO NOT add an explanation or a body. Output ONLY the commit summary line. Here are the changes: ${DIFF}"
+PROMPT="Generate ONLY a one-line jj commit message in English. The message should follow Conventional Commits format 'type(scope): description'. Types: feat, fix, docs, style, refactor, test, chore. Based strictly on the diff. Output ONLY the message, nothing else. Here are the diff\n: ${DIFF}"
 
 MSG=""
 if [ -x "$(command -v ollama)" ]; then
-  MSG=$(ollama run "$OLLAMA_MODEL" "$PROMPT")
+MSG=$(ollama run "$OLLAMA_MODEL" "$PROMPT")
 else
-  MSG=$(claude --no-session-persistence --model "$CLAUDE_MODEL" --print "$PROMPT")
+MSG=$(claude --no-session-persistence --model "$CLAUDE_MODEL" --print "$PROMPT")
 fi
 
 jj commit -m "$MSG"
