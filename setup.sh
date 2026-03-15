@@ -57,6 +57,9 @@ echo "Installing mise tools..."
 mise install
 mise upgrade
 
+echo "Installing global npm packages..."
+mise exec -- npm install -g @anthropic-ai/sandbox-runtime
+
 # The Nix package version is too old
 echo "Installing Claude Code"
 curl -fsSL https://claude.ai/install.sh | bash
