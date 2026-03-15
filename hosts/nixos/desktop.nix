@@ -117,6 +117,7 @@
     procs
     ripgrep
     starship
+    socat # required for Claude Code sandbox
     tmux # required for fzf-tmux
     yazi
     zoxide
@@ -127,6 +128,7 @@
     pavucontrol # GUI
     sound-theme-freedesktop
     # Development
+    bubblewrap
     jujutsu
     jjui
     gemini-cli

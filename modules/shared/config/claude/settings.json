@@ -3,29 +3,35 @@
     "type": "command",
     "command": "~/.claude/statusline.js"
   },
+  "sandbox": {
+    "enabled": true,
+    "allowUnsandboxedCommands": false,
+    "filesystem": {
+      "denyRead": ["~/.aws/credentials", "~/.ssh"]
+    }
+  },
   "permissions": {
     "defaultMode": "default",
     "allow": [
-      "Bash(rg:*)",
-      "Bash(fd:*)",
-      "Bash(jq:*)",
-      "Bash(find:*)",
-      "Bash(ls:*)",
-      "Bash(grep:*)",
-      "Bash(diff:*)",
-      "Bash(mkdir:*)",
-      "Bash(cat:*)",
-      "Bash(jj:*)",
+      "Bash(rg *)",
+      "Bash(fd *)",
+      "Bash(jq *)",
+      "Bash(jj *)",
       "mcp__*",
       "ListMcpResourcesTool",
       "ReadMcpResourceTool"
     ],
     "deny": [
-      "Bash(sudo:*)",
-      "Bash(rm -rf:*)",
-      "Bash(git reset:*)",
-      "Bash(git rebase:*)",
-      "Bash(jj rebase:*)",
+      "Bash(sudo *)",
+      "Bash(rm -rf *)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(git reset *)",
+      "Bash(git rebase *)",
+      "Bash(git push *)",
+      "Bash(jj rebase *)",
+      "Bash(jj git push *)",
+      "Bash(chmod 777 *)",
       "Read(.env*)",
       "Read(*.pem)",
       "Read(*.key)",
