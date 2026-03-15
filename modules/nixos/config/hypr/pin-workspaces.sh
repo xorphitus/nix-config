@@ -31,3 +31,5 @@ for n in {1..9}; do
     hyprctl dispatch moveworkspacetomonitor "$n" "$PRIMARY" || true
   fi
 done
+
+hyprctl dispatch focuscurrentorlast || true
