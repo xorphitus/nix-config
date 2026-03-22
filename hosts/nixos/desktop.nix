@@ -392,6 +392,9 @@
     127.0.0.1 www.web-jong.com
     127.0.0.1 qpon.fun
     127.0.0.1 xn--fhqz97e6j2aqxg.com
+    127.0.0.1 www.programmingmat.jp
+    127.0.0.1 shogi.yuki-lab.com
+    127.0.0.1 online-shogi.com
     '';
 
   # Enable printers
