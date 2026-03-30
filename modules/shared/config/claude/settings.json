@@ -6,6 +6,7 @@
   "sandbox": {
     "enabled": true,
     "allowUnsandboxedCommands": false,
+    "excludedCommands": ["codex review *", "gh"],
     "filesystem": {
       "denyRead": ["~/.aws/credentials", "~/.ssh"]
     }

@@ -13,7 +13,7 @@ diff-editor = "meld"
 [aliases]
 aicommit = ["util", "exec", "--", "bash", "-c", """
 set -euo pipefail
-OLLAMA_MODEL=gemma3:12b
+OLLAMA_MODEL=gpt-oss:20b
 CLAUDE_MODEL=haiku
 
 DIFF=$(jj diff --git)
@@ -21,7 +21,7 @@ PROMPT="Generate ONLY a one-line jj commit message in English. The message shoul
 
 MSG=""
 if [ -x "$(command -v ollama)" ]; then
-MSG=$(ollama run "$OLLAMA_MODEL" "$PROMPT")
+MSG=$(ollama run --hidethinking "$OLLAMA_MODEL" "$PROMPT")
 else
 MSG=$(claude --no-session-persistence --model "$CLAUDE_MODEL" --print "$PROMPT")
 fi
