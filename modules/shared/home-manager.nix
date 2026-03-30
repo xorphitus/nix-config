@@ -63,8 +63,8 @@
     source = ./config/claude/settings.json;
   };
 
-  home.file.".claude/statusline.js" = {
-    source = ./config/claude/statusline.js;
+  home.file.".claude/statusline.sh" = {
+    source = ./config/claude/statusline.sh;
     executable = true;
   };
 
