@@ -133,8 +133,10 @@
       After = [ "network.target" ];
     };
     Service = {
-      ExecStart = "/run/current-system/sw/bin/docker run --rm --gpus all -p '127.0.0.1:50021:50021' voicevox/voicevox_engine:nvidia-latest";
-      Restart = "always";
+      ExecStart = "/run/current-system/sw/bin/docker run --rm --name voicevox --gpus all -p '127.0.0.1:50021:50021' voicevox/voicevox_engine:nvidia-latest";
+      ExecStop = "/run/current-system/sw/bin/docker stop voicevox";
+      Restart = "on-failure";
+      RestartSec = "30";
     };
     Install = {
       WantedBy = [ "default.target" ];
