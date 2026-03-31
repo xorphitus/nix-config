@@ -73,6 +73,11 @@
     executable = true;
   };
 
+  home.file.".claude/enforce-commands.sh" = {
+    source = ./config/claude/enforce-commands.sh;
+    executable = true;
+  };
+
   home.file.".local/bin/claude-ollama.sh" = {
     source = ./config/claude/claude-ollama.sh;
     executable = true;
