@@ -13,6 +13,10 @@ setupLinux() {
     echo "Updating flatpak packages..."
     flatpak update -y
 
+    # https://github.com/openai/codex/issues/15340
+    echo "Configuring workaround for Codex..."
+    sudo ln -sf /run/current-system/sw/bin/bwrap /usr/bin/bwrap
+
     echo "Linux setup complete!"
 }
 
