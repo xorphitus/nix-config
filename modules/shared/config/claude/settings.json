@@ -17,7 +17,10 @@
       ],
       "denyRead": [
         "~/.aws/credentials",
-        "~/.ssh"
+        "~/.ssh",
+        "~/.gnupg",
+        "id_ed25519",
+        "id_rsa"
       ]
     }
   },
@@ -43,14 +46,14 @@
       "Bash(jj rebase *)",
       "Bash(jj git push *)",
       "Bash(chmod 777 *)",
-      "Read(.env*)",
+      "Read(.env)",
       "Read(*.pem)",
       "Read(*.key)",
       "Read(id_ed25519)",
       "Read(id_rsa)",
       "Read(**/*secret*)",
       "Read(**/secrets/**)",
-      "Write(.env*)",
+      "Write(.env)",
       "Write(**/secrets/**)",
       "Write(**/*token*)"
     ]
@@ -88,6 +91,10 @@
       }
     ]
   },
+  "env": {
+    "CLAUDE_CODE_NO_FLICKER": 1
+  },
+  "showClearContextOnPlanAccept": true,
   "extraKnownMarketplaces": {
     "openai-codex": {
       "source": {
