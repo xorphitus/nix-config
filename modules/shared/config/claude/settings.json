@@ -33,11 +33,15 @@
       "Bash(jj *)",
       "mcp__*",
       "ListMcpResourcesTool",
-      "ReadMcpResourceTool"
+      "ReadMcpResourceTool",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebSearch"
     ],
     "deny": [
       "Bash(sudo *)",
       "Bash(rm -rf *)",
+      "Bash(rm -r *)",
       "Bash(curl *)",
       "Bash(wget *)",
       "Bash(git reset *)",
@@ -46,6 +50,9 @@
       "Bash(jj rebase *)",
       "Bash(jj git push *)",
       "Bash(chmod 777 *)",
+      "Bash(chmod +s *)",
+      "Bash(pkill *)",
+      "Bash(killall *)",
       "Read(.env)",
       "Read(*.pem)",
       "Read(*.key)",
@@ -54,8 +61,16 @@
       "Read(**/*secret*)",
       "Read(**/secrets/**)",
       "Write(.env)",
+      "Write(*.pem)",
+      "Write(*.key)",
+      "Write(id_ed25519)",
+      "Write(id_rsa)",
       "Write(**/secrets/**)",
-      "Write(**/*token*)"
+      "Write(**/*token*)",
+      "Edit(*.pem)",
+      "Edit(*.key)",
+      "Edit(id_ed25519)",
+      "Edit(id_rsa)"
     ]
   },
   "hooks": {
@@ -85,7 +100,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/enforce-commands.sh"
+            "command": "~/.claude/enforce-commands.sh",
+            "if": "tool_input.command matches '\\b(grep|find|git)\\b'"
           }
         ]
       }
