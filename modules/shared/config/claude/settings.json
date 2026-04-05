@@ -8,7 +8,9 @@
     "allowUnsandboxedCommands": false,
     "excludedCommands": [
       "codex review *",
-      "gh"
+      "gh",
+      "docker run *",
+      "nix develop *"
     ],
     "filesystem": {
       "allowWrite": [
@@ -58,15 +60,11 @@
       "Read(*.key)",
       "Read(id_ed25519)",
       "Read(id_rsa)",
-      "Read(**/*secret*)",
-      "Read(**/secrets/**)",
       "Write(.env)",
       "Write(*.pem)",
       "Write(*.key)",
       "Write(id_ed25519)",
       "Write(id_rsa)",
-      "Write(**/secrets/**)",
-      "Write(**/*token*)",
       "Edit(*.pem)",
       "Edit(*.key)",
       "Edit(id_ed25519)",
