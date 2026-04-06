@@ -13,7 +13,7 @@ diff-editor = "meld"
 [aliases]
 aicommit = ["util", "exec", "--", "bash", "-c", """
 set -euo pipefail
-OLLAMA_MODEL=gpt-oss:20b
+OLLAMA_MODEL=gemma4:e4b
 CLAUDE_MODEL=haiku
 
 DIFF=$(jj diff --git)
