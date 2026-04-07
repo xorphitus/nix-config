@@ -49,6 +49,18 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Wake on LAN
+  networking = {
+    interfaces = {
+      enp7s0 = {
+        wakeOnLan.enable = true;
+      };
+    };
+    firewall = {
+      allowedUDPPorts = [ 9 ];
+    };
+  };
+
   # Set your time zone.
   time.timeZone = "Asia/Tokyo";
 
