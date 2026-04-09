@@ -9,6 +9,7 @@ email = "xorphitus@gmail.com"
 [ui]
 editor = "emacsclient -c -a nano"
 diff-editor = "meld"
+diff-formatter = "delta"
 
 [aliases]
 aicommit = ["util", "exec", "--", "bash", "-c", """
@@ -39,3 +40,7 @@ jj git push -b "$branch" --allow-new
 [merge-tools.meld]
 program = "meld"
 edit-args = ["--newtab", "$left", "$right"]
+
+[merge-tools.delta]
+diff-args = ["--side-by-side", "$left", "$right", "--width=$width"]
+diff-expected-exit-codes = [0, 1]

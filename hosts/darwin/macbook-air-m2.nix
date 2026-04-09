@@ -14,6 +14,7 @@
     mkalias
     # Convenient CLI tools
     bat
+    delta
     fd
     fzf
     ghq
