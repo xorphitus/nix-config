@@ -3,7 +3,7 @@
 	name = xorphitus
 	signingkey = D1807C94682FEF328966ACF1522B834DAD3D20B1
 [core]
-	pager = less -r
+	pager = delta
 	editor = nano
 	# This line should be redundant, but somehow jj didn't completely follow the config without this.
 	excludesFile = ~/.config/git/ignore
@@ -17,6 +17,7 @@
 	default = tracking
 [merge]
 	ff = false
+	conflictStyle = zdiff3 # for delta
 [rebase]
 	autostash = true
 [branch]
@@ -29,12 +30,13 @@
 	d = diff
 	sw = switch
 	push-f = push --force-with-lease
-[pager]
-	log = bat
-	show = bat
-	diff = bat
+[interactive]
+	diffFilter = delta --color-only
 [ghq]
 	root = ~/go/src
 	root = ~/.ghq
 [github]
 	user = xorphitus
+[delta]
+	navigate = true  # use n and N to move between diff sections
+	dark = true      # or light = true, or omit for auto-detection
