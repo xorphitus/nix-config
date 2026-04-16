@@ -31,3 +31,6 @@ case "$(uname -s)" in
         osascript -e "display notification \"$message\" with title \"Claude Code\""
         ;;
 esac
+
+# Send a bell event to a terminal for terminal UI integrations
+printf '\a' > /dev/tty 2>/dev/null || true
