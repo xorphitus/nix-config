@@ -20,8 +20,29 @@ config.font = wezterm.font_with_fallback {
   'Ricty Discord Nerd Font',
   'Ricty Discord',
 }
-config.window_background_opacity = 0.95
+
 config.use_ime = true
+
+-- Look and feel
+config.window_background_opacity = 0.95
+
+config.window_frame = {
+    inactive_titlebar_bg = "none",
+    active_titlebar_bg = "none",
+}
+
+config.window_background_gradient = {
+    colors = { "#000000" },
+}
+
+config.show_new_tab_button_in_tab_bar = false
+config.show_close_tab_button_in_tabs = false
+
+config.colors = {
+    tab_bar = {
+        inactive_tab_edge = "none",
+    },
+}
 
 -- Claude Code integration
 -- Record an ID of a tab ringing a bell
@@ -54,6 +75,13 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
                                    local index = tab.tab_index + 1
                                    local marker = bell_tabs[tab_id] and "● " or ""
                                    title = "   " .. marker .. index .. ": " .. wezterm.truncate_right(title, max_width - 6) .. "   "
+
+                                   if bell_tabs[tab_id] then
+                                       return {
+                                           { Foreground = { Color = "#ffffff" } },
+                                           { Text = title },
+                                       }
+                                   end
 
                                    return {
                                        { Text = title },
