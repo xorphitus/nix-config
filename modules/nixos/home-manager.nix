@@ -46,6 +46,10 @@
       source = ./config/waybar/config.jsonc;
     };
 
+    ".config/waybar/style.css" = {
+      source = ./config/waybar/style.css;
+    };
+
     # SwayNotificatioNCenter
     ".config/swaync/config.json" = {
       source = ./config/swaync/config.json;

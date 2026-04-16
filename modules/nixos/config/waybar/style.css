@@ -1,0 +1,94 @@
+/* Nord palette — matches Nordic GTK theme + Tela-nord-dark icons
+ * nord0  #2e3440  Polar Night: primary bg
+ * nord1  #3b4252  Polar Night: elevated bg
+ * nord3  #4c566a  Polar Night: subtle/border
+ * nord6  #eceff4  Snow Storm: bright text
+ * nord8  #88c0d0  Frost: accent
+ * nord11 #bf616a  Aurora: critical/red
+ * nord13 #ebcb8b  Aurora: warning/yellow
+ */
+
+* {
+    font-family: "Ricty Discord Nerd Font", monospace;
+    font-size: 13px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background: transparent;
+    color: #eceff4;
+}
+
+#workspaces,
+#mode,
+#clock,
+#cpu,
+#memory,
+#temperature,
+#network,
+#pulseaudio,
+#tray,
+#idle_inhibitor,
+#battery,
+#backlight,
+#power-profiles-daemon,
+#keyboard-state,
+#custom-media,
+#custom-swaync,
+#custom-pomodoro-el {
+    background: rgba(46, 52, 64, 0.8);
+    color: #eceff4;
+    padding: 0 10px;
+    margin: 2px 2px;
+    border-radius: 12px;
+    border: 1px solid rgba(76, 86, 106, 0.5);
+}
+
+#workspaces button {
+    padding: 0 6px;
+    margin: 2px 2px;
+    color: #4c566a;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+}
+
+#workspaces button.active {
+    color: #eceff4;
+    background: rgba(136, 192, 208, 0.4);
+}
+
+#workspaces button:hover {
+    background: rgba(76, 86, 106, 0.4);
+    box-shadow: none;
+    text-shadow: none;
+}
+
+#temperature.critical {
+    background: rgba(191, 97, 106, 0.8);
+}
+
+#battery.warning {
+    background: rgba(235, 203, 139, 0.8);
+    color: #2e3440;
+}
+
+#battery.critical {
+    background: rgba(191, 97, 106, 0.8);
+}
+
+#idle_inhibitor.activated {
+    color: #ebcb8b;
+}
+
+tooltip {
+    background: rgba(59, 66, 82, 0.95);
+    border: 1px solid rgba(76, 86, 106, 0.5);
+    border-radius: 12px;
+}
+
+tooltip label {
+    color: #eceff4;
+}
