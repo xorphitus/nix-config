@@ -1,5 +1,10 @@
 { config, pkgs, username, ... }:
 
+let
+  palette = import ./palette/nord.nix;
+  waybarStyle = import ./config/waybar/style.nix { inherit palette; };
+  rofiConfig = import ./config/rofi/config.nix { inherit palette; };
+in
 {
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
@@ -47,7 +52,7 @@
     };
 
     ".config/waybar/style.css" = {
-      source = ./config/waybar/style.css;
+      text = waybarStyle;
     };
 
     # SwayNotificatioNCenter
@@ -65,7 +70,7 @@
 
     # Rofi
     ".config/rofi/config.rasi" = {
-      source = ./config/rofi/config.rasi;
+      text = rofiConfig;
     };
 
     ".local/bin/rofi_system.sh" = {
