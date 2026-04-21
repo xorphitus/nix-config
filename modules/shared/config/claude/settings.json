@@ -27,7 +27,7 @@
     }
   },
   "permissions": {
-    "defaultMode": "default",
+    "defaultMode": "plan",
     "allow": [
       "Bash(rg *)",
       "Bash(fd *)",
