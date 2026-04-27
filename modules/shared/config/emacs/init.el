@@ -972,7 +972,6 @@ Call this on `flyspell-incorrect-hook'."
   ;; syntax highlight within begin_src block
   :init
   (setq org-src-fontify-natively t)
-  (setq org-list-indent-offset 2)
 
   (leaf org-babel
     :doc "How to use org-babel
