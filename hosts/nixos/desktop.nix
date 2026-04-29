@@ -206,6 +206,7 @@ in
     (pkgsUnstable.callPackage ../../modules/nixos/llama-cpp.nix {})
     llama-swap
     lmstudio
+    warp-terminal
     # Etc
     libnotify
   ];
