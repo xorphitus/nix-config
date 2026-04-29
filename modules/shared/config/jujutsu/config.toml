@@ -14,18 +14,24 @@ diff-formatter = "delta"
 [aliases]
 aicommit = ["util", "exec", "--", "bash", "-c", """
 set -euo pipefail
-OLLAMA_MODEL=gemma4:e4b
+LLAMA_SWAP_URL="http://localhost:9292"
+LLAMA_MODEL="Gemma-4-E2B"
 CLAUDE_MODEL=haiku
 
 DIFF=$(jj diff --git)
-PROMPT="Generate ONLY a one-line jj commit message in English. The message should follow Conventional Commits format 'type(scope): description'. Types: feat, fix, docs, style, refactor, test, chore. Based strictly on the diff. Output ONLY the message, nothing else. Here are the diff\n: ${DIFF}"
+PROMPT="Generate ONLY a jj commit message in English. The message should follow Conventional Commits format 'type(scope): description'. Types: feat, fix, docs, style, refactor, test, chore. Based strictly on the diff. Output ONLY the message, nothing else. Here are the diff\n: ${DIFF}"
 
 MSG=""
-if [ -x "$(command -v ollama)" ]; then
-MSG=$(ollama run --hidethinking "$OLLAMA_MODEL" "$PROMPT")
-# ollama streams ANSI escape sequences (e.g. ESC[K for spinner/cursor control) to stdout,
-# which would otherwise leak into the commit message; strip them.
-MSG=$(printf '%s' "$MSG" | sed 's/\\x1b\\[[0-9;?]*[a-zA-Z]//g')
+if curl --silent --fail --max-time 2 --output /dev/null "${LLAMA_SWAP_URL}/v1/models"; then
+REQ=$(jq -n --arg model "$LLAMA_MODEL" --arg prompt "$PROMPT" '{
+  model: $model,
+  messages: [{role: "user", content: $prompt}]
+}')
+MSG=$(curl --silent --fail --max-time 120 \
+  -H "Content-Type: application/json" \
+  -d "$REQ" \
+  "${LLAMA_SWAP_URL}/v1/chat/completions" \
+  | jq -r '.choices[0].message.content')
 else
 MSG=$(claude --no-session-persistence --model "$CLAUDE_MODEL" --print "$PROMPT")
 fi
