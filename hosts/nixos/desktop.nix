@@ -192,6 +192,10 @@
     # YubiKey
     pam_u2f
     yubioath-flutter
+    # Local LLM
+    llama-cpp
+    llama-swap
+    lmstudio
     # Etc
     libnotify
   ];
@@ -335,39 +339,6 @@
   };
 
   services.blueman.enable = true;
-
-  # Ollama
-  services.ollama = {
-    enable = true;
-    package = let
-      # Wrap buildGoModule to inject proxyVendor = true, which downloads full
-      # module contents (including C sources needed by tree-sitter CGO bindings).
-      # Must preserve .override since the ollama package calls
-      # buildGoModule.override { stdenv = cudaPackages.backendStdenv; }.
-      injectProxy = args:
-        if builtins.isFunction args
-        then (finalAttrs: (args finalAttrs) // { proxyVendor = true; })
-        else args // { proxyVendor = true; };
-      wrapBGM = bgm: bgm // {
-        __functor = _: args: bgm (injectProxy args);
-        override = newArgs: wrapBGM (bgm.override newArgs);
-      };
-    in (pkgs.ollama-cuda.override {
-      buildGoModule = wrapBGM pkgs.buildGoModule;
-    }).overrideAttrs (finalAttrs: oldAttrs: {
-      # Use a newer version than the stable channel's one to enable Claude Code integration.
-      version = "0.20.2";
-      vendorHash = "sha256-Lc1Ktdqtv2VhJQssk8K1UOimeEjVNvDWePE9WkamCos=";
-      src = pkgs.fetchFromGitHub {
-        owner = "ollama";
-        repo = "ollama";
-        tag = "v${finalAttrs.version}";
-        hash = "sha256-Ic3eLOohLR7MQGkLvDJBNOCiBBKxh6l8X9MgK0b4w+Y=";
-      };
-      # Tests require network access (npm install) unavailable in the Nix sandbox.
-      doCheck = false;
-    });
-  };
 
   # Hyprlock
   security.pam.services.hyprlock = {
