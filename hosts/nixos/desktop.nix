@@ -2,8 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, username, ... }:
+{ config, pkgs, inputs, username, ... }:
 
+let
+  pkgsUnstable = import inputs.nixpkgs-unstable {
+    inherit (pkgs.stdenv.hostPlatform) system;
+    config = {
+      allowUnfree = true;
+      allowBroken = true;
+      cudaSupport = true;
+    };
+  };
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -193,7 +203,7 @@
     pam_u2f
     yubioath-flutter
     # Local LLM
-    llama-cpp
+    (pkgsUnstable.callPackage ../../modules/nixos/llama-cpp.nix {})
     llama-swap
     lmstudio
     # Etc

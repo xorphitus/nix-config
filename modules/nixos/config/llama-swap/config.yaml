@@ -14,7 +14,16 @@ models:
       ${llama-server}
       --model ${model-root}/Qwen3.6-27B-GGUF/Qwen3.6-27B-Q4_K_M.gguf
     ttl: 300
-
+  "Gemma-4-E2B":
+    cmd: |
+      ${llama-server}
+      --model ${model-root}/gemma-4-E2B-it-GGUF/gemma-4-E2B-it-Q4_K_M.gguf
+    ttl: 300
+  "Gemma-4-E4B":
+    cmd: |
+      ${llama-server}
+      --model ${model-root}/gemma-4-E4B-it-GGUF/gemma-4-E4B-it-Q4_K_M.gguf
+    ttl: 300
   "Gemma-4-26B-A4B":
     cmd: |
       ${llama-server}
