@@ -1,0 +1,22 @@
+healthCheckTimeout: 500
+logLevel: info
+startPort: 10001
+macros:
+  "llama-server": >
+    /run/current-system/sw/bin/llama-server
+    --port ${PORT}
+  "model-root": "/home/xorphitus/.lmstudio/models/lmstudio-community"
+
+# Share model files with LM Studio
+models:
+  "Qwen3.6-27B":
+    cmd: |
+      ${llama-server}
+      --model ${model-root}/Qwen3.6-27B-GGUF/Qwen3.6-27B-Q4_K_M.gguf
+    ttl: 300
+
+  "Gemma-4-26B-A4B":
+    cmd: |
+      ${llama-server}
+      --model ${model-root}/gemma-4-26B-A4B-it-GGUF/gemma-4-26B-A4B-it-Q4_K_M.gguf
+    ttl: 300

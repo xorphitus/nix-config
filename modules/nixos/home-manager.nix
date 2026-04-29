@@ -135,6 +135,31 @@ in
     };
   };
 
+  # llama-swap
+  home.file.".config/llama-swap/config.yaml" = {
+    source = ./config/llama-swap/config.yaml;
+  };
+
+  systemd.user.services.llama-swap = {
+    Unit = {
+      Description = "llama-swap - OpenAI compatible proxy with automatic model swapping";
+      After = [ "network.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.llama-swap}/bin/llama-swap --config ${config.home.homeDirectory}/.config/llama-swap/config.yaml --listen 0.0.0.0:9292 --watch-config";
+      Restart = "on-failure";
+
+      Environment = [
+        # Environment for CUDA support
+        "PATH=/run/current-system/sw/bin"
+        "LD_LIBRARY_PATH=/run/opengl-driver/lib:/run/opengl-driver-32/lib"
+      ];
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+  };
+
   # VOICEVOX
   systemd.user.services.voicevox = {
     Unit = {
