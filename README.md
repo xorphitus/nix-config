@@ -9,8 +9,8 @@ Regardless of platform, manually execute the following after applying `nix switc
 ### Disk Ownership
 
 ```bash
-sudo chown root:storage /srv/data /srv/backup
-sudo chmod 775 /srv/data /srv/backup
+sudo chown root:storage /srv/data
+sudo chmod 775 /srv/data
 ```
 
 ### (Unsure) Hyprland

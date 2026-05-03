@@ -42,15 +42,14 @@
   ];
   boot.resumeDevice = "/dev/disk/by-uuid/36388d4d-af77-45ed-b6cb-4593118b48da";
 
-  # Storage disks
+  # Storage disks: btrfs RAID1 mirrored across two HDDs.
   fileSystems."/srv/data" = {
-    device = "/dev/disk/by-uuid/976efbd9-dae2-4ee1-9157-f746773ca194";
+    device = "/dev/disk/by-uuid/fadb68ad-b099-4cce-9819-383be284bdf7";
     fsType = "btrfs";
-  };
-
-  fileSystems."/srv/backup" = {
-    device = "/dev/disk/by-uuid/7a9cd5fa-674b-45b2-9f3d-3df0e80b5499";
-    fsType = "btrfs";
+    options = [
+      "device=/dev/disk/by-id/ata-ST1000LX015-1U7172_ZDEK4F3Y"
+      "device=/dev/disk/by-id/ata-ST1000LX015-1U7172_ZDEK4EVT"
+    ];
   };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
