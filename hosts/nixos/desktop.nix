@@ -119,6 +119,7 @@ in
     coreutils-full
     file
     dig
+    lsof
     gcc
     git
     unzip
