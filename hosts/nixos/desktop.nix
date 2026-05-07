@@ -115,7 +115,7 @@ in
     environmentFile = "/etc/nixos/secrets/restic-environment";
     initialize = true;
     timerConfig = {
-      OnCalendar = "weekly";
+      OnCalendar = "Mon *-*-* 10:00";
       Persistent = true;
     };
     pruneOpts = [
