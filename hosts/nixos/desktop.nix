@@ -107,6 +107,24 @@ in
     fileSystems = [ "/srv/data" ];
   };
 
+  # Weekly off-machine backup of /srv/data via restic.
+  # Secrets are provisioned out-of-band under /etc/nixos/secrets/ to keep them
+  # out of the nix store.
+  services.restic.backups.srv-data = {
+    paths = [ "/srv/data" ];
+    environmentFile = "/etc/nixos/secrets/restic-environment";
+    initialize = true;
+    timerConfig = {
+      OnCalendar = "weekly";
+      Persistent = true;
+    };
+    pruneOpts = [
+      "--keep-weekly 8"
+      "--keep-monthly 12"
+      "--keep-yearly 3"
+    ];
+  };
+
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.${username} = {
     isNormalUser = true;
