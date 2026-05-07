@@ -101,6 +101,12 @@ in
   # Storage group for /srv disks
   users.groups.storage = {};
 
+  # Periodic btrfs scrub for the /srv/data RAID1 array.
+  services.btrfs.autoScrub = {
+    enable = true;
+    fileSystems = [ "/srv/data" ];
+  };
+
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.${username} = {
     isNormalUser = true;

@@ -49,6 +49,7 @@
     options = [
       "device=/dev/disk/by-id/ata-ST1000LX015-1U7172_ZDEK4F3Y"
       "device=/dev/disk/by-id/ata-ST1000LX015-1U7172_ZDEK4EVT"
+      "compress=zstd"
     ];
   };
 
