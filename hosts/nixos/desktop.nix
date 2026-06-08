@@ -451,15 +451,15 @@ in
       gtk3
       pango
       cairo
-      xorg.libX11
-      xorg.libXcomposite
-      xorg.libXdamage
-      xorg.libXext
-      xorg.libXfixes
-      xorg.libXrandr
+      libx11
+      libxcomposite
+      libxdamage
+      libxext
+      libxfixes
+      libxrandr
       libgbm
       expat
-      xorg.libxcb
+      libxcb
       libxkbcommon
       alsa-lib
       # Printer

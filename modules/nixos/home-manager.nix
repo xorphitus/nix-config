@@ -219,6 +219,7 @@ in
   # Document: https://nix-community.github.io/home-manager/options.xhtml#opt-gtk
   gtk = {
     enable = true;
+    gtk4.theme = config.gtk.theme;
     theme = {
       package = pkgs.nordic;
       name = "Nordic";

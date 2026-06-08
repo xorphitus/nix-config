@@ -36,8 +36,8 @@ let
       e2fsprogs
       zlib
       libp11
-      xorg.libX11
-      xorg.libSM
+      libx11
+      libsm
 
       # Added:
       egl-wayland

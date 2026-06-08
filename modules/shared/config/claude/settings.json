@@ -33,7 +33,6 @@
       "Bash(fd *)",
       "Bash(jq *)",
       "Bash(jj *)",
-      "mcp__*",
       "ListMcpResourcesTool",
       "ReadMcpResourceTool",
       "WebFetch(domain:github.com)",

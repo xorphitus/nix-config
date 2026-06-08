@@ -27,7 +27,6 @@
       allowDiscards = true;
       keyFileSize = 4096;
       keyFile = "/dev/disk/by-id/usb-ELECOM_MF-SU2B_071858C924F92610-0:0";
-      fallbackToPassword = true;
     };
   };
 
