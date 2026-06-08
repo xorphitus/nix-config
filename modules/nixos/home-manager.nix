@@ -104,6 +104,11 @@ in
       Service = {
         ExecStart = "${pkgs.dropbox}/bin/dropbox";
         Restart = "on-failure";
+        # Dropbox only recognizes a fixed list of desktop environments and shows an
+        # "unsupported desktop" dialog otherwise. Hyprland isn't on the list, so
+        # present a supported one (Unity) for this process only. The tray itself is
+        # provided by Waybar's `tray` module (a StatusNotifierItem host).
+        Environment = [ "XDG_CURRENT_DESKTOP=Unity" ];
       };
     };
   };
