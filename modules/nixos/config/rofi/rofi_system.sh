@@ -7,7 +7,7 @@ function main() {
   # e.g. ( )
   local -Ar menu=(
     ['Lock']="hyprlock --quiet"
-    ['Suspend']='hyprlock --quiet > /dev/null 2>&1 & sleep 2 && systemctl suspend'
+    ['Suspend']='hyprlock --quiet --grace 0 > /dev/null 2>&1 & sleep 2 && systemctl suspend'
   )
 
   local -r IFS=$'\n'
