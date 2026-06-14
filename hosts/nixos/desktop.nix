@@ -234,6 +234,7 @@ in
     warp-terminal
     # Etc
     libnotify
+    zoom-us
   ];
 
   # Fonts
