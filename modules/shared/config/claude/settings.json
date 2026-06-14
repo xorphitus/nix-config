@@ -107,6 +107,7 @@
   "env": {
     "CLAUDE_CODE_NO_FLICKER": 1
   },
+  "preferredNotifChannel": "terminal_bell",
   "showClearContextOnPlanAccept": true,
   "extraKnownMarketplaces": {
     "openai-codex": {
