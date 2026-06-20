@@ -22,7 +22,7 @@ LLAMA_MODEL="Gemma-4-E2B"
 CLAUDE_MODEL=haiku
 
 DIFF=$(jj diff --git)
-PROMPT="Generate ONLY a jj commit message in English. The message should follow Conventional Commits format 'type(scope): description'. Types: feat, fix, docs, style, refactor, test, chore. Based strictly on the diff. Output ONLY the message, nothing else. Here are the diff\n: ${DIFF}"
+PROMPT="Generate ONLY a jj commit message in English. The message should follow Conventional Commits format 'type(scope): description'. Types: feat, fix, docs, style, refactor, test, chore. Based strictly on the diff. Output ONLY the message, nothing else. Do NOT wrap the message in backticks, quotes, or code fences. Output raw text only. Here are the diff\n: ${DIFF}"
 
 MSG=""
 if curl --silent --fail --max-time 2 --output /dev/null "${LLAMA_SWAP_URL}/v1/models"; then
@@ -38,6 +38,15 @@ MSG=$(curl --silent --fail --max-time 120 \
 else
 MSG=$(claude --no-session-persistence --model "$CLAUDE_MODEL" --print "$PROMPT")
 fi
+
+# Defensively strip any code fence or wrapping backticks the model added:
+# trim surrounding whitespace, drop a wrapping ```lang ... ``` fence, then any
+# leftover wrapping backticks, and trim whitespace again.
+MSG=$(printf '%s' "$MSG" | sed -zE \
+  -e 's/^[[:space:]]+//' -e 's/[[:space:]]+$//' \
+  -e 's/^`{3,}[[:alnum:]]*\n//' -e 's/\n`{3,}$//' \
+  -e 's/^`+//' -e 's/`+$//' \
+  -e 's/^[[:space:]]+//' -e 's/[[:space:]]+$//')
 
 jj commit -m "$MSG"
 """, ""]
