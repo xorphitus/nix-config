@@ -31,8 +31,21 @@
   };
 
   # Fish
-  home.file.".config/fish/config.fish" = {
-    source = ./config/fish/config.fish;
+  programs.fish = {
+    enable = true;
+    shellInit = builtins.readFile ./config/fish/config.fish;
+    plugins = [
+      { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+      {
+        name = "ghq_cd_keybind";
+        src = pkgs.fetchFromGitHub {
+          owner = "masa0x80";
+          repo = "ghq_cd_keybind.fish";
+          rev = "c289d87b270ff23de27b6ca3d59dccf38810bc26";
+          hash = "sha256-vaosyDFvrkXD6hQCXf3+kCNLKA21+GfS57E5fPv0Lj4=";
+        };
+      }
+    ];
   };
 
   # GPG

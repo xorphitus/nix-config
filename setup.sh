@@ -47,9 +47,6 @@ setupDarwin() {
     echo "Darwin specific setup complete!"
 }
 
-echo "Setting up Fish environment..."
-fish -c "setup-fish-env"
-
 echo "Installing Emacs resources..."
 emacs --batch \
     --eval "(fset 'yes-or-no-p #'always)" \

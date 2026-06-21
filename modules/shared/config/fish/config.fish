@@ -48,9 +48,6 @@ starship init fish | source
 
 ###########################################################
 # fzf
-set -x FZF_TMUX 1
-set -x FZF_TMUX_HEIGHT 50%
-
 function jw
   set prefix '.wt'
   set repo_root (jj workspace root | sed -s "s/\/$prefix\/.*//")
@@ -102,21 +99,6 @@ function psg
   ps u | head -n 1
   set arg $argv[1]
   ps aux | grep -i $arg | grep -v "grep $arg"
-end
-
-function setup-fish-env
-  if not type -q fisher
-    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-  end
-
-  set -l required_plugins jethrokuan/fzf masa0x80/ghq_cd_keybind.fish
-  for plugin in $required_plugins
-    if not fisher list | grep -q $plugin
-      fisher install $plugin
-    end
-  end
-
-  fisher update
 end
 
 # Fish version ssh-agent
