@@ -432,6 +432,7 @@ in
     127.0.0.1 www.programmingmat.jp
     127.0.0.1 shogi.yuki-lab.com
     127.0.0.1 online-shogi.com
+    127.0.0.1 p-game.jp
     '';
 
   # Enable printers

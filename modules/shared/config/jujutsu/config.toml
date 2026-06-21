@@ -39,15 +39,6 @@ else
 MSG=$(claude --no-session-persistence --model "$CLAUDE_MODEL" --print "$PROMPT")
 fi
 
-# Defensively strip any code fence or wrapping backticks the model added:
-# trim surrounding whitespace, drop a wrapping ```lang ... ``` fence, then any
-# leftover wrapping backticks, and trim whitespace again.
-MSG=$(printf '%s' "$MSG" | sed -zE \
-  -e 's/^[[:space:]]+//' -e 's/[[:space:]]+$//' \
-  -e 's/^`{3,}[[:alnum:]]*\n//' -e 's/\n`{3,}$//' \
-  -e 's/^`+//' -e 's/`+$//' \
-  -e 's/^[[:space:]]+//' -e 's/[[:space:]]+$//')
-
 jj commit -m "$MSG"
 """, ""]
 
