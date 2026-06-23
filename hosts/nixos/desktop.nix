@@ -212,6 +212,8 @@ in
     vivaldi
     wezterm
     (pkgs.callPackage ../../modules/nixos/immersed.nix {})
+    (pkgs.callPackage ../../modules/nixos/handy.nix {})
+    wtype # Wayland text injection used by Handy
     # Emacs
     emacs-pgtk # -pgtk is required for Wayland
     cmigemo
