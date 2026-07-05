@@ -137,6 +137,9 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Overlays from flake inputs
+  nixpkgs.overlays = [ inputs.herdr.overlays.default ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -182,9 +185,9 @@ in
     gh
     ghq
     gnumake
+    herdr
     mise
     mermaid-cli
-    opencode
     podman-compose
     shellcheck
     uv
@@ -209,7 +212,9 @@ in
     signal-desktop
     swaynotificationcenter
     tlaplusToolbox
-    vivaldi
+    (vivaldi.override {
+      commandLineArgs = "--disable-accelerated-video-decode";
+    })
     wezterm
     (pkgs.callPackage ../../modules/nixos/immersed.nix {})
     (pkgs.callPackage ../../modules/nixos/handy.nix {})

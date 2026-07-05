@@ -25,6 +25,11 @@
     source = ./config/wezterm/wezterm.lua;
   };
 
+  # Herdr
+  home.file.".config/herdr/config.toml" = {
+    source = ./config/herdr/config.toml;
+  };
+
   # Emacs
   home.file.".emacs.d/init.el" = {
     source = ./config/emacs/init.el;

@@ -28,6 +28,11 @@
       url = "github:BatteredBunny/brew-api";
       flake = false;
     };
+
+    herdr = {
+      url = "github:ogulcancelik/herdr/v0.7.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, home-manager, nixos-wsl, nix-darwin, brew-nix, ... }@inputs:
@@ -100,7 +105,7 @@ in
         }
       ];
       specialArgs = {
-        inherit username;
+        inherit inputs username;
       };
     };
   };

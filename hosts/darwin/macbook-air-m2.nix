@@ -1,9 +1,12 @@
-{ pkgs, username, ... }:
+{ pkgs, inputs, username, ... }:
 
 {
   nixpkgs.hostPlatform = "aarch64-darwin";
   system.stateVersion = 6;
   system.primaryUser = "${username}";
+
+  # Overlays from flake inputs
+  nixpkgs.overlays = [ inputs.herdr.overlays.default ];
 
   environment.systemPackages = with pkgs; [
     # Basic tools
@@ -18,6 +21,7 @@
     fd
     fzf
     ghq
+    herdr
     htop
     jq
     lsd
