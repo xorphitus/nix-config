@@ -95,4 +95,9 @@
     source = ./config/claude/enforce-commands.sh;
     executable = true;
   };
+
+  home.file.".claude/skills" = {
+    source = ./config/claude/skills;
+    recursive = true;
+  };
 }
