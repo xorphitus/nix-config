@@ -38,6 +38,7 @@
     jjui
     mise
     mermaid-cli
+    inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.hunk
     # For Emacs
     cmigemo
     enchant

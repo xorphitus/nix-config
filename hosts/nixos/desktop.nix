@@ -191,6 +191,7 @@ in
     podman-compose
     shellcheck
     uv
+    inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.hunk
     (pkgs.callPackage ../../modules/nixos/devtoys-cli.nix {})
     # Nix development
     deadnix
