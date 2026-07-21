@@ -205,7 +205,9 @@ in
     firefox
     keepassxc
     meld
-    musescore
+    # 26.05's musescore 4.7.0 is broken with Qt 6.11 ("New score" crash);
+    # unstable has the fixed 4.7.4. Revert once 26.05 ships >= 4.7.4.
+    pkgsUnstable.musescore
     pcmanfm
     remmina
     rnote
