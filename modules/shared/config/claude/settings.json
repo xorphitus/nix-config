@@ -10,12 +10,22 @@
       "codex review *",
       "gh",
       "docker run *",
-      "nix develop *"
+      "nix develop *",
+      "nix flake check",
+      "nix flake check *",
+      "nix eval *"
     ],
+    "network": {
+      "allowUnixSockets": [
+        "/nix/var/nix/daemon-socket/socket"
+      ]
+    },
     "filesystem": {
       "allowWrite": [
         "~/.claude/plugins/data/codex-openai-codex",
-        "~/.claude/plugins/data/codex-openai-codex/state"
+        "~/.claude/plugins/data/codex-openai-codex/state",
+        "~/.codex",
+        "~/.cache/nix"
       ],
       "denyRead": [
         "~/.aws/credentials",
@@ -33,6 +43,9 @@
       "Bash(fd *)",
       "Bash(jq *)",
       "Bash(jj *)",
+      "Bash(nix flake check)",
+      "Bash(nix flake check *)",
+      "Bash(nix eval *)",
       "ListMcpResourcesTool",
       "ReadMcpResourceTool",
       "WebFetch(domain:github.com)",
