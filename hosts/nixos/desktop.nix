@@ -214,6 +214,22 @@ in
     swaynotificationcenter
     tlaplusToolbox
     (vivaldi.override {
+      proprietaryCodecs = true;
+      # The codecs build shipped in nixos-26.05 (120726) predates Vivaldi 8.1's
+      # ffmpeg ABI and crashes with "undefined symbol:
+      # av_dynamic_hdr_smpte2094_app5_to_t35". Values below are the merged
+      # upstream bump (nixpkgs PRs #540805 / backport #543995); drop this
+      # overrideAttrs once the nixos-26.05 channel includes it.
+      vivaldi-ffmpeg-codecs = vivaldi-ffmpeg-codecs.overrideAttrs (finalAttrs: _prev: {
+        version = "2026-05-18";
+        src = fetchurl {
+          url = "https://api.snapcraft.io/api/v1/snaps/download/XXzVIXswXKHqlUATPqGCj2w2l7BxosS8_117.snap";
+          hash = "sha256-YEE7oF8NLGDCQ3gpY5z6B+7xDxcOumjOzwUztJUM+/s=";
+        };
+        installPhase = ''
+          install -vD chromium-ffmpeg-git-${finalAttrs.version}/chromium-ffmpeg/libffmpeg.so $out/lib/libffmpeg.so
+        '';
+      });
       commandLineArgs = "--disable-accelerated-video-decode";
     })
     wezterm
