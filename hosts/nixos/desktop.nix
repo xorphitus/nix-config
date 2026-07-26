@@ -459,6 +459,7 @@ in
     127.0.0.1 shogi.yuki-lab.com
     127.0.0.1 online-shogi.com
     127.0.0.1 p-game.jp
+    127.0.0.1 sudoku.com
     '';
 
   # Enable printers
