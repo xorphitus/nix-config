@@ -1,0 +1,18 @@
+# System-wide Codex defaults. Codex rewrites ~/.codex/config.toml on its own,
+# so defaults that must survive that file being reset live here. Hard
+# constraints live in requirements.toml.
+
+web_search = "cached"
+
+[features]
+use_linux_sandbox_bwrap = true
+
+[shell_environment_policy]
+# inherit="core" would strip SSH_AUTH_SOCK, NIX_*, and other variables that
+# routine tooling needs. Instead rely on the default excludes (never set
+# ignore_default_excludes) plus these credential-shaped names they miss.
+inherit = "all"
+exclude = ["*PASSWORD*", "*PASSWD*", "*CREDENTIAL*", "AWS_*", "CLOUDSDK_*"]
+
+[sandbox_workspace_write]
+network_access = false

@@ -13,10 +13,6 @@ setupLinux() {
     echo "Updating flatpak packages..."
     flatpak update -y
 
-    # https://github.com/openai/codex/issues/15340
-    echo "Configuring workaround for Codex..."
-    sudo ln -sf /run/current-system/sw/bin/bwrap /usr/bin/bwrap
-
     echo "Linux setup complete!"
 }
 
@@ -64,6 +60,9 @@ mise exec -- npm install -g @anthropic-ai/sandbox-runtime
 # The Nix package version is too old
 echo "Installing Claude Code"
 curl -fsSL https://claude.ai/install.sh | bash
+
+echo "Installing Codex"
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
 
 case "$(uname -s)" in
     Linux*)

@@ -1,0 +1,31 @@
+# Managed hard constraints for the OpenAI Codex CLI. These override every
+# other config layer, including per-thread parameters from the Claude Code
+# Codex plugin.
+
+# read-only + workspace-write are exactly what the Claude Code Codex plugin
+# sends per thread, so it keeps working; danger-full-access stays impossible.
+allowed_sandbox_modes = ["read-only", "workspace-write"]
+
+allowed_web_search_modes = ["disabled", "cached"]
+
+allow_remote_control = false
+
+# Blocks a checked-out repo from executing commands via its own
+# .codex/config.toml [hooks].
+allow_managed_hooks_only = true
+
+# Credentials stay unreadable regardless of sandbox mode or project trust.
+[permissions.filesystem]
+deny_read = [
+  "**/.ssh/**",
+  "**/.gnupg/**",
+  "**/.aws/**",
+  "**/.config/gh/**",
+  "**/.codex/auth.json",
+  "**/.claude/.credentials.json",
+  "**/.env",
+  "**/*.pem",
+  "**/*.key",
+  "**/id_rsa*",
+  "**/id_ed25519*",
+]

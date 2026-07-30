@@ -18,6 +18,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./desktop_hardware.nix
+      ../../modules/shared/codex.nix
     ];
 
   # Bootloader.

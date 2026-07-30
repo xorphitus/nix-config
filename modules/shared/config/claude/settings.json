@@ -7,7 +7,6 @@
     "enabled": true,
     "allowUnsandboxedCommands": false,
     "excludedCommands": [
-      "codex review *",
       "docker run *",
       "gh *",
       "hunk *",
