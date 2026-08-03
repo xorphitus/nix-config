@@ -8,8 +8,9 @@
     "allowUnsandboxedCommands": false,
     "excludedCommands": [
       "codex review *",
-      "gh",
       "docker run *",
+      "gh *",
+      "hunk *",
       "nix develop *",
       "nix flake check",
       "nix flake check *",
