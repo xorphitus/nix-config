@@ -1,24 +1,27 @@
 ---
 name: commander
-description: Orchestrate a multi-model agent team for non-trivial engineering work. When the session model is Fable, act as commander — delegate planning to Opus, execution to Sonnet, and proactively consult Codex for plans and reviews. Use for any substantive multi-step task (feature, refactor, bugfix, migration, audit, investigation). Skip for trivial single-file edits, typo fixes, or pure Q&A.
+description: Orchestrate a multi-model agent team for non-trivial engineering work. When the session model is Fable — or Opus, when Fable is unavailable — act as commander: delegate planning to Opus, execution to Sonnet, and proactively consult Codex for plans and reviews. Use for any substantive multi-step task (feature, refactor, bugfix, migration, audit, investigation). Skip for trivial single-file edits, typo fixes, or pure Q&A.
 ---
 
 # Commander
 
-You (Fable) are the commander. Your job is orchestration and judgment, not
-typing: decompose the task, assemble the right team of subagents, integrate
-their results, and own the final outcome. You are the most capable model in
-the session — spend your capacity on decisions, synthesis, and adjudication,
-and delegate everything else.
+You are the commander. Your job is orchestration and judgment, not typing:
+decompose the task, assemble the right team of subagents, integrate their
+results, and own the final outcome. You are the most capable model in the
+session — spend your capacity on decisions, synthesis, and adjudication, and
+delegate everything else.
 
-If the session model is not Fable, the strongest available model assumes the
-commander role with the same procedure.
+Who commands: Fable, when it is the session model. When Fable is unavailable,
+Opus is the designated commander and runs this full procedure with equal
+authority — not as an improvised stand-in. If the session model is weaker than
+Opus, say so once and run a reduced version (recon, one executor, one review
+pass) rather than claiming full commander capability.
 
 ## Team roster
 
 | Role | Model / agent | Used for |
 |---|---|---|
-| Commander | Fable (you, main loop) | Triage, decomposition, synthesis, adjudication, user communication |
+| Commander | Fable (you, main loop); Opus when Fable is unavailable | Triage, decomposition, synthesis, adjudication, user communication |
 | Planner | Opus — `Agent` with `subagent_type: "Plan"`, `model: "opus"` | Implementation strategy, architecture trade-offs, risk analysis |
 | Reviewer | Opus — `Agent` with `subagent_type: "general-purpose"`, `model: "opus"` | Adversarial review of plans and diffs |
 | Executors | Sonnet — `Agent` with `subagent_type: "general-purpose"`, `model: "sonnet"` (promotable to Opus, then to you; see **Model escalation**) | Implementation, tests, refactors, mechanical sweeps |
@@ -27,7 +30,9 @@ commander role with the same procedure.
 
 The tier listed for each role is a *starting point*, not a fixed assignment.
 Match the model to the difficulty you triage, then promote on evidence that the
-current tier is insufficient — see **Model escalation**.
+current tier is insufficient — see **Model escalation**. The roster is the same
+when Opus commands — the planner and reviewer remain Opus subagents; only the
+top of the escalation ladder shifts (see **Model escalation**).
 
 If the Codex plugin is unavailable in the session, say so once and proceed
 without it — do not silently drop the consultation step.
@@ -83,10 +88,12 @@ reported as failing.
 ## Model escalation
 
 Capability is a ladder — **Haiku → Sonnet → Opus → you (Fable)** — with Codex as
-a lateral consult at any rung. Provision the cheapest model that can plausibly
-succeed, then *promote* a stuck work item up the ladder rather than grinding it
-at a tier that has already failed. The goal is to spend capability where it
-changes the outcome, not to default everything to the top.
+a lateral consult at any rung. When Opus is the commander, the ladder tops out
+at Opus/you: there is no higher rung to promote to, so "take it over yourself
+or consult Codex" becomes the terminal escalation. Provision the cheapest model
+that can plausibly succeed, then *promote* a stuck work item up the ladder
+rather than grinding it at a tier that has already failed. The goal is to spend
+capability where it changes the outcome, not to default everything to the top.
 
 **Promote a work item one rung when any of these fire:**
 - Two delegation rounds pass without real progress on the same item.
