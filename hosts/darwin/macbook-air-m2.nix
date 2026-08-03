@@ -9,8 +9,18 @@
   system.stateVersion = 6;
   system.primaryUser = "${username}";
 
-  # Overlays from flake inputs
-  nixpkgs.overlays = [ inputs.herdr.overlays.default ];
+  nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.overlays = [
+    # Overlays from flake inputs
+    inputs.herdr.overlays.default
+    # direnv 2.37.1 fish tests are killed by macOS sandbox (SIGKILL)
+    (_: prev: {
+      direnv = prev.direnv.overrideAttrs (_: {
+        doCheck = false;
+      });
+    })
+  ];
 
   environment.systemPackages = with pkgs; [
     # Basic tools
@@ -42,6 +52,7 @@
     jjui
     mise
     mermaid-cli
+    shellcheck
     inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.hunk
     # For Emacs
     cmigemo
