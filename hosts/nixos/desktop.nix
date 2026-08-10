@@ -461,6 +461,7 @@ in
     127.0.0.1 online-shogi.com
     127.0.0.1 p-game.jp
     127.0.0.1 sudoku.com
+    127.0.0.1 numpre7.com
     '';
 
   # Enable printers
