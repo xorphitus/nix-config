@@ -259,6 +259,9 @@ in
     llama-swap
     lmstudio
     warp-terminal
+    # Server management
+    k0sctl
+    kubectl
     # Etc
     libnotify
     zoom-us
