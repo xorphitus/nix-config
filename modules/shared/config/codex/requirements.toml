@@ -15,12 +15,13 @@ allow_remote_control = false
 allow_managed_hooks_only = true
 
 # Credentials stay unreadable regardless of sandbox mode or project trust.
+# ~/.config/gh is deliberately absent: gh needs hosts.yml, and its token lives
+# in the keyring, not there.
 [permissions.filesystem]
 deny_read = [
   "**/.ssh/**",
   "**/.gnupg/**",
   "**/.aws/**",
-  "**/.config/gh/**",
   "**/.codex/auth.json",
   "**/.claude/.credentials.json",
   "**/.env",

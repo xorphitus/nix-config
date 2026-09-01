@@ -14,5 +14,9 @@ use_linux_sandbox_bwrap = true
 inherit = "all"
 exclude = ["*PASSWORD*", "*PASSWD*", "*CREDENTIAL*", "AWS_*", "CLOUDSDK_*"]
 
+# Sandboxed commands need egress because gh cannot run unsandboxed: any
+# deny_read entry in requirements.toml makes Codex refuse to bypass the
+# sandbox for execpolicy allow rules, and the alternative (managed network
+# proxy) blocks AF_UNIX on Linux, cutting gh off from its keyring.
 [sandbox_workspace_write]
-network_access = false
+network_access = true
