@@ -353,6 +353,21 @@ in
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
+
+    # JBL Pebbles reports a bogus dB range (0 dB .. +3.9 dB over its whole
+    # hardware scale), so dB-based volume mapping is silent below ~87%.
+    wireplumber.extraConfig."51-jbl-pebbles-ignore-db" = {
+      "monitor.alsa.rules" = [
+        {
+          matches = [
+            { "device.name" = "~alsa_card.usb-Harman_International_Industries_JBL_Pebbles.*"; }
+          ];
+          actions.update-props = {
+            "api.alsa.ignore-dB" = true;
+          };
+        }
+      ];
+    };
   };
 
   # Podman
