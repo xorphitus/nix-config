@@ -407,6 +407,19 @@ in
 
   services.blueman.enable = true;
 
+  # The Loop120 receiver advertises KEY_POWER on its HID interface, so logind
+  # treats headset button presses as the power button.
+  # https://github.com/assazzin/shokz-opencomm2-uc-linux-power-button-fix
+  services.udev.packages = [
+    (pkgs.writeTextFile {
+      name = "shokz-opencomm2-udev-rules";
+      destination = "/etc/udev/rules.d/69-shokz-no-power-switch.rules";
+      text = ''
+        ACTION!="remove", SUBSYSTEM=="input", KERNEL=="event*", ENV{ID_VENDOR_ID}=="3511", ENV{ID_MODEL_ID}=="2f06", ENV{ID_INPUT_KEY}="0"
+      '';
+    })
+  ];
+
   # Hyprlock
   security.pam.services.hyprlock = {
     u2fAuth = true;
