@@ -444,6 +444,14 @@ in
         ACTION!="remove", SUBSYSTEM=="input", KERNEL=="event*", ENV{ID_VENDOR_ID}=="3511", ENV{ID_MODEL_ID}=="2ef2|2f06", ENV{ID_INPUT_KEY}="0"
       '';
     })
+    # Keychron Link receivers wake the PC from S3 with no user input.
+    (pkgs.writeTextFile {
+      name = "keychron-link-no-wakeup-udev-rules";
+      destination = "/etc/udev/rules.d/70-keychron-link-no-wakeup.rules";
+      text = ''
+        ACTION=="add", SUBSYSTEM=="usb", DRIVER=="usb", ATTR{idVendor}=="3434", ATTR{idProduct}=="d026", ATTR{power/wakeup}="disabled"
+      '';
+    })
   ];
 
   # Hyprlock
