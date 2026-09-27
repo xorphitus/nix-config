@@ -1063,11 +1063,16 @@ does not support PulseAudio's pacat/paplay"
 (leaf org-roam
   :ensure t
   :init
-  (let ((roam-path (format "%s/Documents/org-roam" (getenv "HOME"))))
+  (let ((roam-path (format "%s/Documents/org-roam" (getenv "HOME")))
+        ;; Keep the DB per machine, outside the Syncthing-shared roam directory.
+        ;; It stores absolute paths, so sharing it triggers a full rebuild on every startup.
+        (db-dir (expand-file-name "~/.local/share/org-roam")))
     (unless (f-exists? roam-path)
       (make-directory roam-path))
+    (unless (f-exists? db-dir)
+      (make-directory db-dir t))
     (setq org-roam-directory   roam-path)
-    (setq org-roam-db-location (format "%s/org-roam.db" roam-path)))
+    (setq org-roam-db-location (format "%s/org-roam.db" db-dir)))
   :config
   (org-roam-db-autosync-mode)
   (defun gen-subtemplates (roam-path)
@@ -1119,20 +1124,7 @@ does not support PulseAudio's pacat/paplay"
   ;; beautify powerline
   ;; https://github.com/milkypostman/powerline/issues/54
   (setq ns-use-srgb-colorspace nil
-        alert-default-style 'osx-notifier)
-
-  ;; Org-roam compatibility
-  (defun org-roam-node-marker (node)
-    "Get the marker for NODE. This is a monkey patch to support multiple environments
-sharing the same org-roam.db."
-    (let* ((original-home "/home/xorphitus")
-           (current-home (getenv "HOME"))
-           (file-old (org-roam-node-file node))
-           (file (s-replace original-home current-home file-old))
-           (buffer (or (find-buffer-visiting file)
-                       (find-file-noselect file))))
-      (with-current-buffer buffer
-        (move-marker (make-marker) (org-roam-node-point node) buffer)))))
+        alert-default-style 'osx-notifier))
 
 
 ;; Fix for a Wayland clipboard issue
