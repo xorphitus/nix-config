@@ -227,22 +227,24 @@ in
     tlaplusToolbox
     (vivaldi.override {
       proprietaryCodecs = true;
-      # The codecs build shipped in nixos-26.05 (120726) predates Vivaldi 8.1's
-      # ffmpeg ABI and crashes with "undefined symbol:
-      # av_dynamic_hdr_smpte2094_app5_to_t35". Values below are the merged
-      # upstream bump (nixpkgs PRs #540805 / backport #543995); drop this
-      # overrideAttrs once the nixos-26.05 channel includes it.
+      enableWidevine = true;
+      # nixos-26.05's codecs build (123075 as of Vivaldi 8.2) lacks the ffmpeg
+      # ABI Vivaldi needs and crashes with "undefined symbol:
+      # av_dynamic_hdr_smpte2094_app5_to_t35". Pin a newer chromium-ffmpeg
+      # snap (amd64 revision) until the channel's build stops crashing.
       vivaldi-ffmpeg-codecs = vivaldi-ffmpeg-codecs.overrideAttrs (finalAttrs: _prev: {
-        version = "2026-05-18";
+        version = "127365";
         src = fetchurl {
-          url = "https://api.snapcraft.io/api/v1/snaps/download/XXzVIXswXKHqlUATPqGCj2w2l7BxosS8_117.snap";
-          hash = "sha256-YEE7oF8NLGDCQ3gpY5z6B+7xDxcOumjOzwUztJUM+/s=";
+          url = "https://api.snapcraft.io/api/v1/snaps/download/XXzVIXswXKHqlUATPqGCj2w2l7BxosS8_120.snap";
+          hash = "sha256-9UED3F3emp71xP7KZ6Uxdpu1xjkHNXapjRsykn3T50I=";
         };
         installPhase = ''
-          install -vD chromium-ffmpeg-git-${finalAttrs.version}/chromium-ffmpeg/libffmpeg.so $out/lib/libffmpeg.so
+          install -vD chromium-ffmpeg-${finalAttrs.version}/chromium-ffmpeg/libffmpeg.so $out/lib/libffmpeg.so
         '';
       });
-      commandLineArgs = "--disable-accelerated-video-decode";
+      # GPU memory-buffer video frames render DRM video (Netflix) black on
+      # NVIDIA/Wayland while audio keeps playing.
+      commandLineArgs = "--disable-gpu-memory-buffer-video-frames";
     })
     wezterm
     (pkgs.callPackage ../../modules/nixos/immersed.nix {})
