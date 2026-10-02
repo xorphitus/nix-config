@@ -18,7 +18,7 @@ auto-track-created-bookmarks = "glob:*"
 aicommit = ["util", "exec", "--", "bash", "-c", """
 set -euo pipefail
 LLAMA_SWAP_URL="http://localhost:9292"
-LLAMA_MODEL="Gemma-4-E2B"
+LLAMA_MODEL="gemma-4-E2B-it"
 CLAUDE_MODEL=haiku
 
 DIFF=$(jj diff --git)

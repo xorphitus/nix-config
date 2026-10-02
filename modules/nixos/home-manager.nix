@@ -121,8 +121,9 @@ in
   };
 
   # llama-swap
-  home.file.".config/llama-swap/config.yaml" = {
-    source = ./config/llama-swap/config.yaml;
+  home.file.".local/bin/llama-swap-genconfig.sh" = {
+    source = ./config/llama-swap/llama-swap-genconfig.sh;
+    executable = true;
   };
 
   systemd.user.services.llama-swap = {
@@ -131,6 +132,7 @@ in
       After = [ "network.target" ];
     };
     Service = {
+      ExecStartPre = "${config.home.homeDirectory}/.local/bin/llama-swap-genconfig.sh";
       ExecStart = "${pkgs.llama-swap}/bin/llama-swap --config ${config.home.homeDirectory}/.config/llama-swap/config.yaml --listen 0.0.0.0:9292 --watch-config";
       Restart = "on-failure";
 
@@ -142,6 +144,31 @@ in
     };
     Install = {
       WantedBy = [ "default.target" ];
+    };
+  };
+
+  # Polling instead of a .path unit: path units aren't recursive and would miss
+  # a .gguf landing inside an existing model folder
+  systemd.user.services.llama-swap-genconfig = {
+    Unit = {
+      Description = "Generate llama-swap config from installed models";
+    };
+    Service = {
+      ExecStart = "${config.home.homeDirectory}/.local/bin/llama-swap-genconfig.sh";
+      Type = "oneshot";
+    };
+  };
+
+  systemd.user.timers.llama-swap-genconfig = {
+    Unit = {
+      Description = "Timer for llama-swap config generation";
+    };
+    Timer = {
+      OnBootSec = "1min";
+      OnUnitActiveSec = "1min";
+    };
+    Install = {
+      WantedBy = [ "timers.target" ];
     };
   };
 
