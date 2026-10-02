@@ -5,10 +5,10 @@
 }:
 let
   pname = "handy";
-  version = "0.8.3";
+  version = "0.9.7";
   src = fetchurl {
     url = "https://github.com/cjpais/Handy/releases/download/v${version}/Handy_${version}_amd64.AppImage";
-    hash = "sha256-8rQJVpABydLXGlyLNIdw/cilAcmwvmAb93VoaJJ+KJQ=";
+    hash = "sha256-4GJRILWlwdReHlNrnSD1Ig51WOUMcB5y4BT5nJSONjo=";
   };
   extraPkgs =
     pkgs: with pkgs; [
