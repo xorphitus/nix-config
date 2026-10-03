@@ -189,6 +189,11 @@ in
     };
   };
 
+  home.file.".local/bin/aivoice.sh" = {
+    source = ./config/voicevox/aivoice.sh;
+    executable = true;
+  };
+
   # Home cleaner
   home.file.".local/bin/home-cleaner.sh" = {
     source = ./config/home-cleaner/home-cleaner.sh;
