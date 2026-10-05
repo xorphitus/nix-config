@@ -322,12 +322,25 @@ in
     "r8125"
     # Virtual camera for Immersed
     "v4l2loopback"
+    # Fan RPM/PWM from the ITE Super I/O chip
+    "it87"
   ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     r8125
     # Virtual camera for Immersed
     v4l2loopback
+    it87
   ];
+  # ACPI claims the Super I/O range on Gigabyte boards
+  boot.extraModprobeConfig = "options it87 ignore_resource_conflict=1";
+  # Drives the it87 PWM headers
+  programs.coolercontrol.enable = true;
+  # Writable copy so the daemon and GUI can still save; rebuilds reset it
+  environment.etc."coolercontrol/config.toml" = {
+    source = ./desktop_coolercontrol.toml;
+    mode = "0644";
+  };
+  systemd.services.coolercontrold.restartTriggers = [ ./desktop_coolercontrol.toml ];
 
   programs.hyprland = {
     enable = true;

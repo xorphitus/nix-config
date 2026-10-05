@@ -1,0 +1,41 @@
+[devices]
+
+[legacy690]
+
+[device-settings]
+
+[device-settings.fa49f4645cba12961942172e0455e53675b4adbc2ed077a740863e40266e9803]
+fan3 = { profile_uid = "fan3-pch" }
+
+[[profiles]]
+uid = "0"
+name = "Unmanaged"
+p_type = "Default"
+function = "0"
+
+# PCH idles near 60°C; stay off until it's clearly above that
+[[profiles]]
+uid = "fan3-pch"
+name = "Fan3 PCH"
+p_type = "Graph"
+speed_profile = [[0.0, 0], [70.0, 0], [72.0, 30], [80.0, 60], [85.0, 100]]
+temp_source = { temp_name = "temp2", device_uid = "fa49f4645cba12961942172e0455e53675b4adbc2ed077a740863e40266e9803" }
+function = "smooth"
+
+[[functions]]
+uid = "0"
+name = "Default Function"
+f_type = "Identity"
+
+# Delay and hysteresis keep short temperature spikes from revving the fan
+[[functions]]
+uid = "smooth"
+name = "Smooth"
+f_type = "Standard"
+duty_minimum = 3
+duty_maximum = 100
+response_delay = 5
+deviance = 3.0
+only_downward = false
+
+[settings]
