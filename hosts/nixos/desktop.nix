@@ -174,6 +174,7 @@ in
     jq
     lsd
     nvtopPackages.nvidia
+    pass
     procs
     ripgrep
     starship
@@ -275,6 +276,7 @@ in
     kubectl
     # Etc
     libnotify
+    protonmail-bridge
     zoom-us
   ];
 
