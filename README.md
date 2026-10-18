@@ -155,7 +155,8 @@ sudo nixos-rebuild switch --flake /path/to/nix-config#wsl
 1. `git clone` with HTTPS under the home directory
   - It's because SSH is still not fully configured and it's unavailable in this step
 1. `cd` to the top of the cloned repository
-1. `sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/master#darwin-rebuild -- switch --flake ~/nix-config#macbook-air-m2`
+1. `sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/nix-config#macbook-air-m2`
+  - If `nix-command` and `flakes` aren't enabled yet, add `--extra-experimental-features "nix-command flakes"` after `nix`. It's only needed for this first run; afterwards the configuration enables them
 1. Restart the shell
 1. `sudo darwin-rebuild switch`
 1. Re-login macOS
