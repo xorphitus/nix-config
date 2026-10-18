@@ -53,6 +53,8 @@
     ];
   };
 
+  programs.nix-your-shell.enable = true;
+
   # GPG
   home.file.".gnupg/gpg-agent.conf" = {
     source = ./config/gnupg/gpg-agent.conf;
