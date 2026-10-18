@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Speak the latest output of a herdr agent as ずんだもん.
 # Pipeline: herdr agent read -> llama.cpp (rewrite to Japanese ずんだもん口調) -> VOICEVOX -> player
+# Speaks a short acknowledgement on start and a failure phrase on error, since it
+# usually runs from a keybind with no visible terminal.
 set -euo pipefail
 
 LLAMA_URL=${LLAMA_URL:-http://127.0.0.1:9292}
@@ -17,6 +19,10 @@ MAX_CHARS=3000
 DRY_RUN=0
 TARGET=
 
+SPEAK_READY=0
+DYING=0
+ack_pid=
+
 usage() {
   cat <<EOF
 Usage: $(basename "$0") [-n LINES] [-c CHARS] [--dry-run] [<herdr-agent-target> | -]
@@ -27,7 +33,7 @@ Usage: $(basename "$0") [-n LINES] [-c CHARS] [--dry-run] [<herdr-agent-target> 
                idle/blocked agent wins a tie at each step)
   -n LINES     lines of recent output to read (default: $READ_LINES)
   -c CHARS     max characters sent to the LLM, keeping the end (default: $MAX_CHARS)
-  --dry-run    print converted text without calling VOICEVOX
+  --dry-run    print converted text without calling VOICEVOX (no voice at all)
 
 Env: LLAMA_URL, LLAMA_MODEL, LLAMA_UNLOAD (1: unload model after use), VOICEVOX_URL, VOICEVOX_SPEAKER, VOICEVOX_VOLUME, VOICEVOX_SPEED, PLAYER
 EOF
@@ -35,6 +41,11 @@ EOF
 
 die() {
   echo "aivoice: $*" >&2
+  if [[ $SPEAK_READY -eq 1 && $DYING -eq 0 ]]; then
+    DYING=1
+    [[ -z $ack_pid ]] || wait "$ack_pid" 2>/dev/null || true
+    speak "失敗したのだ…" || true
+  fi
   exit 1
 }
 
@@ -45,7 +56,39 @@ need() {
   done
 }
 
-# Print the terminal id of the agent to read when no target is given.
+# Synthesize TEXT via VOICEVOX and play it. Returns non-zero on failure.
+speak() {
+  local dir
+  dir=$(mktemp -d -p "$tmp") || return 1
+
+  curl -sf --max-time 30 -X POST -G "$VOICEVOX_URL/audio_query" \
+    --data-urlencode "text=$1" \
+    -d "speaker=$VOICEVOX_SPEAKER" \
+    -o "$dir/query.json" || {
+    echo "aivoice: VOICEVOX audio_query failed" >&2
+    return 1
+  }
+
+  jq --argjson vol "$VOICEVOX_VOLUME" --argjson speed "$VOICEVOX_SPEED" \
+    '.volumeScale = $vol | .speedScale = $speed' "$dir/query.json" >"$dir/query-vol.json" || {
+    echo "aivoice: failed to set volume/speed in VOICEVOX query" >&2
+    return 1
+  }
+
+  curl -sf --max-time 120 -X POST "$VOICEVOX_URL/synthesis?speaker=$VOICEVOX_SPEAKER" \
+    -H 'Content-Type: application/json' \
+    --data-binary "@$dir/query-vol.json" \
+    -o "$dir/out.wav" || {
+    echo "aivoice: VOICEVOX synthesis failed" >&2
+    return 1
+  }
+
+  # shellcheck disable=SC2086 # allow PLAYER to carry arguments
+  $PLAYER "$dir/out.wav"
+}
+
+# Set TARGET to the terminal id of the agent to read when no target is given.
+# Runs in the main shell (not $(...)) so that die can wait for the ack voice.
 pick_target() {
   local list id active_tab
   list=$(herdr agent list) || die "herdr agent list failed"
@@ -72,11 +115,11 @@ pick_target() {
   if [[ -z $id ]]; then
     echo "aivoice: cannot choose an agent automatically; pass one of these as the target:" >&2
     jq -r '.result.agents[] | "  \(.terminal_id)  \(.agent)  \(.agent_status)  \(.cwd)"' <<<"$list" >&2
-    exit 1
+    die "no agent chosen"
   fi
   jq -r --arg id "$id" '.result.agents[] | select(.terminal_id == $id)
     | "aivoice: reading \(.agent) (\(.terminal_id), \(.cwd))"' <<<"$list" >&2
-  printf '%s\n' "$id"
+  TARGET=$id
 }
 
 while [[ $# -gt 0 ]]; do
@@ -124,8 +167,28 @@ done
 need curl jq
 [[ $TARGET == - ]] || need herdr
 
+if [[ $DRY_RUN -eq 0 ]]; then
+  if [[ -z $PLAYER ]]; then
+    if command -v pw-play >/dev/null 2>&1; then
+      PLAYER=pw-play
+    elif command -v aplay >/dev/null 2>&1; then
+      PLAYER=aplay
+    else
+      die "no audio player found (install pw-play or aplay, or set PLAYER)"
+    fi
+  fi
+  tmp=$(mktemp -d)
+  trap 'rm -rf "$tmp"' EXIT
+  SPEAK_READY=1
+
+  # Runs in parallel with the LLM request; model loading can take a while.
+  ACK_PHRASES=("読み上げるのだ" "ちょっと待つのだ" "今まとめてるのだ" "任せるのだ")
+  speak "${ACK_PHRASES[RANDOM % ${#ACK_PHRASES[@]}]}" >/dev/null 2>&1 &
+  ack_pid=$!
+fi
+
 # --- 1. Read agent output ---------------------------------------------------
-[[ -n $TARGET ]] || TARGET=$(pick_target)
+[[ -n $TARGET ]] || pick_target
 if [[ $TARGET == - ]]; then
   raw=$(cat)
 else
@@ -200,34 +263,5 @@ if [[ $DRY_RUN -eq 1 ]]; then
 fi
 
 # --- 3. Speak via VOICEVOX ---------------------------------------------------
-if [[ -z $PLAYER ]]; then
-  if command -v pw-play >/dev/null 2>&1; then
-    PLAYER=pw-play
-  elif command -v aplay >/dev/null 2>&1; then
-    PLAYER=aplay
-  else
-    die "no audio player found (install pw-play or aplay, or set PLAYER)"
-  fi
-fi
-
-tmp=$(mktemp -d)
-trap 'rm -rf "$tmp"' EXIT
-
-curl -sf --max-time 30 -X POST -G "$VOICEVOX_URL/audio_query" \
-  --data-urlencode "text=$text" \
-  -d "speaker=$VOICEVOX_SPEAKER" \
-  -o "$tmp/query.json" ||
-  die "VOICEVOX audio_query failed at $VOICEVOX_URL"
-
-jq --argjson vol "$VOICEVOX_VOLUME" --argjson speed "$VOICEVOX_SPEED" \
-  '.volumeScale = $vol | .speedScale = $speed' "$tmp/query.json" >"$tmp/query-vol.json" ||
-  die "failed to set volume/speed in VOICEVOX query"
-
-curl -sf --max-time 120 -X POST "$VOICEVOX_URL/synthesis?speaker=$VOICEVOX_SPEAKER" \
-  -H 'Content-Type: application/json' \
-  --data-binary "@$tmp/query-vol.json" \
-  -o "$tmp/out.wav" ||
-  die "VOICEVOX synthesis failed at $VOICEVOX_URL"
-
-# shellcheck disable=SC2086 # allow PLAYER to carry arguments
-$PLAYER "$tmp/out.wav"
+wait "$ack_pid" || true
+speak "$text" || die "VOICEVOX failed at $VOICEVOX_URL"
